@@ -1,0 +1,33 @@
+{
+  "images": [
+    {
+      "asset": "/images/pcosina-plan.webp",
+      "width": 784,
+      "height": 1745,
+      "bytes": 105886
+    },
+    {
+      "asset": "/images/pcosina-grocery.webp",
+      "width": 784,
+      "height": 1745,
+      "bytes": 107414
+    },
+    {
+      "asset": "/images/barion-home.webp",
+      "width": 1366,
+      "height": 900,
+      "bytes": 28094
+    },
+    {
+      "asset": "/images/barion-review.webp",
+      "width": 390,
+      "height": 844,
+      "bytes": 14228
+    }
+  ],
+  "resume": {
+    "asset": "/Joshua-Salvacion-Resume.pdf",
+    "sha256": "1854a1d13980b57337470da29ddea30eadd2ddb8a242bb2ebbbb47481cb4211c",
+    "treatment": "Unmodified owner-approved PDF"
+  }
+}

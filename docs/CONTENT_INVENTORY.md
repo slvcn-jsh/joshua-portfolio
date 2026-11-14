@@ -1,0 +1,18 @@
+# Content inventory
+
+Audit date: 2026-11-13. No application repository was modified.
+
+| Content                                                                     | Evidence                                                                                                     | Publication decision                                                                   |
+| --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
+| Name, fourth-year BS CS / Software Engineering, FEU Institute of Technology | Owner's project brief; selected resume                                                                       | Use directly                                                                           |
+| Email and GitHub                                                            | Owner's brief; GitHub repositories verified with GitHub API                                                  | Publish only supplied contact details                                                  |
+| PCOSina                                                                     | Local `StudioProjects/PCOSina`, HEAD `1840999`, with later working-tree changes                              | Code-confirmed case study; disclose audit scope                                        |
+| Barion                                                                      | Local `ansel`, HEAD `7e83b70`, with later working-tree changes; separate read-only public clone at same HEAD | Use code-confirmed features shared with public source                                  |
+| PCOSina screenshots                                                         | `tools/avp/v2_3d/public/assets/week.png`, `shopping.png`                                                     | Reviewed application captures used in project presentation; optimize, preserve content |
+| Barion screenshots                                                          | `ansel/medstudy-home-settled.png`, `medstudy-study-mobile.png`                                               | Historical MedStudy interface, explicitly captioned; not current release UI            |
+| Resume                                                                      | Owner explicitly selected `SALVACION_JOSHUA_RESUME.pdf`                                                      | Copy byte-for-byte; do not rewrite                                                     |
+| Design Thinking award                                                       | Owner's brief: Champion, March 22, 2025                                                                      | Owner-confirmed; no invented individual/team role                                      |
+| HACKathon and BASE BUILD                                                    | Owner's brief: participation in 2025                                                                         | Participation only                                                                     |
+| LinkedIn / live demos                                                       | No approved verified URLs                                                                                    | Omit links                                                                             |
+
+Do not copy app databases, datasets, credentials, benchmark respondent data, research manuscripts, or unrelated local artifacts. GitHub links use public repositories; local unpublished work is not described as already pushed.

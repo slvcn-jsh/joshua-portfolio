@@ -1,0 +1,12 @@
+node_modules
+dist
+output
+public
+package-lock.json
+.playwright-cli
+scripts/browser-qa.js
+scripts/interaction-qa.js
+scripts/visual-qa.js
+scripts/nojs-qa.js
+scripts/enhanced-qa.js
+scripts/csp-qa.js
