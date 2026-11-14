@@ -83,3 +83,14 @@ Corrections made during this extension: removed redundant screenshot ARIA labels
 - Automated accessibility checks and keyboard review are not a complete assistive-technology audit.
 
 Maintenance, local commands, asset replacement and deployment instructions: `README.md`. Content evidence and missing items: `PROJECT_AUDIT.md`, `MISSING_ASSETS.md`, `ASSET_PROVENANCE.md`.
+
+## Production release checks — 2026-11-14
+
+Public origin: https://joshua-portfolio-phi-lemon.vercel.app. Public source: https://github.com/slvcn-jsh/joshua-portfolio.
+
+- `node scripts/check-deployment.mjs <origin>`: nine direct routes return 200 anonymously; canonical URLs, robots and nine-entry sitemap match the origin; configured CSP/security headers match `vercel.json`; missing route and missing asset return 404; hashed JavaScript is immutable; four project images load; downloaded PDF hash matches the approved original.
+- `scripts/live-qa.js`: 18 route/viewport checks on the live site at 390/1440px, with working scenario selection, screenshot highlights, native dialog, Escape/focus return, optional challenge, mobile navigation and PDF download. No browser errors, CSP errors or unexpected external requests.
+- GitHub Actions run `43558145913`: clean installation, lint, TypeScript/build/static validation, SEO fixtures and dependency audit passed on Ubuntu/Node 22.
+- Direct CLI deployment is verified. Automatic deployment from GitHub is not yet established; this limitation affects future updates, not availability of the published site.
+
+Production screenshots and local test artifacts remain in ignored `output/playwright/`, not in the published source or deployment payload. The original app repositories and approved PDF were not modified.

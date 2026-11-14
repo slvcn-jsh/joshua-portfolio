@@ -28,4 +28,4 @@ Non-goals: application repository edits; new backend or auth; CMS; buying a doma
 - Added one optional Barion design challenge with explanations and a direct-answer path.
 - Fixed screenshot accessible naming, modal focus containment, contents-link focus, intermediate button contrast and CSP-compatible highlight styles during QA.
 - Expanded QA with interactive-state accessibility, JavaScript-disabled explanations and strict-CSP response tests. No runtime dependencies were added.
-- Owner approved public GitHub and Vercel release after QA. GitHub account is available; Vercel sign-in is required before deployment.
+- Owner approved public GitHub and Vercel release after QA. Published the independent public GitHub repository and deployed through the authenticated Vercel CLI. Verified the real production origin, metadata, headers, PDF integrity, 404 responses and interactive behavior. Automatic Git integration remains a separately documented setup item.

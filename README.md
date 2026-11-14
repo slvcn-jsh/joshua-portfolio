@@ -2,6 +2,8 @@
 
 A light, responsive software engineering portfolio built with React, TypeScript, Vite, Tailwind CSS and Lucide icons. Nine pages are prerendered to static HTML, plus a 404 page. No runtime backend, account system, analytics or external font requests.
 
+[Live portfolio](https://joshua-portfolio-phi-lemon.vercel.app) · [Source repository](https://github.com/slvcn-jsh/joshua-portfolio)
+
 ## Run locally
 
 Requires Node.js 22.12 or newer (Node 22 LTS recommended).
@@ -92,6 +94,13 @@ Review screenshots for private information first. Optimize them to WebP, update 
 Until `SITE_URL` is set, builds intentionally omit canonical URLs and sitemap and disable indexing. With an approved origin, production builds generate correct canonical/OG URLs and `sitemap.xml`. Preview environments remain noindex and omit canonical URLs, even if the production origin is available. Do not add a catch-all SPA rewrite: each page is a real HTML file, and missing resources should remain missing.
 
 After deployment authorization, verify direct links to both case studies, the PDF, `robots.txt`, sitemap, security headers, and a genuine 404 response on the deployed host. A configured build does not by itself prove hosting behavior.
+
+The initial production release has passed those checks. The GitHub integration is not yet connected: until it is confirmed, a GitHub push alone does not update the website. Use the authenticated direct-deployment command in [release status](docs/RELEASE_STATUS.md).
+
+```sh
+node scripts/check-deployment.mjs https://joshua-portfolio-phi-lemon.vercel.app
+npx playwright-cli run-code --filename=scripts/live-qa.js
+```
 
 ## Dependencies
 

@@ -5,9 +5,10 @@
 - [x] Existing application images located and inspected for personal data.
 - [ ] Current Barion-branded screenshots: historical captures are used with explicit captions.
 - [ ] Public live demonstration URLs: no demo buttons are shown without verified destinations.
-- [ ] Production portfolio domain: configure `SITE_URL` after domain selection; do not invent a canonical host.
+- [x] Production origin and `SITE_URL`: https://joshua-portfolio-phi-lemon.vercel.app; canonical URLs and sitemap verified live.
 - [x] Owner authorized public GitHub and Vercel publication after QA on 2026-11-14.
-- [ ] Vercel CLI sign-in and live deployment verification.
+- [x] Vercel CLI sign-in and live deployment verification.
+- [ ] Automatic GitHub/Vercel repository connection: CLI connection failed; owner can connect through project Git settings. Direct deployment works.
 - [ ] Independent certificates/event links: achievements are owner-confirmed; no extra competition claims.
 - [ ] LinkedIn URL: omitted until supplied.
 - [ ] Project release status / current device QA: audit is source-based, not a fresh application release certification.

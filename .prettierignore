@@ -10,3 +10,4 @@ scripts/visual-qa.js
 scripts/nojs-qa.js
 scripts/enhanced-qa.js
 scripts/csp-qa.js
+scripts/live-qa.js
