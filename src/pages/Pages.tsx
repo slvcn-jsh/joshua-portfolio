@@ -20,18 +20,15 @@ import { ProjectCard } from '../components/ProjectCard'
 export function Projects() {
   return (
     <div className="container page-bottom">
-      <PageIntro
-        eyebrow="Selected projects"
-        title="Built around real problems."
-      >
+      <PageIntro title="Selected projects">
         <p>
           Two applications, from interface to implementation. Explore the
           decisions, tradeoffs and development work behind each one.
         </p>
       </PageIntro>
       <div className="project-list">
-        {projects.map((p, i) => (
-          <ProjectCard key={p.slug} project={p} index={i} headingAs="h2" />
+        {projects.map((p) => (
+          <ProjectCard key={p.slug} project={p} headingAs="h2" />
         ))}
       </div>
       <div className="editorial-note">
@@ -50,25 +47,16 @@ export function Projects() {
 export function Skills() {
   return (
     <div className="container page-bottom">
-      <PageIntro
-        eyebrow="Technical skills"
-        title="Experience grounded in projects."
-      >
-        <p>
-          The tools I’ve used to build PCOSina, Barion and this portfolio.
-          Project-backed experience is identified separately from other
-          resume-listed skills, without proficiency scores.
-        </p>
+      <PageIntro title="Technical skills">
+        <p>The tools I’ve used to build PCOSina, Barion and this portfolio.</p>
       </PageIntro>
       <div className="skills-list">
-        {skills.map((s, i) => (
+        {skills.map((s) => (
           <section className="skill-row" key={s.name}>
             <div className="skill-title">
-              <span className="section-index">0{i + 1}</span>
               <h2>{s.name}</h2>
             </div>
             <div>
-              <p className="small-label">Used in projects</p>
               <ul className="tag-list">
                 {s.used.map((t) => (
                   <li key={t}>{t}</li>
@@ -97,24 +85,16 @@ export function Skills() {
 export function About() {
   return (
     <div className="container page-bottom">
-      <PageIntro
-        eyebrow="About Joshua"
-        title="A software engineer in the making."
-      >
+      <PageIntro title="About Joshua">
         <p>
-          I’m Joshua Escalicas Salvacion, a fourth-year Computer Science student
-          majoring in Software Engineering at FEU Institute of Technology.
+          My development interests span mobile applications, backend services
+          and local data. I’m working toward a career in software engineering.
         </p>
       </PageIntro>
       <div className="about-layout">
         <div className="about-prose">
           <section>
-            <h2>What I’m working toward</h2>
-            <p>
-              I’m building a foundation in mobile application development and
-              the systems that support it: APIs, local persistence and
-              dependable application behavior.
-            </p>
+            <h2>Application development</h2>
             <p>
               PCOSina and Barion have given me practical work across native
               Android and cross-platform development. Both projects require
@@ -172,7 +152,6 @@ export function About() {
           </a>
         </aside>
       </div>
-      <ContactBand />
     </div>
   )
 }
@@ -180,10 +159,7 @@ export function About() {
 export function Achievements() {
   return (
     <div className="container page-bottom">
-      <PageIntro
-        eyebrow="Achievements & activities"
-        title="Learning beyond the classroom."
-      >
+      <PageIntro title="Achievements & activities">
         <p>
           Recognition and participation in design thinking, hackathons and
           technical events.
@@ -205,7 +181,6 @@ export function Achievements() {
             <div>
               <p className="eyebrow">{a.type}</p>
               <h2>{a.title}</h2>
-              <p>{a.description}</p>
             </div>
             <span className="achievement-date">{a.date}</span>
           </article>
@@ -224,10 +199,10 @@ export function Achievements() {
 export function Resume() {
   return (
     <div className="container page-bottom">
-      <PageIntro eyebrow="Resume" title="The essentials, in one page.">
+      <PageIntro title="Resume">
         <p>
           Education, technical skills, selected projects and activities.
-          Download the approved PDF for your records.
+          Download the one-page PDF or open it in your browser.
         </p>
       </PageIntro>
       <div className="resume-layout">
@@ -262,9 +237,6 @@ export function Resume() {
           >
             Open PDF
           </ExternalLink>
-          <p className="small muted">
-            Original approved document, provided without edits.
-          </p>
           <div className="panel-rule" />
           <p>Looking for more context on the projects?</p>
           <a className="text-link" href="/projects">
@@ -290,7 +262,7 @@ export function Contact() {
   }
   return (
     <div className="container page-bottom contact-page">
-      <PageIntro eyebrow="Contact" title="Let’s talk about what’s next.">
+      <PageIntro title="Contact">
         <p>
           For software engineering internships, project conversations or
           questions about my work, email is the best way to reach me.
@@ -354,7 +326,7 @@ export function Contact() {
 export function NotFound() {
   return (
     <div className="container not-found">
-      <PageIntro eyebrow="404 / Page not found" title="This page isn’t here.">
+      <PageIntro title="404 — Page not found">
         <p>
           The address may have changed. You can return home or explore the
           selected projects.

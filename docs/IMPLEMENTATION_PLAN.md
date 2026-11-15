@@ -29,3 +29,12 @@ Non-goals: application repository edits; new backend or auth; CMS; buying a doma
 - Fixed screenshot accessible naming, modal focus containment, contents-link focus, intermediate button contrast and CSP-compatible highlight styles during QA.
 - Expanded QA with interactive-state accessibility, JavaScript-disabled explanations and strict-CSP response tests. No runtime dependencies were added.
 - Owner approved public GitHub and Vercel release after QA. Published the independent public GitHub repository and deployed through the authenticated Vercel CLI. Verified the real production origin, metadata, headers, PDF integrity, 404 responses and interactive behavior. Automatic Git integration remains a separately documented setup item.
+
+## Editorial refinement — 2026-11-15
+
+- Consolidated Home into identity/context, a leading PCOSina feature and supporting Barion presentation; removed duplicate index, About teaser and contact banner.
+- Replaced promotional page headings with direct labels; removed repeated education prose, achievement descriptions and case-section labels.
+- Applied a name-only wordmark, serif title hierarchy, plain technology lists, border-light project layouts and consistent action icons across all pages.
+- Preserved original project evidence, disclosures, native navigation, historical-media labels and interactive case-study behavior. No new runtime dependencies or remote font requests.
+- Added regression checks for duplicate content, media scaling, project links and responsive reading order; fixed screenshot QA to skip intentionally unloaded images inside closed disclosures.
+- Local build, lint, typecheck, formatting, static links, SEO modes, dependency audit and full responsive/interaction regression checks passed. Release verification is recorded in QA_REPORT.md and RELEASE_STATUS.md.

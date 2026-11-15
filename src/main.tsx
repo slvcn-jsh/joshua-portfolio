@@ -4,6 +4,7 @@ import { App } from './App'
 import { pageMeta } from './content/site'
 import './styles.css'
 import './interactions.css'
+import './editorial.css'
 
 const path = window.location.pathname.replace(/\/+$/, '') || '/'
 const root = document.getElementById('root')!

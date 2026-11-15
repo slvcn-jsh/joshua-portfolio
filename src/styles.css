@@ -221,18 +221,6 @@
     font-weight: 650;
     white-space: nowrap;
   }
-  .brand-mark {
-    font-size: 1.5rem;
-    font-weight: 750;
-    letter-spacing: -0.1em;
-    color: var(--color-navy);
-    border-right: 1px solid var(--color-line);
-    padding-right: 15px;
-    line-height: 1;
-  }
-  .brand-mark span {
-    color: #6d8aa8;
-  }
   .desktop-nav {
     display: flex;
     gap: 23px;
@@ -291,130 +279,12 @@
     color: var(--color-accent);
     text-decoration: underline;
   }
-  .home-hero {
-    display: grid;
-    grid-template-columns: 1.65fr 1fr;
-    gap: 80px;
-    padding: 65px 0 60px;
-  }
-  .hero-main .eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 22px;
-  }
-  .tiny-rule {
-    width: 20px;
-    height: 2px;
-    background: var(--color-accent);
-  }
-  .hero-main h1 {
-    letter-spacing: -0.045em;
-  }
-  .hero-role {
-    margin-top: 15px;
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: var(--color-accent);
-  }
-  .hero-description {
-    color: var(--color-muted);
-    margin-top: 15px;
-    max-width: 550px;
-    font-size: 0.94rem;
-    line-height: 1.8;
-  }
   .hero-actions {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 12px;
     margin-top: 25px;
-  }
-  .hero-contact {
-    padding-inline: 5px;
-  }
-  .hero-details {
-    align-self: center;
-    border-left: 1px solid var(--color-line);
-    padding-left: 32px;
-  }
-  .detail-block {
-    display: flex;
-    gap: 13px;
-    margin-bottom: 22px;
-  }
-  .detail-block > svg {
-    color: #526d8d;
-    margin-top: 3px;
-    flex-shrink: 0;
-  }
-  .detail-label {
-    display: block;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: 0.62rem;
-    font-weight: 650;
-    color: var(--color-muted);
-    margin-bottom: 4px;
-  }
-  .detail-block p {
-    font-size: 0.86rem;
-    font-weight: 600;
-    margin-bottom: 3px;
-  }
-  .detail-block .small {
-    font-size: 0.77rem;
-  }
-  .hero-details > .text-link {
-    margin-left: 32px;
-  }
-  .hero-project-index {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2px 24px;
-    align-items: center;
-    margin-top: 24px;
-    padding-top: 10px;
-  }
-  .hero-project-index .small-label {
-    width: 100%;
-  }
-  .hero-project-index a {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    min-height: 36px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--color-accent);
-  }
-  .hero-project-index a span {
-    color: var(--color-muted);
-    font-weight: 400;
-  }
-  .hero-project-index a:hover {
-    text-decoration: underline;
-  }
-  .selected-work {
-    border-top: 1px solid var(--color-line);
-    padding-top: 36px;
-  }
-  .section-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    gap: 24px;
-    margin-bottom: 28px;
-  }
-  .section-heading .eyebrow {
-    margin-bottom: 8px;
-  }
-  .section-heading h2 {
-    font-size: 1.55rem;
-  }
-  .section-heading > a {
-    flex-shrink: 0;
   }
   .project-list {
     display: grid;
@@ -440,12 +310,6 @@
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
-  .project-number {
-    color: #55687f;
-    font-family: var(--font-mono);
-    border-right: 1px solid var(--color-line);
-    padding-right: 13px;
-  }
   .project-copy :is(h2, h3) {
     margin-top: 14px;
     font-size: 1.9rem;
@@ -457,11 +321,6 @@
   }
   .project-copy :is(h2, h3) a:hover {
     color: var(--color-accent);
-  }
-  .project-title-arrow {
-    font-size: 1.2rem;
-    font-weight: 400;
-    color: #667b95;
   }
   .project-description {
     font-size: 0.87rem;
@@ -562,32 +421,8 @@
     border-radius: 4px;
     box-shadow: 0 6px 20px #182d3710;
   }
-  .mobile-capture {
-    position: absolute;
-    width: 26%;
-    right: 0;
-    bottom: 6px;
-    border: 1px solid #c8d9de;
-    border-radius: 5px;
-    box-shadow: 0 4px 12px #182d3710;
-  }
   .barion-preview .preview-caption {
     color: #4d6268;
-  }
-  .home-about {
-    display: grid;
-    grid-template-columns: 1fr 1.35fr;
-    gap: 80px;
-    padding: 68px 0;
-  }
-  .home-about h2 {
-    font-size: 1.75rem;
-    line-height: 1.4;
-  }
-  .home-about p:not(.eyebrow) {
-    color: var(--color-muted);
-    font-size: 0.9rem;
-    margin-bottom: 13px;
   }
   .contact-band {
     display: flex;
@@ -1300,22 +1135,8 @@
     color: var(--color-accent);
     font-weight: 600;
   }
-  .home-hero {
-    gap: 35px;
-    grid-template-columns: 1.5fr 1fr;
-    padding-block: 48px;
-  }
-  .hero-project-index {
-    margin-top: 22px;
-  }
-  .hero-details {
-    padding-left: 22px;
-  }
   .hero-actions {
     gap: 10px;
-  }
-  .home-about {
-    gap: 40px;
   }
   .project-copy {
     padding: 26px;
@@ -1387,33 +1208,10 @@
     font-size: 0.8rem;
     gap: 10px;
   }
-  .brand-mark {
-    padding-right: 11px;
-    font-size: 1.4rem;
-  }
   .mobile-nav nav {
     top: 67px;
     left: -10px;
     right: -10px;
-  }
-  .home-hero {
-    grid-template-columns: 1fr;
-    gap: 32px;
-    padding: 37px 0 32px;
-  }
-  .hero-main h1 {
-    font-size: 2.35rem;
-  }
-  .hero-main .eyebrow {
-    font-size: 0.6rem;
-    margin-bottom: 20px;
-  }
-  .hero-role {
-    font-size: 0.98rem;
-  }
-  .hero-description {
-    font-size: 0.9rem;
-    margin-top: 13px;
   }
   .hero-actions {
     gap: 10px 8px;
@@ -1424,53 +1222,6 @@
     padding-inline: 13px;
     gap: 9px;
   }
-  .hero-contact {
-    padding-left: 0;
-  }
-  .hero-details {
-    border-left: 0;
-    border-top: 1px solid var(--color-line);
-    padding: 24px 0 0;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  .detail-block {
-    margin: 0;
-    gap: 12px;
-  }
-  .detail-block p {
-    font-size: 0.84rem;
-  }
-  .detail-block .small {
-    font-size: 0.76rem;
-  }
-  .hero-details > .text-link {
-    margin-left: 31px;
-  }
-  .hero-project-index {
-    margin-top: 20px;
-    gap: 5px;
-    display: grid;
-  }
-  .hero-project-index .small-label {
-    margin-bottom: 3px;
-  }
-  .selected-work {
-    padding-top: 28px;
-  }
-  .section-heading {
-    display: block;
-    margin-bottom: 20px;
-  }
-  .section-heading h2 {
-    font-size: 1.35rem;
-    line-height: 1.4;
-    max-width: 290px;
-  }
-  .section-heading > a {
-    margin-top: 12px;
-  }
   .project-card {
     grid-template-columns: 1fr;
   }
@@ -1480,9 +1231,6 @@
   .project-meta {
     font-size: 0.58rem;
     gap: 9px;
-  }
-  .project-number {
-    padding-right: 9px;
   }
   .project-copy :is(h2, h3) {
     font-size: 1.7rem;
@@ -1511,17 +1259,6 @@
   }
   .project-links {
     gap: 20px;
-  }
-  .home-about {
-    grid-template-columns: 1fr;
-    gap: 22px;
-    padding: 42px 0;
-  }
-  .home-about h2 {
-    font-size: 1.6rem;
-  }
-  .home-about .eyebrow {
-    margin-bottom: 10px;
   }
   .contact-band {
     flex-direction: column;

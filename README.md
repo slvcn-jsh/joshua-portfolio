@@ -102,6 +102,21 @@ node scripts/check-deployment.mjs https://joshua-portfolio-phi-lemon.vercel.app
 npx playwright-cli run-code --filename=scripts/live-qa.js
 ```
 
+## Visual maintenance
+
+The current work-led editorial layout is specified in [editorial refinement](docs/EDITORIAL_REFINEMENT.md)
+and [design system](docs/DESIGN_SYSTEM.md). `src/editorial.css` owns presentation refinements;
+`src/interactions.css` owns the walkthroughs, annotations and dialogs. Typography uses
+local system fonts, including Georgia for identity/page titles. No font subscription or
+external font service is needed. Keep each homepage project presentation unique; do not
+reintroduce the old project index or duplicate About/contact blocks.
+
+Run the additional content/layout regression with the local preview running:
+
+```sh
+npx playwright-cli run-code --filename=scripts/editorial-qa.js
+```
+
 ## Dependencies
 
 The lockfile is committed. A temporary `minimatch` override selects a patched v11 release for lint tooling. It addresses [GHSA-g3hv-75wg-m249](https://github.com/advisories/GHSA-g3hv-75wg-m249); remove the override once upstream packages use an unaffected version and the checks still pass. No vulnerable runtime packages were reported at handoff.

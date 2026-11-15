@@ -23,11 +23,10 @@ export function Layout({
       </a>
       <header className="site-header">
         <div className="container header-inner">
-          <a className="brand" href="/" aria-label="js. Joshua Salvacion, home">
-            <span className="brand-mark" aria-hidden="true">
-              js<span>.</span>
+          <a className="brand" href="/" aria-label="Joshua Salvacion, home">
+            <span>
+              Joshua <strong>Salvacion</strong>
             </span>
-            <span>Joshua Salvacion</span>
           </a>
           <nav className="desktop-nav" aria-label="Main navigation">
             {links}
@@ -58,7 +57,7 @@ export function Layout({
             <a className="footer-name" href="/">
               Joshua Salvacion
             </a>
-            <p>Software engineering, through practical work.</p>
+            <p>Mobile applications & supporting systems</p>
           </div>
           <div className="footer-links">
             <a href={`mailto:${identity.email}`}>
@@ -102,17 +101,14 @@ export function ExternalLink({
 }
 
 export function PageIntro({
-  eyebrow,
   title,
   children,
 }: {
-  eyebrow: string
   title: string
   children: ReactNode
 }) {
   return (
     <div className="page-intro">
-      <p className="eyebrow">{eyebrow}</p>
       <h1>{title}</h1>
       <div className="intro-copy">{children}</div>
     </div>
@@ -123,14 +119,10 @@ export function ContactBand() {
   return (
     <section className="contact-band">
       <div>
-        <p className="eyebrow">Let’s connect</p>
-        <h2>Have an internship opportunity?</h2>
-        <p>
-          I’d welcome a conversation about your team and the software you’re
-          building.
-        </p>
+        <h2>Let’s talk about your team.</h2>
+        <p>I’m looking for a software engineering internship.</p>
       </div>
-      <a className="button button-light" href="/contact">
+      <a className="button button-secondary" href="/contact">
         Get in touch <ArrowUpRight size={17} aria-hidden="true" />
       </a>
     </section>

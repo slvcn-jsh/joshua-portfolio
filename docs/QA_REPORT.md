@@ -94,3 +94,26 @@ Public origin: https://joshua-portfolio-phi-lemon.vercel.app. Public source: htt
 - Direct CLI deployment is verified. Automatic deployment from GitHub is not yet established; this limitation affects future updates, not availability of the published site.
 
 Production screenshots and local test artifacts remain in ignored `output/playwright/`, not in the published source or deployment payload. The original app repositories and approved PDF were not modified.
+
+## Editorial refinement checks — 2026-11-15
+
+Scope: work-led homepage, typography and shared layout, content de-duplication and
+direct page/section headings. Personal anecdotes and additional interactive features
+were intentionally deferred. The lean-build skill kept this pass on existing components
+and local fonts, without adding dependencies or services.
+
+- `npm run check`: ESLint, TypeScript, production build, 10 prerendered documents and 249 local references passed.
+- `npm run check:seo`: production/preview/unconfigured fixtures passed; `npm run format:check` passed; `npm audit --audit-level=moderate` reported zero vulnerabilities.
+- `browser-qa.js`: 50 page/width combinations at 360, 390, 768, 1024 and 1440px; zero axe WCAG 2/2.1 A/AA violations, horizontal overflows, broken-image findings or page errors.
+- `enhanced-qa.js`: 10 project/width combinations, 35 interactive accessibility scans; all walkthrough, annotation, image-dialog, focus, challenge, contents and reduced-motion checks passed.
+- `interaction-qa.js`: all 11 original checks passed, including keyboard menu, actual PDF download, clipboard success/failure and mailto target.
+- `nojs-qa.js`: nine static pages, native mobile navigation and case-study fallback explanations passed.
+- `csp-qa.js`: both cases passed under the configured strict policy, with zero policy violations.
+- `editorial-qa.js`: single project presentations, unique homepage images, one education introduction, responsive reading order, image aspect ratios, actual case-study navigation at all five widths and six direct page titles passed.
+- Desktop/mobile screenshots were captured for visual review. Screenshot QA now scrolls visible images into view before decoding, avoiding waits on intentionally unloaded images in closed disclosures. Image link accessible names include their visible captions.
+- Build sizes: JS 86.95 KB gzip, CSS 9.26 KB gzip, approximately 937 KB total static output. These are build measurements, not field performance or a Lighthouse score.
+
+No project implementation claims were expanded, no source application repositories
+were changed, and the approved PDF and screenshots remain unchanged. Physical devices,
+Safari/Firefox, assistive-technology audits and new first-impression user testing remain
+outside the performed checks. Publication verification follows below when complete.

@@ -11,3 +11,4 @@ scripts/nojs-qa.js
 scripts/enhanced-qa.js
 scripts/csp-qa.js
 scripts/live-qa.js
+scripts/editorial-qa.js

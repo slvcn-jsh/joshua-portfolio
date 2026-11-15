@@ -119,7 +119,7 @@ export const skills = [
       'Render configuration',
     ],
     context:
-      'Version control, application builds and deployment configuration. This portfolio is prepared for Vercel.',
+      'Version control, application builds and deployment configuration. This portfolio is hosted on Vercel.',
   },
   {
     name: 'Engineering practices',

@@ -163,7 +163,7 @@ async (page) => {
       if (
         !(await page
           .getByRole('heading', {
-            name: 'Decisions behind the interface.',
+            name: 'Engineering decisions',
             exact: true,
           })
           .evaluate((el) => el === document.activeElement))

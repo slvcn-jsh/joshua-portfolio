@@ -18,12 +18,11 @@ export function CaseStudy({ project: p }: { project: Project }) {
           <ArrowLeft size={16} aria-hidden="true" />
           All projects
         </a>
-        <p className="eyebrow">Product & software engineering case study</p>
+        <p className="eyebrow">Engineering case study</p>
         <h1>
           {p.name}
           <span className="status-label">{p.status}</span>
         </h1>
-        <p className="case-headline">{p.headline}</p>
         <p className="case-summary">{p.summary}</p>
         <div className="case-facts">
           <div>
@@ -46,8 +45,7 @@ export function CaseStudy({ project: p }: { project: Project }) {
         </aside>
         <article className="case-body">
           <section id="overview" className="case-section">
-            <p className="section-index">01 / Context</p>
-            <h2>A practical problem to solve.</h2>
+            <h2>Problem & context</h2>
             <p>{p.problem}</p>
             <div className="user-callout">
               <h3>Who it’s for</h3>
@@ -57,8 +55,7 @@ export function CaseStudy({ project: p }: { project: Project }) {
             <p>{p.solution}</p>
           </section>
           <section id="product" className="case-section">
-            <p className="section-index">02 / Product</p>
-            <h2>Inside {p.name}.</h2>
+            <h2>Features & application screens</h2>
             <div className="feature-grid">
               {p.features.map((f) => (
                 <div key={f.title}>
@@ -70,8 +67,7 @@ export function CaseStudy({ project: p }: { project: Project }) {
             <ProductExplorer project={p} />
           </section>
           <section id="workflow" className="case-section">
-            <p className="section-index">03 / Workflow</p>
-            <h2>From input to everyday use.</h2>
+            <h2>User workflow</h2>
             <ol className="workflow">
               {p.workflow.map((step, i) => (
                 <li key={step.title}>
@@ -85,8 +81,7 @@ export function CaseStudy({ project: p }: { project: Project }) {
             </ol>
           </section>
           <section id="architecture" className="case-section">
-            <p className="section-index">04 / Architecture</p>
-            <h2>How the pieces connect.</h2>
+            <h2>System architecture</h2>
             <figure className="architecture-figure">
               <div className="architecture-grid">
                 {p.architecture.map((layer, i) => (
@@ -108,8 +103,7 @@ export function CaseStudy({ project: p }: { project: Project }) {
             </ul>
           </section>
           <section id="engineering" className="case-section">
-            <p className="section-index">05 / Implementation</p>
-            <h2>Decisions behind the interface.</h2>
+            <h2>Engineering decisions</h2>
             <div className="decision-list">
               {p.decisions.map((d, index) => (
                 <div key={d.title}>
@@ -134,8 +128,7 @@ export function CaseStudy({ project: p }: { project: Project }) {
             {p.slug === 'barion' && <DecisionChallenge />}
           </section>
           <section id="validation" className="case-section">
-            <p className="section-index">06 / Validation</p>
-            <h2>What’s implemented. What’s next.</h2>
+            <h2>Testing & project status</h2>
             <h3>Testing approach</h3>
             <ul className="evidence-list">
               {p.testing.map((t) => (
@@ -149,8 +142,7 @@ export function CaseStudy({ project: p }: { project: Project }) {
             </div>
           </section>
           <section id="contributions" className="case-section">
-            <p className="section-index">07 / Ownership</p>
-            <h2>My development contributions.</h2>
+            <h2>My contributions</h2>
             <ul className="contribution-list">
               {p.contributions.map((c) => (
                 <li key={c}>
@@ -167,8 +159,7 @@ export function CaseStudy({ project: p }: { project: Project }) {
             </p>
           </section>
           <section id="learnings" className="case-section">
-            <p className="section-index">08 / Reflection</p>
-            <h2>What I’m taking forward.</h2>
+            <h2>Lessons & next steps</h2>
             <p>{p.lessons}</p>
             <h3>Next improvements</h3>
             <p>{p.next}</p>

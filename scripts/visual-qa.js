@@ -6,9 +6,14 @@ async (page) => {
     for (const [slug, route] of [['home', '/'], ['pcosina', '/projects/pcosina'], ['barion', '/projects/barion'], ['skills', '/skills'], ['about', '/about'], ['achievements', '/achievements'], ['resume', '/resume'], ['contact', '/contact']]) {
       await page.goto('http://127.0.0.1:4173' + route)
       await page.locator('main h1').waitFor()
-      // Scroll once to request below-the-fold media before a full-page capture.
-      await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
-      await page.evaluate(async () => { await Promise.all([...document.images].map(i => i.decode().catch(() => {}))) })
+      // Request visible lazy images individually; closed disclosures deliberately
+      // do not load, so decoding every document image can wait indefinitely.
+      const images = page.locator('main img:visible')
+      const imageCount = await images.count()
+      for (let i = 0; i < imageCount; i++) {
+        await images.nth(i).scrollIntoViewIfNeeded()
+        await images.nth(i).evaluate(image => image.decode())
+      }
       await page.evaluate(() => window.scrollTo(0, 0))
       const path = `output/playwright/${slug}-${width}.png`
       await page.screenshot({ path, fullPage: true })
