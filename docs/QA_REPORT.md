@@ -162,3 +162,17 @@ transcribed from owner-approved documents, not an independent issuer-status chec
 Event association and university context are owner-confirmed. No individual people
 were identified from photographs. Chromium testing does not replace physical-device,
 Safari/Firefox or screen-reader audits; those remain unperformed.
+
+### Credential update: production verification
+
+- Implementation `a783e18` published to GitHub main. GitHub Actions run `43708912668`
+  passed clean install, lint, typecheck/build/static validation, SEO fixtures and audit.
+- Production deployment `dpl_5CVPoohBEByvPykUyWBfNxcNimZc` reached READY after a
+  network/upload retry. Existing public alias is unchanged.
+- `check-deployment.mjs` passed ten direct public routes, sitemap/canonicals, security
+  headers, 404 behavior, immutable assets, all three event photos, four project images,
+  and byte-identical public downloads of the resume and both certificates.
+- `live-qa.js` passed 20 production page/viewport combinations, all five evidence
+  dialogs at mobile/desktop widths, both certificate downloads, resume download,
+  existing project interactions and mobile navigation. No browser/CSP errors or
+  unexpected external requests were observed.

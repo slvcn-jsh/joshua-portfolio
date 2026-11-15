@@ -16,3 +16,13 @@ Audit date: 2026-11-13. No application repository was modified.
 | LinkedIn / live demos                                                       | No approved verified URLs                                                                                    | Omit links                                                                             |
 
 Do not copy app databases, datasets, credentials, benchmark respondent data, research manuscripts, or unrelated local artifacts. GitHub links use public repositories; local unpublished work is not described as already pushed.
+
+# November 15 credential and event-photo addendum
+
+Two approved certificates are now documented in `src/content/certificates.ts` and
+`ASSET_PROVENANCE.md`, with unchanged PDFs and rendered previews on `/certifications`.
+Three original owner-supplied event photos accompany the existing championship and
+participation records. UP Computer Science and Adamson University context is supplied
+by the owner; no additional event results or individual roles were inferred. The
+owner-provided LinkedIn profile is included on Contact and in the footer. Project
+logos come from the actual applications, with sources in the asset provenance record.

@@ -48,3 +48,21 @@ Project summaries use meaningful metadata rather than decorative numbering; actu
 workflow steps and case-study navigation keep their sequence numbers.
 
 Content ownership and scope are recorded in `EDITORIAL_REFINEMENT.md`.
+
+## Credential and identity refinements — 2026-11-15
+
+`src/identity.css` follows editorial styles and owns evidence/brand presentation.
+Technology lists now pair text with 26px brand marks or semantic Lucide icons, not
+decorative badges. Home uses a compact three-language row linking to project evidence;
+Skills uses a responsive grid with visible labels. Project headings use 48px original
+marks (60px in case-study titles). Contact remains email-first with GitHub and LinkedIn.
+
+Certificates pair metadata with a full-page preview on desktop and stack below 768px.
+Event photos keep the entire frame, with a bounded preview height and image enlargement.
+The shared dialog handles both media types; original PDFs have separate download links.
+All evidence is on its dedicated page rather than duplicated on Home.
+
+Entrance translation is 8px over 420ms, once per observed element. Home language marks
+have a short 550ms entrance with 70ms stagger and a 3px hover/focus lift. No content is
+hidden waiting for animation or JavaScript. Reduced-motion disables all animations and
+transitions. No continuous loops, parallax or animation package is used.

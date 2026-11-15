@@ -15,6 +15,25 @@ async (page) => {
       await page.locator('html[data-enhanced]').waitFor()
       if (await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)) throw new Error('Overflow: ' + path)
       if (path === '/') await page.screenshot({ path: `output/playwright/live-home-${width}.png` })
+      if (path === '/certifications' || path === '/achievements') {
+        const selector = path === '/certifications' ? '.certificate-image-link' : '.event-image-link'
+        const triggers = page.locator(selector)
+        const count = await triggers.count()
+        if (count !== (path === '/certifications' ? 2 : 3)) throw new Error('Missing live evidence')
+        for (let i = 0; i < count; i++) {
+          await triggers.nth(i).click()
+          await page.locator('dialog[open] img').evaluate(image => image.decode())
+          await page.keyboard.press('Escape')
+          if (!await triggers.nth(i).evaluate(el => el === document.activeElement)) throw new Error('Live evidence focus restoration failed')
+        }
+        if (path === '/certifications') {
+          for (let i = 0; i < 2; i++) {
+            const pending = page.waitForEvent('download')
+            await page.getByRole('link', { name: 'Download PDF', exact: true }).nth(i).click()
+            if (await (await pending).failure()) throw new Error('Live certificate download failed')
+          }
+        }
+      }
       if (path.startsWith('/projects/')) {
         const pcosina = path.endsWith('pcosina')
         await page.getByRole('button', { name: pcosina ? 'Connection lost' : 'AI service unavailable', exact: true }).click()
@@ -44,5 +63,5 @@ async (page) => {
   const download = await downloadEvent
   if (download.suggestedFilename() !== 'Joshua-Salvacion-Resume.pdf') throw new Error('Wrong resume filename')
   if (issues.length) throw new Error(JSON.stringify(issues))
-  return { origin, pagesAndViewports: checked, productionInteractions: 'pass', mobileNavigation: 'pass', resumeDownload: 'pass', browserOrPolicyErrors: issues }
+  return { origin, pagesAndViewports: checked, productionInteractions: 'pass', evidenceDialogs: 'pass', certificateDownloads: 'pass', mobileNavigation: 'pass', resumeDownload: 'pass', browserOrPolicyErrors: issues }
 }
