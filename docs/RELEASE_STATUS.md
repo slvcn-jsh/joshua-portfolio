@@ -3,7 +3,7 @@
 Owner authorization: public GitHub repository and Vercel deployment after QA,
 explicitly confirmed on 2026-11-14.
 
-- Local implementation: complete, including the Behind the interface interactions.
+- Local implementation: complete, including the Behind the interface interactions and November 15 editorial refinement.
 - GitHub: public repository at https://github.com/slvcn-jsh/joshua-portfolio, default branch `main`.
 - Vercel: production deployment is READY in the owner's `joshua-salvacions-projects` scope.
 - Public website: https://joshua-portfolio-phi-lemon.vercel.app (anonymous access verified).
@@ -13,8 +13,12 @@ explicitly confirmed on 2026-11-14.
 - GitHub Actions: the initial quality workflow passed clean install, lint/build/static checks, SEO mode checks and dependency audit.
 - Automatic GitHub-to-Vercel deployment: not established. Both CLI connection attempts failed; the owner was asked to connect the repository through the project's Git settings. Direct authenticated CLI deployment works and was used for this release.
 
-Production deployment verified: `dpl_7hcFMmTvxXMRmVfJmJEAbDUoZFWU`.
-Application implementation commit: `255409b`; subsequent release-documentation and QA scripts do not change the application UI.
+Latest production deployment verified (2026-11-15): `dpl_6s7CtDXVqU8BpDKQaZJwsa1ytH1h`.
+Application implementation commit: `6cf5636` (editorial hierarchy and design refinement).
+The original release was `255409b` / `dpl_7hcFMmTvxXMRmVfJmJEAbDUoZFWU`.
+All nine public routes and 18 production browser/viewport combinations passed again
+after the refinement, including security headers, metadata, real 404s, PDF integrity
+and interactive behavior. GitHub Actions run `43679890548` passed for `6cf5636`.
 
 ## Updating the live site
 

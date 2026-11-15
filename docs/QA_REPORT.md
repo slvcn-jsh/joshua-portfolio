@@ -116,4 +116,13 @@ and local fonts, without adding dependencies or services.
 No project implementation claims were expanded, no source application repositories
 were changed, and the approved PDF and screenshots remain unchanged. Physical devices,
 Safari/Firefox, assistive-technology audits and new first-impression user testing remain
-outside the performed checks. Publication verification follows below when complete.
+outside the performed checks.
+
+### Production verification
+
+- Published implementation `6cf5636` to GitHub main and production deployment `dpl_6s7CtDXVqU8BpDKQaZJwsa1ytH1h` to the existing public alias.
+- `check-deployment.mjs`: nine routes, canonical/OG/sitemap, security headers, immutable assets and four project images passed; missing route/asset returned 404.
+- Approved resume SHA-256 remains `1854a1d13980b57337470da29ddea30eadd2ddb8a242bb2ebbbb47481cb4211c`.
+- `live-qa.js`: 18 live route/viewport combinations, scenario/annotation/dialog/challenge interactions, mobile navigation and actual PDF download passed; zero browser/policy errors or unexpected external requests.
+- GitHub Actions run `43679890548` passed clean installation, lint, TypeScript/build, static checks, SEO fixtures and dependency audit.
+- Public origin remains https://joshua-portfolio-phi-lemon.vercel.app. Updated anonymous production screenshots were inspected. Automatic Git integration was not changed; direct deployment remains the documented update workflow.
