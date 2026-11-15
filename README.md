@@ -29,11 +29,17 @@ npm run build
 npm run check:site
 npm run check:seo
 npm audit
+npx playwright install chromium
+npm run test:browser
 ```
 
 `npm run check` runs lint, typecheck, production build and generated-page validation. The static validator checks all local links/assets, fragment targets, headings, page metadata, image attributes, the PDF signature and unwanted public file types.
 
-For browser QA, start the production preview on port 4173, then run:
+`npm run test:browser` starts its own preview on port 4173, runs the checked-in
+browser workflows, and closes its server. CI runs the same command and retains
+screenshots/reports for seven days. With an existing preview, pass `-- --reuse-preview`.
+
+For interactive browser inspection, start a production preview on port 4173, then run:
 
 ```sh
 npx playwright-cli open http://127.0.0.1:4173
@@ -54,7 +60,8 @@ src/content/           Identity, skills, achievements and typed project case stu
 src/components/        Shared shell, project summaries and case-study presentation
 src/pages/             Home and supporting pages
 src/styles.css         Design tokens and responsive component styles
-src/interactions.css   Scenario, annotation, dialog and challenge styles
+src/interactions.css   Scenario, annotation and dialog styles
+src/case-study.css     Ownership brief, data-flow maps and compact case-study structure
 public/                Approved PDF, optimized screenshots, preview and social card
 scripts/prerender.tsx  Static HTML, metadata, robots and optional sitemap generation
 docs/                  Content evidence, specification, asset provenance and QA
@@ -62,15 +69,26 @@ docs/                  Content evidence, specification, asset provenance and QA
 
 Standard links navigate between generated pages. React hydrates small interactions such as copy-email and menu Escape handling. Content and native disclosure navigation remain accessible without JavaScript. Unknown paths render a useful not-found page; Vercel serves `404.html` with a 404 status. Vite's local preview uses its standard fallback behavior and can return HTTP 200 for unknown URLs, so its status is not a deployment test.
 
-The “Behind the interface” components add source-based scenario walkthroughs, annotated screenshots, image enlargement and one optional Barion decision challenge. They are explanations, not live application demos. Essential content and scenario explanations remain readable without JavaScript.
+Source-based scenario walkthroughs and annotations explain implementation; they are
+not live demos. The redundant quiz was removed. Barion now also has a genuine
+14.4-second silent local-web recording using its built-in sample deck, with native
+controls, a written alternative and a download. Essential content works without JS.
 
 ### Update content
 
 Edit `src/content/site.ts` for profile information, navigation, route metadata and skills. Edit `src/content/projects.ts` for case studies. Validate new claims against the project repository and add their evidence to `docs/PROJECT_AUDIT.md`.
 
-Edit `src/content/interactions.ts` for walkthrough text and screenshot explanations. Annotation regions are named CSS classes in `src/interactions.css`; remeasure them when replacing a screenshot. Do not annotate the current Barion interface using a historical capture. Scenario state changes must not make remote calls or imply successful live failure testing. The optional challenge lives in `src/components/DecisionChallenge.tsx`.
+Edit `src/content/interactions.ts` for walkthrough text and screenshot explanations.
+Remeasure named CSS annotation regions when replacing screenshots. Scenario controls
+must not make remote calls or imply live failure testing. `Project.sourceRef` pins
+source links, and each decision owns its evidence mapping. `SystemMap` separates local
+and backend data paths. `ProjectRecording` presents the optional actual recording.
 
-Do not convert historical project test results into current test claims. Barion screenshots are explicitly historical. Optional integrations do not imply deployed features. Keep AI-assisted authorship transparent.
+Do not convert historical tests into current results. The focused November 15 checks
+have downloadable records in `public/evidence/`; these local working-tree results are
+not clean-public-commit or release certifications. Barion media is a November 16 local
+web capture; PCOSina retains existing presentation captures. Keep sole development and
+AI assistance explicit. First-person implementation text is not a personal debugging history.
 
 ### Replace the resume
 
@@ -79,6 +97,12 @@ Use only a newly approved PDF. Copy it unchanged to `public/Joshua-Salvacion-Res
 The optional `scripts/preview-resume.py` requires PyMuPDF and renders one page into `output/pdf/`. `sharp` can convert that PNG into the web preview. Python is not needed for normal development, builds or deployment; all production assets are committed.
 
 ### Replace screenshots
+
+For current Barion assets, follow `docs/PROJECT_VERIFICATION.md`: run
+`scripts/capture-barion.mjs` against the isolated no-dotenv preview, inspect the
+captures, then run `scripts/prepare-current-barion.mjs`. The latter imports assets
+and writes their hashes to `docs/barion-capture-manifest.json`. Recheck annotation
+regions, dimensions, recording file-size label and captions after every refresh.
 
 Review screenshots for private information first. Optimize them to WebP, update dimensions and captions in `src/content/projects.ts`, and record their provenance. `scripts/prepare-media.mjs` documents the initial asset-import process; do not run it against another person's repositories without reviewing the sources and approved resume argument. Keep original project repositories independent.
 
@@ -100,7 +124,7 @@ The initial production release has passed those checks. The GitHub integration i
 
 ```sh
 node scripts/check-deployment.mjs https://joshua-portfolio-phi-lemon.vercel.app
-npx playwright-cli run-code --filename=scripts/live-qa.js
+npm run test:browser -- --live
 ```
 
 ## Visual maintenance

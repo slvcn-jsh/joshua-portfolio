@@ -10,20 +10,22 @@ async (page) => {
     for (const slug of ['pcosina', 'barion']) {
       await plain.goto('http://127.0.0.1:4173/projects/' + slug)
       if (await plain.getByRole('group', { name: 'Choose an illustrative scenario' }).isVisible()) throw new Error('Inactive controls exposed without JS')
+      await plain.locator('.scenario-disclosure > summary').click()
       await plain.locator('.scenario-notes summary').click()
       if (!await plain.locator('.scenario-notes p').first().isVisible()) throw new Error('Scenario fallback missing')
       if (!await plain.locator('.static-annotations').isVisible()) throw new Error('Static annotation explanations missing')
       const href = await plain.locator('.capture-link').getAttribute('href')
       if (!href.endsWith('.webp')) throw new Error('Image fallback missing')
       if (slug === 'barion') {
-        await plain.locator('.decision-challenge summary').click()
-        if (!await plain.locator('.decision-challenge noscript').isVisible()) throw new Error('Decision fallback missing')
+        await plain.locator('.recording-disclosure > summary').click()
+        if (!await plain.locator('video[controls]').isVisible()) throw new Error('No-JS recording unavailable')
+        if (await plain.locator('.recording-layout li').count() !== 4) throw new Error('Video text alternative missing')
       }
     }
     await plain.goto('http://127.0.0.1:4173/')
     await plain.locator('summary').filter({ hasText: 'Menu' }).click()
     await plain.getByRole('navigation', { name: 'Mobile navigation' }).getByRole('link', { name: 'Projects', exact: true }).click()
     await plain.waitForURL('**/projects')
-    return { staticPages: 10, nativeMenuWithoutJavaScript: 'passed', walkthroughAndAnnotationFallbacks: 'passed', challengeFallback: 'passed' }
+    return { staticPages: 10, nativeMenuWithoutJavaScript: 'passed', walkthroughAndAnnotationFallbacks: 'passed' }
   } finally { await context.close() }
 }

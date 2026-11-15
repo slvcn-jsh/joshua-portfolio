@@ -1,5 +1,10 @@
 # Project audit
 
+**November 15–16 update:** the original source-only audit below is supplemented by
+five passing PCOSina planner tests, seven passing Barion tests and an actual Barion
+web recording. See [verification scope](PROJECT_VERIFICATION.md). These checks do
+not establish full-suite, native-release, production or clinical readiness.
+
 ## Scope and method
 
 Read README/architecture/readiness documents, dependency manifests, implementation, schema, test files, deployment configuration and recent Git history. This is source inspection, not a fresh execution of either application's test suite. Existing test counts and release notes are historical evidence and are not presented as current passes.

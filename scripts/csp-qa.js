@@ -32,6 +32,7 @@ async (page) => {
       await secure.locator('.capture-link').click()
       await secure.getByRole('dialog').waitFor()
       await secure.getByRole('button', { name: 'Close image' }).click()
+      await secure.locator('.scenario-disclosure > summary').click()
       await secure.locator('.scenario-controls button').nth(1).click()
       const violations = await secure.evaluate(() => window.policyViolations)
       if (violations.length)

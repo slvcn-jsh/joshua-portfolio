@@ -18,7 +18,7 @@ export function ProjectCard({
     ? featured
       ? 'Weekly meal planning · Application capture'
       : 'Meal planning & groceries · Application captures'
-    : 'Earlier interface · MedStudy'
+    : 'Current web preview · Sample deck'
   const screenshots = featured
     ? project.screenshots.slice(0, 1)
     : project.screenshots

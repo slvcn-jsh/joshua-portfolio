@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react'
 
 const sections = [
-  ['overview', 'The problem & solution'],
+  ['overview', 'Problem & approach'],
   ['product', 'Inside the application'],
-  ['workflow', 'User workflow'],
   ['architecture', 'System architecture'],
   ['engineering', 'Engineering decisions'],
-  ['validation', 'Testing & status'],
-  ['contributions', 'My contributions'],
+  ['validation', 'Verification & status'],
   ['learnings', 'Lessons & next steps'],
 ]
 
@@ -40,9 +38,8 @@ export function CaseContents() {
       window.removeEventListener('resize', schedule)
     }
   }, [])
-  return (
-    <nav aria-label="Case study contents">
-      <p className="eyebrow">In this case study</p>
+  const links = (
+    <>
       {sections.map(([id, label], index) => (
         <a
           key={id}
@@ -73,6 +70,20 @@ export function CaseContents() {
           {label}
         </a>
       ))}
-    </nav>
+    </>
+  )
+  return (
+    <>
+      <nav className="case-contents-desktop" aria-label="Case study contents">
+        <p className="eyebrow">In this case study</p>
+        {links}
+      </nav>
+      <details className="case-contents-mobile">
+        <summary>
+          In this case study <span className="small muted">6 sections</span>
+        </summary>
+        <nav aria-label="Case study contents">{links}</nav>
+      </details>
+    </>
   )
 }

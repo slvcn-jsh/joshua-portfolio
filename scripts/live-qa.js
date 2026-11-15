@@ -36,6 +36,7 @@ async (page) => {
       }
       if (path.startsWith('/projects/')) {
         const pcosina = path.endsWith('pcosina')
+        await page.locator('.scenario-disclosure > summary').click()
         await page.getByRole('button', { name: pcosina ? 'Connection lost' : 'AI service unavailable', exact: true }).click()
         if (!(await page.locator('.scenario-result').textContent()).includes(pcosina ? 'The connection stops.' : 'Keep studying.')) throw new Error('Scenario failed on production')
         await page.getByRole('button', { name: '02 What the system handles', exact: true }).click()
@@ -45,10 +46,14 @@ async (page) => {
         await page.keyboard.press('Escape')
         await page.locator('dialog[open]').waitFor({ state: 'detached' })
         if (!await page.locator('.capture-link').evaluate(el => el === document.activeElement)) throw new Error('Focus restoration failed')
+        if (!await page.getByRole('heading', { name: 'Sole developer', exact: true }).isVisible()) throw new Error('Ownership missing')
+        const record = await page.request.get(origin + '/evidence/' + (pcosina ? 'pcosina' : 'barion') + '-verification.json')
+        if (record.status() !== 200 || !(await record.json()).result) throw new Error('Verification record unavailable')
         if (!pcosina) {
-          await page.locator('.decision-challenge summary').click()
-          await page.getByRole('button', { name: '02 Keep reviewing cards saved on the device', exact: true }).click()
-          await page.getByRole('heading', { name: 'The network took a break. Your flashcards didn’t.' }).waitFor()
+          await page.locator('.recording-disclosure > summary').click()
+          await page.locator('video').evaluate(async video => { await video.play() })
+          await page.waitForFunction(() => document.querySelector('video').currentTime > .2)
+          await page.locator('video').evaluate(video => video.pause())
         }
       }
       checked++

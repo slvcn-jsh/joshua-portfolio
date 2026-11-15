@@ -1,5 +1,19 @@
 # Public asset provenance
 
+## Current Barion media — November 16, 2026
+
+`images/barion-current-{home,source,review}.webp` and `videos/barion-review.webm`
+are actual captures of the modified local web preview, not generated mockups.
+Fresh browser storage used the built-in synthetic deck, with dotenv disabled and
+external requests blocked. No external requests or page errors occurred during capture.
+The silent VP9 video is 14.4 seconds, 390×844, 25 fps and 778,418 bytes. It shows
+opening review, revealing, inspecting source provenance, rating Good and advancing.
+Sample content is not medical advice. WebP encoding strips image metadata. Hashes
+and timestamps are in `barion-capture-manifest.json`. Earlier Barion assets below
+are historical import records, no longer used by the pages.
+
+## Original asset import
+
 All assets were inspected locally before being included. No project database, private dataset, credential file, raw manuscript or personal portrait is included.
 
 | Portfolio asset                  | Source                                               | Treatment                                                                                    |

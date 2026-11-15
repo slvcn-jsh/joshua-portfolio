@@ -6,6 +6,7 @@ import './styles.css'
 import './interactions.css'
 import './editorial.css'
 import './identity.css'
+import './case-study.css'
 
 const path = window.location.pathname.replace(/\/+$/, '') || '/'
 const root = document.getElementById('root')!

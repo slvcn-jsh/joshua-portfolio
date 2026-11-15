@@ -1,5 +1,16 @@
 # Design system
 
+## Evidence-first refinement — November 16, 2026
+
+Keep the approved white/navy editorial layout. Five primary links prioritize Projects,
+Skills, About, Resume and Contact; credentials and achievements remain discoverable
+from About and the footer. Case studies lead with sole development and scoped evidence.
+Six contents entries replace eight; at <=1023px use a native collapsed disclosure.
+Local/backend diagrams show request, response and storage boundaries. A separate
+`case-study.css` owns these structures. The quiz and its CSS were removed. The actual
+Barion recording uses native opt-in video, no autoplay, preload none and a text alternative.
+Source data now owns evidence mappings and public commit refs explicitly.
+
 ## Visual direction
 
 White canvas, very light cool-gray sections, charcoal text, muted slate secondary text, navy action color. A restrained blue accent signals links and selected navigation. Straightforward editorial layout with fine rules and small corner radii. No portrait, decorative illustration, fake statistics, hero animation or gradients.

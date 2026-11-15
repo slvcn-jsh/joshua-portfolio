@@ -1,24 +1,36 @@
-import { ArrowLeft, ArrowRight, Code2, Check } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Code2 } from 'lucide-react'
+import { useEffect, useRef } from 'react'
 import type { Project } from '../content/projects'
 import { projects } from '../content/projects'
 import { ExternalLink } from './Layout'
 import { ScenarioWalkthrough } from './ScenarioWalkthrough'
 import { ProductExplorer } from './ProductExplorer'
 import { CaseContents } from './CaseContents'
-import { DecisionChallenge } from './DecisionChallenge'
+import { SystemMap } from './SystemMap'
+import { ProjectRecording } from './ProjectRecording'
 
 export function CaseStudy({ project: p }: { project: Project }) {
   const other = projects.find((x) => x.slug !== p.slug)!
-  const isFirst = projects[0].slug === p.slug
-  const decisionEvidence = p.slug === 'pcosina' ? [0, 1, 0] : [1, 0, 2]
+  const scenario = useRef<HTMLDetailsElement>(null)
+  useEffect(() => {
+    const openLinkedScenario = () => {
+      if (window.location.hash === '#walkthrough' && scenario.current) {
+        scenario.current.open = true
+        document.getElementById('walkthrough')?.scrollIntoView()
+      }
+    }
+    openLinkedScenario()
+    window.addEventListener('hashchange', openLinkedScenario)
+    return () => window.removeEventListener('hashchange', openLinkedScenario)
+  }, [])
   return (
-    <div className="container">
-      <div className="case-hero">
+    <div className="container case-page">
+      <header className="case-hero">
         <a className="back-link" href="/projects">
           <ArrowLeft size={16} aria-hidden="true" />
           All projects
         </a>
-        <p className="eyebrow">Engineering case study</p>
+        <p className="eyebrow">{p.category}</p>
         <h1>
           <img
             className="project-logo"
@@ -28,82 +40,79 @@ export function CaseStudy({ project: p }: { project: Project }) {
             height="64"
           />
           {p.name}
-          <span className="status-label">{p.status}</span>
         </h1>
         <p className="case-summary">{p.summary}</p>
-        <div className="case-facts">
+        <div className="project-brief" id="contributions">
           <div>
-            <span>Platform</span>
-            <p>{p.category}</p>
+            <h2>Sole developer</h2>
+            <p>{p.ownership}</p>
+            <p className="brief-assistance">
+              Developed independently with AI coding assistance.
+            </p>
           </div>
           <div>
-            <span>Engineering focus</span>
-            <p>{p.focus}</p>
+            <h2>Current evidence</h2>
+            <p>{p.verification.summary}</p>
+            <p className="small muted">{p.verification.scope}</p>
+            <a className="text-link" href="#validation">
+              Scope & limitations <ArrowRight size={15} aria-hidden="true" />
+            </a>
           </div>
-          <ExternalLink href={p.repository} className="button button-secondary">
+        </div>
+        <div className="case-actions">
+          <span className="status-label">{p.status}</span>
+          <ExternalLink href={p.repository} className="text-link">
             <Code2 size={17} aria-hidden="true" />
             View source
           </ExternalLink>
+          <a className="text-link" href="#product">
+            See application <ArrowRight size={16} aria-hidden="true" />
+          </a>
         </div>
-      </div>
+      </header>
       <div className="case-layout">
         <aside className="case-aside">
           <CaseContents />
         </aside>
         <article className="case-body">
           <section id="overview" className="case-section">
-            <h2>Problem & context</h2>
+            <h2>Problem & approach</h2>
             <p>{p.problem}</p>
-            <div className="user-callout">
-              <h3>Who it’s for</h3>
-              <p>{p.users}</p>
-            </div>
-            <h3>The approach</h3>
             <p>{p.solution}</p>
-          </section>
-          <section id="product" className="case-section">
-            <h2>Features & application screens</h2>
-            <div className="feature-grid">
-              {p.features.map((f) => (
-                <div key={f.title}>
-                  <h3>{f.title}</h3>
-                  <p>{f.text}</p>
-                </div>
-              ))}
-            </div>
-            <ProductExplorer project={p} />
-          </section>
-          <section id="workflow" className="case-section">
-            <h2>User workflow</h2>
-            <ol className="workflow">
+            <ol className="compact-workflow" id="workflow">
               {p.workflow.map((step, i) => (
                 <li key={step.title}>
-                  <span className="step-number">{i + 1}</span>
-                  <div>
-                    <h3>{step.title}</h3>
-                    <p>{step.text}</p>
-                  </div>
+                  <span className="mono">0{i + 1}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
                 </li>
               ))}
             </ol>
           </section>
+          <section id="product" className="case-section">
+            <h2>Inside the application</h2>
+            <ProductExplorer project={p} />
+            {p.video && <ProjectRecording video={p.video} />}
+            <ul className="feature-summary">
+              {p.features.map((f) => (
+                <li key={f.title}>
+                  <strong>{f.title}</strong>
+                  <span>{f.text}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
           <section id="architecture" className="case-section">
             <h2>System architecture</h2>
-            <figure className="architecture-figure">
-              <div className="architecture-grid">
-                {p.architecture.map((layer, i) => (
-                  <div className="architecture-node" key={layer.title}>
-                    <span className="mono">0{i + 1}</span>
-                    <h3>{layer.title}</h3>
-                    <p>{layer.text}</p>
-                  </div>
-                ))}
-              </div>
-              <figcaption>{p.architectureNote}</figcaption>
-            </figure>
-            <ScenarioWalkthrough slug={p.slug} />
-            <h3>Core technology stack</h3>
-            <ul className="tag-list stack-list">
+            <SystemMap project={p} />
+            <details className="scenario-disclosure" ref={scenario}>
+              <summary>Explore the failure path</summary>
+              <ScenarioWalkthrough slug={p.slug} />
+            </details>
+            <ul
+              className="tag-list stack-list"
+              aria-label="Core technology stack"
+            >
               {p.stack.map((s) => (
                 <li key={s}>{s}</li>
               ))}
@@ -112,63 +121,49 @@ export function CaseStudy({ project: p }: { project: Project }) {
           <section id="engineering" className="case-section">
             <h2>Engineering decisions</h2>
             <div className="decision-list">
-              {p.decisions.map((d, index) => (
+              {p.decisions.map((d) => (
                 <div key={d.title}>
                   <h3>{d.title}</h3>
                   <p>{d.text}</p>
                   <ExternalLink
                     className="text-link decision-evidence"
-                    href={`${p.repository}/blob/${p.slug === 'barion' ? '7e83b70' : '1840999'}/${p.evidence[decisionEvidence[index]].path}`}
+                    href={`${p.repository}/blob/${p.sourceRef}/${d.evidence.path}`}
                   >
-                    Source: {p.evidence[decisionEvidence[index]].label}
+                    Source: {d.evidence.label}
                   </ExternalLink>
                 </div>
               ))}
             </div>
-            <h3 className="subsection-title">Challenges & responses</h3>
-            {p.challenges.map((c) => (
-              <div className="challenge" key={c.title}>
-                <h4>{c.title}</h4>
-                <p>{c.text}</p>
-              </div>
-            ))}
-            {p.slug === 'barion' && <DecisionChallenge />}
+            <div className="engineering-account">
+              <p className="eyebrow">Implementation in focus</p>
+              <h3>{p.account.title}</h3>
+              <dl>
+                <dt>Problem</dt>
+                <dd>{p.account.problem}</dd>
+                <dt>Implementation</dt>
+                <dd>{p.account.implementation}</dd>
+              </dl>
+            </div>
           </section>
           <section id="validation" className="case-section">
-            <h2>Testing & project status</h2>
-            <h3>Testing approach</h3>
-            <ul className="evidence-list">
-              {p.testing.map((t) => (
-                <li key={t}>{t}</li>
-              ))}
-            </ul>
+            <h2>Verification & status</h2>
+            <h3>{p.verification.summary}</h3>
+            <p className="small muted">{p.verification.scope}</p>
+            <p>{p.account.verification}</p>
+            <p className="verification-limit">{p.account.limit}</p>
+            <a className="text-link" href={p.verification.record} download>
+              Download verification record (JSON)
+              <ArrowRight size={15} aria-hidden="true" />
+            </a>
             <div className="status-panel">
-              <p className="eyebrow">Current project status</p>
+              <h3>{p.status}</h3>
               <p>{p.result}</p>
               <p className="muted">{p.limitations}</p>
             </div>
           </section>
-          <section id="contributions" className="case-section">
-            <h2>My contributions</h2>
-            <ul className="contribution-list">
-              {p.contributions.map((c) => (
-                <li key={c}>
-                  <Check size={17} aria-hidden="true" />
-                  <span>{c}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="ownership-note">
-              I developed this application with assistance from AI coding tools.
-              My work includes product direction, implementation, integration,
-              debugging and verification; this is not a claim that every line
-              was written without assistance.
-            </p>
-          </section>
           <section id="learnings" className="case-section">
             <h2>Lessons & next steps</h2>
             <p>{p.lessons}</p>
-            <h3>Next improvements</h3>
             <p>{p.next}</p>
             <div className="source-panel">
               <h3>Explore the implementation</h3>
@@ -176,34 +171,24 @@ export function CaseStudy({ project: p }: { project: Project }) {
                 {p.evidence.map((e) => (
                   <ExternalLink
                     key={e.path}
-                    href={`${p.repository}/blob/${p.slug === 'barion' ? '7e83b70' : '1840999'}/${e.path}`}
+                    href={`${p.repository}/blob/${p.sourceRef}/${e.path}`}
                   >
                     {e.label}
                   </ExternalLink>
                 ))}
               </div>
               <p className="small muted">{p.snapshot}</p>
-              <p className="small muted">
-                No verified public live demo is linked. Application captures and
-                source code are available above.
-              </p>
             </div>
           </section>
         </article>
       </div>
       <a className="next-project" href={`/projects/${other.slug}`}>
         <div>
-          <span className="eyebrow">
-            {isFirst ? 'Next project' : 'Previous project'}
-          </span>
+          <span className="eyebrow">Another project</span>
           <h2>{other.name}</h2>
           <p>{other.category}</p>
         </div>
-        {isFirst ? (
-          <ArrowRight size={28} aria-hidden="true" />
-        ) : (
-          <ArrowLeft size={28} aria-hidden="true" />
-        )}
+        <ArrowRight size={28} aria-hidden="true" />
       </a>
     </div>
   )

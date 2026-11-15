@@ -3,13 +3,13 @@ export type Project = {
   name: string
   category: string
   status: string
-  headline: string
   summary: string
   stack: string[]
   repository: string
+  sourceRef: string
   focus: string
+  ownership: string
   problem: string
-  users: string
   solution: string
   features: { title: string; text: string }[]
   screenshots: {
@@ -20,14 +20,23 @@ export type Project = {
     height: number
   }[]
   workflow: { title: string; text: string }[]
-  architecture: { title: string; text: string }[]
+  video?: { src: string; poster: string; caption: string; steps: string[] }
   architectureNote: string
-  decisions: { title: string; text: string }[]
-  challenges: { title: string; text: string }[]
-  testing: string[]
+  decisions: {
+    title: string
+    text: string
+    evidence: { label: string; path: string }
+  }[]
+  account: {
+    title: string
+    problem: string
+    implementation: string
+    verification: string
+    limit: string
+  }
+  verification: { summary: string; scope: string; record: string }
   result: string
   limitations: string
-  contributions: string[]
   lessons: string
   next: string
   evidence: { label: string; path: string }[]
@@ -40,288 +49,231 @@ export const projects: Project[] = [
     name: 'PCOSina',
     category: 'Android · Wellness & meal planning',
     status: 'Tester-stage project',
-    headline: 'Meal planning that starts with everyday constraints.',
     summary:
       'A Filipino-focused meal-planning application that brings food preferences, pantry ingredients and budget into a structured weekly plan.',
     stack: ['Kotlin', 'Jetpack Compose', 'Python', 'FastAPI', 'OR-Tools'],
     repository: 'https://github.com/slvcn-jsh/PCOSina',
+    sourceRef: '1840999',
     focus:
       'Android development · Backend integration · Constraint optimization',
+    ownership:
+      'I built the Android interface, integrated the planning backend and local persistence, and handled debugging and validation.',
     problem:
-      'Planning meals means reconciling several needs at once: food exclusions, available ingredients, spending limits and nutritional targets. For Filipino individuals with PCOS, an application also needs to reflect familiar food and practical shopping routines.',
-    users:
-      'Filipino individuals with PCOS who want help organizing meals and groceries around their preferences and household constraints.',
+      'For Filipino individuals with PCOS, planning meals means reconciling familiar food, exclusions, pantry ingredients and spending limits. These needs can conflict: a cheaper meal is not useful if it contains an excluded ingredient.',
     solution:
-      'PCOSina connects a native Android interface to a rule-based and constraint-solving planner. Generated plans are saved locally so the user can return to their meals and grocery guidance when connectivity is limited. It is a wellness decision-support project, not a diagnostic or clinically validated treatment tool.',
+      'I connected a Kotlin/Compose client to a rule-based and constraint-solving planner, then saved returned plans locally for everyday access. PCOSina is a wellness decision-support project, not a diagnostic or clinically validated treatment tool.',
     features: [
       {
-        title: 'Profile-aware planning',
-        text: 'Preferences, exclusions, pantry context and budget feed into candidate selection and plan generation.',
+        title: 'Plan',
+        text: 'Build a week around preferences, exclusions, pantry context and budget.',
       },
       {
-        title: 'Weekly plans & meal swaps',
-        text: 'Review the week, inspect meals and request alternatives through the planning workflow.',
+        title: 'Adjust',
+        text: 'Inspect meals and request alternatives through the planning workflow.',
       },
       {
-        title: 'Groceries & pantry',
-        text: 'Use the plan’s ingredient requirements to organize shopping and see what is already available.',
-      },
-      {
-        title: 'Local continuity',
-        text: 'Keep saved plans, grocery guidance and local reflections accessible without a constant connection.',
+        title: 'Shop',
+        text: 'Use ingredient quantities and pantry context to organize groceries.',
       },
     ],
     screenshots: [
       {
         src: '/images/pcosina-plan.webp',
-        alt: 'PCOSina weekly meal plan showing a selected day, three meals and estimated daily intake.',
+        alt: 'PCOSina weekly plan showing a selected day, meals and estimated intake.',
         caption:
-          'Weekly plan — meals and estimated intake in one view. Existing project presentation capture.',
+          'Weekly plan — existing project presentation capture. Displayed amounts are sample application data.',
         width: 784,
         height: 1745,
       },
       {
         src: '/images/pcosina-grocery.webp',
-        alt: 'PCOSina grocery screen showing remaining shopping items and pantry-aware ingredient quantities.',
+        alt: 'PCOSina grocery screen showing remaining items and pantry-aware quantities.',
         caption:
-          'Grocery guidance — quantities, pantry context and items still to buy. Existing project capture.',
+          'Grocery guidance — quantities and items still to buy. Existing project capture.',
         width: 784,
         height: 1745,
       },
     ],
     workflow: [
-      {
-        title: 'Set preferences',
-        text: 'Enter food needs, budget and pantry context.',
-      },
-      {
-        title: 'Generate a plan',
-        text: 'Send a request to the backend planner.',
-      },
+      { title: 'Set preferences', text: 'Food needs, pantry and budget.' },
+      { title: 'Request a plan', text: 'Backend filters and selects meals.' },
       {
         title: 'Review & save',
-        text: 'Inspect meals and retain the returned plan locally.',
-      },
-      {
-        title: 'Shop & follow',
-        text: 'Use saved meals and grocery guidance offline.',
-      },
-    ],
-    architecture: [
-      {
-        title: 'Android client',
-        text: 'Kotlin / Compose\nUI → repositories\nDataStore + local artifacts',
-      },
-      {
-        title: 'Planning API',
-        text: 'Python / FastAPI\nRequest validation\nQueue + worker path',
-      },
-      {
-        title: 'Planning engine',
-        text: 'Rule filtering\nOptional LightGBM ranking\nOR-Tools CP-SAT selection',
-      },
-      {
-        title: 'Backend persistence',
-        text: 'PostgreSQL target\nRedis queue\nSQLite for local development',
+        text: 'Keep meals and grocery guidance locally.',
       },
     ],
     architectureNote:
-      'Simplified implementation map. The client calls the API; the planner uses backend data and returns a plan for local saving. Firebase authentication and optional cloud sync sit alongside this path. New generation needs connectivity; viewing saved plans does not.',
+      'Simplified implemented data flow. The API returns a plan for local saving; Firebase authentication and optional sync sit alongside this path. New generation needs connectivity. Saved plans do not.',
     decisions: [
       {
-        title: 'Keep hard rules authoritative',
-        text: 'Allergy and exclusion filtering runs before optimization. Optional ML ranks candidates but cannot replace the final constraint checks. This keeps an uncertain ranking signal from deciding whether a food is allowed.',
+        title: 'Apply exclusions before ranking',
+        text: 'I keep exclusion filtering ahead of optimization. Optional ML ranks candidates; it does not decide whether an excluded ingredient is allowed.',
+        evidence: {
+          label: 'Planning engine',
+          path: 'backend/services/meal_planner.py',
+        },
       },
       {
-        title: 'Separate local use from generation',
-        text: 'Android repositories retain preferences and generated artifacts locally. Backend generation can fail without removing an existing plan, preserving the user’s access to their week.',
-      },
-      {
-        title: 'Use a bounded candidate pool',
-        text: 'Candidate shaping narrows the search before CP-SAT selects meals. The shortlist must still preserve viable options for constrained profiles; aggressive pruning can make a feasible request appear impossible.',
+        title: 'Preserve viable choices in the shortlist',
+        text: 'I narrow the candidate pool before solving. Excessive pruning can remove feasible choices, so candidate shaping must preserve useful nutrition and variety options.',
+        evidence: {
+          label: 'Candidate shaping',
+          path: 'backend/services/meal_planner.py',
+        },
       },
     ],
-    challenges: [
-      {
-        title: 'Conflicting planning constraints',
-        text: 'Tight budgets and exclusions can leave no suitable plan. The planner includes infeasibility diagnostics and bounded retry paths so failures can be represented explicitly.',
-      },
-      {
-        title: 'Ingredient and nutrition consistency',
-        text: 'Catalog reconciliation and ingredient-safety logic address aliases, duplicate records and mismatched values. Unresolved nutrient mappings remain documented rather than treated as complete data.',
-      },
-    ],
-    testing: [
-      'Backend tests cover allergies, budget handling, pantry matching, repetition and infeasible requests.',
-      'Android unit and instrumentation test infrastructure covers client behavior; release notes record tester distribution and device checks.',
-      'This case study is based on source inspection. The application suites and live deployment were not rerun for this portfolio.',
-    ],
+    account: {
+      title: 'When no suitable plan exists',
+      problem:
+        'Exclusions and nutritional bounds can leave no feasible plan. Returning a successful-looking result would hide that conflict.',
+      implementation:
+        'The planner uses filtering, bounded solver paths and explicit infeasibility results. A failed generation request is separate from an already saved week.',
+      verification:
+        'Five selected tests passed: custom allergy exclusion, filtering before pricing, nutrition-anchor preservation, a basic seven-day plan and an infeasible nutrition request.',
+      limit:
+        'These checks used a locally modified working tree. They do not certify the full food catalog, Android workflow or clinical suitability.',
+    },
+    verification: {
+      summary: '5 focused planner tests passed',
+      scope: '15 November 2026 · Python tests · Local working tree',
+      record: '/evidence/pcosina-verification.json',
+    },
     result:
-      'The repository contains the Android application, planning backend, test suites and tester-distribution configuration. Development records document staging and catalog-validation work. This portfolio does not claim a public production release or clinical effectiveness.',
+      'The Android application, planning backend and tester-distribution configuration are implemented. Current end-to-end device behavior and deployment health still need fresh verification.',
     limitations:
-      'Current deployment health and release readiness need fresh verification. Some catalog mappings remain unresolved, and not every nutritional target is a hard constraint.',
-    contributions: [
-      'Application design and Kotlin/Compose implementation.',
-      'Integration of the Android workflow with FastAPI planning and local persistence.',
-      'Planner integration, debugging, catalog consistency work and validation.',
-    ],
+      'Some catalog mappings remain unresolved, and not every nutritional target is a hard constraint. No public production release or clinical effectiveness is claimed.',
     lessons:
-      'Reliability depends on the data and the failure path as much as the solver. A useful plan must remain understandable, and an unavailable plan must be explained without hiding the underlying constraint.',
-    next: 'Resolve remaining food-data mappings, refresh device and deployment checks, and continue improving explanations for infeasible requests.',
+      'I treat catalog consistency and explicit failure handling as part of the product, not just backend maintenance. A plan needs understandable inputs and an honest explanation when it cannot be produced.',
+    next: 'Resolve remaining food-data mappings, verify the generate-and-save workflow on a device, and record that workflow for this case study.',
     evidence: [
-      { label: 'Planning engine', path: 'backend/services/meal_planner.py' },
       {
-        label: 'Android repository',
+        label: 'Android persistence',
         path: 'app/src/main/java/com/pcosina/app/data/repository/MealPlanRepository.kt',
       },
-      { label: 'Planner tests', path: 'backend/tests/test_meal_planner.py' },
-      { label: 'Architecture', path: 'ARCHITECTURE.md' },
+      {
+        label: 'Public planner tests',
+        path: 'backend/tests/test_meal_planner.py',
+      },
+      { label: 'Architecture notes', path: 'ARCHITECTURE.md' },
     ],
     snapshot:
-      'Audited November 2026 from the local working tree. Public source links reference the repository; later local changes may not yet be published.',
+      'Source links are pinned to public commit 1840999. The November local test snapshot differs; its file hashes and scope are recorded in the verification download.',
   },
   {
     slug: 'barion',
     name: 'Barion',
     category: 'Cross-platform · Learning application',
     status: 'In development',
-    headline: 'A study loop with the source still in reach.',
     summary:
       'A local-first learning application that connects source material, flashcards and spaced repetition, with an optional AI-assisted generation path.',
     stack: ['TypeScript', 'React Native', 'Expo', 'SQLite', 'Python'],
     repository: 'https://github.com/slvcn-jsh/barion',
+    sourceRef: '7e83b70',
     focus: 'Cross-platform development · Local data · Learning workflows',
+    ownership:
+      'I built the Expo application, connected SQLite and the review scheduler, and integrated the optional Python generation service.',
     problem:
-      'Study material and review tools are often disconnected. A flashcard is more useful when learners can trace its answer to the original source and return to a review schedule without depending on a cloud account.',
-    users:
-      'Learners working with source-heavy study material, including the medical-study scenarios represented in the project.',
+      'Learners working with source-heavy material need to check where an answer came from and return to a review schedule. Neither action should depend on a cloud account or an available AI provider.',
     solution:
-      'Barion combines a local source library, evidence-linked cards and FSRS scheduling in an Expo application. Local extractive generation provides a baseline; an optional Python gateway supports cloud-generated candidates and retrieval. Generated material still needs careful review.',
+      'I combined a local source library, evidence-linked cards and FSRS scheduling. Local extraction provides baseline candidates; an optional Python gateway adds AI-assisted generation and retrieval. Candidates still need human review.',
     features: [
       {
-        title: 'Source-linked cards',
-        text: 'Connect card content to source segments so a learner can inspect the evidence behind an answer.',
+        title: 'Trace',
+        text: 'Follow a card’s source segments to inspect the evidence behind it.',
       },
       {
-        title: 'Spaced repetition',
-        text: 'Use Again, Hard, Good and Easy ratings to update the next review through TS-FSRS.',
+        title: 'Review',
+        text: 'Rate an answer to update its next review through TS-FSRS.',
       },
       {
-        title: 'Local study data',
-        text: 'Store sources, decks, cards and review events in SQLite, with migration and backup support.',
-      },
-      {
-        title: 'Optional AI assistance',
-        text: 'Use a configured gateway for generation; preserve a local extractive fallback when it is unavailable.',
+        title: 'Retain',
+        text: 'Keep sources, cards and review events in local SQLite storage.',
       },
     ],
     screenshots: [
       {
-        src: '/images/barion-home.webp',
-        alt: 'Historical MedStudy dashboard from the Barion repository, with due cards, decks and source links.',
+        src: '/images/barion-current-home.webp',
+        alt: 'Current Barion web dashboard showing a sample deck and a Study now action.',
         caption:
-          'Historical desktop capture — the early MedStudy interface shows the source-linked review loop. It predates Barion’s current branding.',
+          'Local web preview, 16 November 2026 — built-in sample deck, not real learner activity.',
         width: 1366,
         height: 900,
       },
       {
-        src: '/images/barion-review.webp',
-        alt: 'Historical mobile review screen with a flashcard prompt, source citation, Reveal and Skip controls.',
+        src: '/images/barion-current-source.webp',
+        alt: 'Barion review answer with expanded sample-source provenance and Again, Hard, Good and Easy rating controls.',
         caption:
-          'Historical mobile capture — a review card retains a link to its sample source. Sample content is not medical advice.',
+          'Current local web preview at mobile width. Built-in sample content is not medical advice.',
         width: 390,
         height: 844,
       },
     ],
+    video: {
+      src: '/videos/barion-review.webm',
+      poster: '/images/barion-current-review.webp',
+      caption:
+        'Actual local web preview · 16 November 2026 · Silent recording · Built-in sample deck. This is not a native-release or medical-content validation.',
+      steps: [
+        'Open Study now from the dashboard.',
+        'Attempt recall, then select Reveal.',
+        'Expand Source to inspect the sample excerpt behind the answer.',
+        'Select Good; the application advances to another review card.',
+      ],
+    },
     workflow: [
-      {
-        title: 'Add a source',
-        text: 'Import supported text or a selectable-text PDF.',
-      },
-      {
-        title: 'Create cards',
-        text: 'Extract locally or request gateway assistance.',
-      },
-      {
-        title: 'Inspect evidence',
-        text: 'Review candidate content and its source links.',
-      },
-      {
-        title: 'Study & rate',
-        text: 'Reveal, rate and schedule the next review locally.',
-      },
-    ],
-    architecture: [
-      {
-        title: 'Expo application',
-        text: 'React Native / TypeScript\nSource and study screens\nShared application logic',
-      },
-      {
-        title: 'Local study layer',
-        text: 'SQLite repositories\nSource + review events\nTS-FSRS scheduling',
-      },
-      {
-        title: 'Optional AI gateway',
-        text: 'Python / FastAPI\nGeneration + validation\nProvider fallback',
-      },
-      {
-        title: 'Retrieval & providers',
-        text: 'BM25 / hybrid retrieval\nSource segments\nConfigured model provider',
-      },
+      { title: 'Add a source', text: 'Text or a selectable-text PDF.' },
+      { title: 'Inspect candidates', text: 'Review content and source links.' },
+      { title: 'Study & rate', text: 'Reveal, rate and schedule locally.' },
     ],
     architectureNote:
-      'Simplified implementation map. Core study uses the local database and scheduler. Cloud generation branches through the optional gateway; it is not required for local review. Supabase authentication is configurable, while production sync remains unverified.',
+      'Simplified implemented data flow. Local review uses SQLite and the scheduler; generation branches through an optional gateway. Configurable Supabase authentication is separate. Production cross-device sync is unverified.',
     decisions: [
       {
-        title: 'Make the study loop local',
-        text: 'SQLite stores cards, sources and review events behind repository functions. A learner can continue reviewing without requiring authentication or a configured AI service.',
+        title: 'Keep the source attached',
+        text: 'I carry source-span provenance into generation so a learner can inspect the underlying material. A citation explains origin; it does not prove the answer is correct.',
+        evidence: {
+          label: 'Generation and provenance',
+          path: 'src/ai/generate.ts',
+        },
       },
       {
-        title: 'Record reviews and replay state',
-        text: 'The FSRS adapter serializes memory state and supports replaying ratings. Deterministic scheduling makes state changes easier to test and reason about.',
-      },
-      {
-        title: 'Keep generation tied to evidence',
-        text: 'Generation carries source-span provenance and validation. The gateway includes BM25 and hybrid retrieval implementations, while local extraction remains a separate, explicit fallback—not an on-device language model.',
+        title: 'Make scheduling replayable',
+        text: 'I serialize scheduler state and retain review ratings. Replaying the same history can reproduce the next state, making scheduling behavior testable.',
+        evidence: { label: 'FSRS adapter', path: 'src/scheduler/fsrs.ts' },
       },
     ],
-    challenges: [
-      {
-        title: 'Useful output when a provider fails',
-        text: 'The generation path catches provider failures and returns locally extracted candidates with fallback provenance. The application can explain how the result was produced.',
-      },
-      {
-        title: 'Generated content is not verified learning quality',
-        text: 'Source grounding and automated checks reduce some failure modes but do not establish medical accuracy or educational benefit. Independent review and evaluator calibration remain open work.',
-      },
-    ],
-    testing: [
-      'Jest tests cover FSRS replay, generation fallback, source-span checks, backup formats and local storage behavior.',
-      'Python tests cover gateway policy, retrieval and generation services. Playwright flows cover study, backup and AI fallback.',
-      'Readiness notes distinguish local checks from unverified native releases and deployed services. This audit inspected tests without rerunning the application suites.',
-    ],
+    account: {
+      title: 'Keep fallback output distinguishable',
+      problem:
+        'A provider failure must not turn locally extracted cards into apparently successful AI output.',
+      implementation:
+        'The generation path returns fallback provenance with locally extracted candidates. This is an explicit alternative path, not an on-device language model.',
+      verification:
+        'Seven tests passed across two suites covering scheduling, deterministic replay, generation contracts and fallback provenance. Provider behavior was stubbed; these were not live AI-service checks.',
+      limit:
+        'The tested adapter files match the public revision, but their working-tree dependencies may differ. These checks do not establish native-release readiness or learning quality.',
+    },
+    verification: {
+      summary: '7 scheduling and generation tests passed',
+      scope: '15 November 2026 · 2 Jest suites · Local working tree',
+      record: '/evidence/barion-verification.json',
+    },
     result:
-      'An implemented learning application with local persistence, source-linked review, scheduling and optional AI services. It remains in development; native store releases, production service configuration and independent learning-quality validation are not established.',
+      'Local persistence, source-linked review, scheduling and optional generation services are implemented. The application remains in development; native store releases and production services are not established here.',
     limitations:
-      'Fresh Barion-branded screenshots are still needed. The images here are historical repository captures. Production cross-device sync and clinical learning claims are not presented as delivered features.',
-    contributions: [
-      'React Native/Expo application implementation and study-flow design.',
-      'Local SQLite integration, scheduling and backend service integration.',
-      'Generation fallback, debugging and automated quality-check workflows.',
-    ],
+      'The recording demonstrates one local web review path, not a native release. Independent content review, evaluator calibration and native-device checks remain open.',
     lessons:
-      'A generation workflow needs both traceable evidence and a usable fallback. Keeping study state local separates everyday reliability from the availability of external services.',
-    next: 'Refresh native device validation, complete independent content review and evaluator calibration, verify deployment configuration, and capture the current interface.',
+      'I separate everyday review from generation availability, and traceable provenance from content quality. Keeping those boundaries explicit makes failures easier to explain without overstating what the system verifies.',
+    next: 'Validate backup and study on a native device, review generated material independently, and verify production service configuration.',
     evidence: [
-      { label: 'FSRS adapter', path: 'src/scheduler/fsrs.ts' },
-      { label: 'SQLite schema', path: 'src/storage/database.ts' },
-      { label: 'Generation fallback', path: 'src/ai/generate.ts' },
       {
-        label: 'Retrieval implementation',
-        path: 'services/ai_gateway/retrieval.py',
+        label: 'Scheduler tests',
+        path: 'src/scheduler/__tests__/fsrs.test.ts',
       },
+      { label: 'Generation tests', path: 'src/ai/__tests__/generate.test.ts' },
+      { label: 'SQLite schema', path: 'src/storage/database.ts' },
     ],
     snapshot:
-      'Audited November 2026 against public commit 7e83b70 and the local working tree. Screenshots represent an earlier development stage.',
+      'Source links are pinned to public commit 7e83b70. Tests and media use a newer local working tree; neither is presented as a clean-public-commit release check.',
   },
 ]

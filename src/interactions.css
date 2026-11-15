@@ -423,64 +423,6 @@
   .scenario-entry:hover {
     text-decoration: underline;
   }
-  .decision-challenge {
-    border: 1px solid var(--color-line);
-    background: #fafbfd;
-    border-radius: 5px;
-    margin-top: 28px;
-  }
-  .decision-challenge > summary {
-    padding: 20px;
-    font-size: 0.87rem;
-  }
-  .decision-challenge > summary .eyebrow {
-    display: inline;
-    margin-right: 15px;
-  }
-  .challenge-body {
-    padding: 0 22px 22px;
-  }
-  .case-section .challenge-body h3 {
-    margin-top: 0;
-    font-size: 1.13rem;
-  }
-  .challenge-options {
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
-  }
-  .challenge-options button {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    min-height: 48px;
-    padding: 12px 14px;
-    font-size: 0.8rem;
-    text-align: left;
-    border: 1px solid var(--color-line);
-    background: white;
-    border-radius: 4px;
-  }
-  .challenge-options button[aria-pressed='true'] {
-    border-color: var(--color-accent);
-    background: #edf2f8;
-    color: var(--color-accent);
-  }
-  .challenge-feedback {
-    padding: 20px 0;
-  }
-  .challenge-feedback h4 {
-    font-size: 0.97rem;
-    margin-bottom: 10px;
-  }
-  .challenge-feedback p {
-    font-size: 0.84rem;
-    color: var(--color-muted);
-  }
-  .challenge-feedback p + p {
-    margin-top: 10px;
-    font-size: 0.75rem;
-  }
 }
 @media (max-width: 600px) {
   .scenario-panel {

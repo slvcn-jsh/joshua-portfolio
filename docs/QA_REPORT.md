@@ -1,5 +1,66 @@
 # Final QA report
 
+## Evidence-first release — November 16, 2026
+
+This section supersedes earlier portfolio snapshots below. Application verification
+is separately scoped in `PROJECT_VERIFICATION.md`; it is not portfolio QA or release
+certification of either application.
+
+### Implemented
+
+- Sole-developer responsibility and AI assistance are visible in each case-study opening.
+- Explicit decision/evidence mapping and pinned source revisions replace positional mappings.
+- Six-section case studies, compact native mobile contents, optional failure-path walkthroughs,
+  relationship diagrams and a concrete implementation account replace repeated prose/quiz.
+- Five primary navigation links; About/footer retain achievements and certifications.
+- Event names/dates reconciled with the unchanged approved resume.
+- Downloadable scoped records for five PCOSina and seven Barion tests.
+- Current Barion images and genuine 14.4-second sample review recording, with native controls,
+  no autoplay, preload none, written alternative and download. No synthetic UI or narration.
+- Browser and accessibility regression workflows now run in CI; Playwright is development-only.
+
+### Verified locally
+
+Lint, TypeScript, production build, 11 static HTML pages / 391 local references,
+production/preview/unconfigured SEO modes, dependency audit and formatting passed.
+The approved resume hash matches the supplied original; both certificate hashes and
+new media hashes are enforced by the static validator. No private application data,
+environment files or credentials were copied into public assets.
+
+The browser runner checks 55 page/width combinations at 360, 390, 768, 1024 and 1440px.
+The executed sweep found no overflow, broken images, page errors or axe WCAG A/AA
+violations. Additional executed suites cover keyboard menus/skip links, clipboard and
+its failure fallback, real PDF downloads, both case-study interactions, 25 credential/event
+dialog states, reduced motion, ten no-JS routes, local CSP behavior and scenario deep links.
+The recording was played and downloaded at mobile and desktop widths; its open state
+was scanned for accessibility. Automated checks do not replace screen-reader/user testing.
+
+Visual inspection included the 390px case-study opening, actual current Barion screenshots,
+recording, 1440px architecture diagram and desktop homepage. Clean hierarchy, image aspect
+ratios and the existing editorial identity are preserved.
+
+Measured with disclosures initially closed at 390px: ownership begins at y=361px on both
+projects; total page heights are 6597px (PCOSina) and 6638px (Barion). Main case-study text
+is 657 and 664 words respectively. These are website measurements, not application outcomes.
+
+### Remaining boundaries
+
+No connected Android device was available for a fresh PCOSina video. Barion capture proves
+one local web path, not native or deployed readiness. Application repository README/About
+changes are prepared but not applied (`REPOSITORY_HANDOFF.md`). Owner review of personal
+wording and independent learning/health-content review remain open. Automatic GitHub-to-
+Vercel deployment is not connected. See `RELEASE_STATUS.md` for the actual published revision.
+
+### Review by audience
+
+- HR: identity, education, projects, approved resume and contact stay direct; background proof
+  remains available without competing for every primary navigation slot.
+- Technical recruiter: ownership, project status and specific verification are now immediate.
+- Engineer: source-pinned decisions, local/network boundaries and test limitations can be inspected;
+  there is no unsupported production-readiness or performance claim.
+
+## Earlier release records
+
 Audit started: 2026-11-13. Final verification: 2026-11-14. Scope: the portfolio, not a new release certification of PCOSina or Barion.
 
 ## Delivery

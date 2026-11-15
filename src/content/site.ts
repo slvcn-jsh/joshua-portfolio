@@ -9,12 +9,9 @@ export const identity = {
 }
 
 export const navigation = [
-  { href: '/', label: 'Home' },
   { href: '/projects', label: 'Projects' },
   { href: '/skills', label: 'Skills' },
   { href: '/about', label: 'About' },
-  { href: '/achievements', label: 'Achievements' },
-  { href: '/certifications', label: 'Certifications' },
   { href: '/resume', label: 'Resume' },
   { href: '/contact', label: 'Contact' },
 ]
@@ -54,7 +51,7 @@ export const pageMeta: Record<string, { title: string; description: string }> =
     '/achievements': {
       title: 'Achievements & Activities | Joshua Salvacion',
       description:
-        'FEU Tech Design Thinking champion, with event photos from UP Computer Science HACKathon 2025 and BASE BUILD Global Buildathon 2025 at Adamson University.',
+        'FEU Tech Design Thinking champion, with event photos from HACKathon 2025 at UP Manila and BASE BUILD Global Buildathon 2025 at Adamson University.',
     },
     '/certifications': {
       title: 'Certifications | Joshua Salvacion',
@@ -158,9 +155,10 @@ export const achievements = [
   },
   {
     type: 'Participation',
-    title: 'UP Computer Science HACKathon 2025',
-    date: '2025',
-    description: 'Participation in the UP Computer Science hackathon.',
+    title: 'HACKathon 2025 — Tech Summit, UP Manila',
+    date: 'May 10, 2025',
+    description:
+      'Student hackathon focused on solutions aligned with selected United Nations Sustainable Development Goals.',
     icon: 'code',
     photo: 'up-computer-science-hackathon',
     photoWidth: 1200,
@@ -171,9 +169,9 @@ export const achievements = [
   {
     type: 'Participation',
     title: 'BASE BUILD Global Buildathon 2025 — Adamson University',
-    date: '2025',
+    date: 'May 2, 2025',
     description:
-      'Participation in the BASE BUILD Global Buildathon at Adamson University.',
+      'Buildathon and hands-on workshop covering Base, Solidity, smart contracts and decentralized applications.',
     icon: 'code',
     photo: 'base-build-adamson',
     photoWidth: 1600,

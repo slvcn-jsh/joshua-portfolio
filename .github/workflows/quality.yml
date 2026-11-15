@@ -19,4 +19,12 @@ jobs:
       - run: npm ci
       - run: npm run check
       - run: npm run check:seo
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:browser
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-verification
+          path: output/playwright/
+          retention-days: 7
       - run: npm audit --audit-level=moderate

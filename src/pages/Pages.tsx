@@ -97,25 +97,39 @@ export function About() {
           <section>
             <h2>Application development</h2>
             <p>
-              PCOSina and Barion have given me practical work across native
-              Android and cross-platform development. Both projects require
-              thinking beyond individual screens—about how data moves, what
-              happens offline and how failures should be handled.
+              I’m the sole developer of PCOSina and Barion, working across the
+              interface, local storage and supporting backend services with AI
+              coding assistance. My focus is mobile application development:
+              Kotlin on Android and TypeScript with React Native.
             </p>
           </section>
           <section>
-            <h2>How I learn</h2>
+            <h2>How I approach the work</h2>
             <p>
-              I learn through implementation, inspection and iteration. I use
-              documentation, tests and debugging to check whether an approach
-              works, and I use AI coding tools as part of that process.
+              I start with the user’s next action and the data it needs. In
+              PCOSina, viewing a saved meal plan is separate from generating a
+              new one. In Barion, reviewing saved cards is separate from
+              requesting AI-generated candidates.
             </p>
             <p>
-              My responsibility is to understand the design, integrate the
-              pieces and verify the behavior. I value clear limitations and
-              reproducible checks as much as a working feature.
+              I use that separation to keep everyday tasks independent of
+              optional services. The case studies show the implementation,
+              focused checks and limits—not just the intended behavior.
             </p>
           </section>
+          <nav
+            className="background-links"
+            aria-label="More about my background"
+          >
+            <a className="text-link" href="/achievements">
+              Achievements & activities{' '}
+              <ArrowRight size={16} aria-hidden="true" />
+            </a>
+            <a className="text-link" href="/certifications">
+              Certification documents{' '}
+              <ArrowRight size={16} aria-hidden="true" />
+            </a>
+          </nav>
           <section>
             <h2>What’s next</h2>
             <p>
@@ -183,6 +197,7 @@ export function Achievements() {
             <div>
               <p className="eyebrow">{a.type}</p>
               <h2>{a.title}</h2>
+              <p className="event-context">{a.description}</p>
             </div>
             <span className="achievement-date">{a.date}</span>
             <figure className="event-evidence">

@@ -1,0 +1,45 @@
+{
+  "capturedAt": "2026-11-15T16:40:52.004Z",
+  "viewport": "390x844",
+  "data": "Built-in synthetic sample deck, isolated browser storage",
+  "workflow": [
+    "Open study",
+    "Reveal answer",
+    "Expand source provenance",
+    "Rate Good",
+    "Continue to next card"
+  ],
+  "blockedOrigins": [],
+  "pageErrors": [],
+  "limits": "Local web development preview, not native release or content-quality validation. Silent recording.",
+  "repositoryBase": "7e83b70917ff68b68bb5eaacaa458b2f096795a7",
+  "workingTree": "Modified local development tree, not a clean checkout of the public commit",
+  "assets": [
+    {
+      "path": "/images/barion-current-home.webp",
+      "width": 1366,
+      "height": 900,
+      "bytes": 52382,
+      "sha256": "864f650092070f2f9e5fd73dd29ceff994dc89858f99405146ce7db125e35c86"
+    },
+    {
+      "path": "/images/barion-current-source.webp",
+      "width": 390,
+      "height": 844,
+      "bytes": 27252,
+      "sha256": "7fe1ddb28afda31e427511d441e822c5cc4099b99d9e92c10e725f60c1a19e11"
+    },
+    {
+      "path": "/images/barion-current-review.webp",
+      "width": 390,
+      "height": 844,
+      "bytes": 23694,
+      "sha256": "3294bbf8212c3eae8127f3eee3de80db0e66d1ea172806bdf1a7d261a3d30db9"
+    },
+    {
+      "path": "/videos/barion-review.webm",
+      "bytes": 778418,
+      "sha256": "5c5266cd0fec283e12abf97253a30a4f5de13ae5b469187c4658843f822396be"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "project": "PCOSina",
+  "executedOn": "2026-11-15",
+  "timezone": "Asia/Manila",
+  "kind": "Focused local working-tree tests, not release certification",
+  "repository": "https://github.com/slvcn-jsh/PCOSina",
+  "baseCommit": "18409993a0a40143c445badf39b36a8e00990558",
+  "workingTree": "Modified. Both the planner and its test file differ from the public base commit.",
+  "environment": "Windows, Python 3.12, existing local dependencies",
+  "command": "python -m pytest backend/tests/test_meal_planner.py -k 'custom_allergy_token or pre_pricing_keeps_allergy or budget_shortlist_preserves_nutrition_anchors or broad_profile_generates_basic_seven_day_plan or solver_returns_no_safe_plan' -q -p no:cacheprovider",
+  "environmentOverrides": { "PYTHONDONTWRITEBYTECODE": "1" },
+  "result": { "passed": 5, "deselected": 111, "warnings": 1, "seconds": 5.47 },
+  "warning": "Unknown config option cache_dir because the cache provider was disabled.",
+  "tests": [
+    "test_custom_allergy_token_excludes_matching_ingredient",
+    "test_pre_pricing_keeps_allergy_filter_before_pricing",
+    "test_budget_shortlist_preserves_nutrition_anchors_after_pruning",
+    "test_broad_profile_generates_basic_seven_day_plan",
+    "test_solver_returns_no_safe_plan_when_required_nutrition_bounds_are_impossible"
+  ],
+  "sha256": {
+    "backend/services/meal_planner.py": "05d99e65723c1859a99e26f67aeb5e94fc79b0319440984ba95afc1e78996a4d",
+    "backend/tests/test_meal_planner.py": "747dc1cdea29793e5e6aa8ffffd1b692d3728aed418d6ed312c3e28ca8054f41"
+  },
+  "limitations": [
+    "These hashes identify two relevant files, not a reproducible archive of all local dependencies.",
+    "Public source links are not a claim that these results were obtained on the clean public commit.",
+    "No full-suite, live-deployment, Android device, catalog-wide or clinical validation was performed in this check."
+  ]
+}

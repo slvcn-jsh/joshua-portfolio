@@ -94,6 +94,22 @@ assert.equal(
   '%PDF-',
   'Resume must be a real PDF',
 )
+assert.equal(
+  createHash('sha256').update(pdf).digest('hex'),
+  '1854a1d13980b57337470da29ddea30eadd2ddb8a242bb2ebbbb47481cb4211c',
+  'Approved resume must remain unchanged',
+)
+const captureManifest = JSON.parse(
+  await readFile('docs/barion-capture-manifest.json', 'utf8'),
+)
+for (const asset of captureManifest.assets) {
+  const data = await readFile(resolve(root, asset.path.slice(1)))
+  assert.equal(
+    createHash('sha256').update(data).digest('hex'),
+    asset.sha256,
+    `Capture integrity: ${asset.path}`,
+  )
+}
 for (const file of files) {
   assert(
     !/\.(?:env|db|sqlite|map|csv|py|kt|docx)$/i.test(file),

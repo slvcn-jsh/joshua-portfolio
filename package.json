@@ -14,6 +14,7 @@
     "preview": "vite preview --host 127.0.0.1",
     "check:site": "node scripts/check-site.mjs",
     "check:seo": "node scripts/check-seo.mjs",
+    "test:browser": "node scripts/browser-smoke.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check": "npm run lint && npm run build && npm run check:site"
@@ -31,6 +32,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.7",
     "globals": "^17.14.0",
+    "playwright": "1.65.0",
     "prettier": "^3.10.1",
     "sharp": "^0.35.5",
     "simple-icons": "^16.37.0",

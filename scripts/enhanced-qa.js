@@ -32,6 +32,7 @@ async (page) => {
       await page.goto(`http://127.0.0.1:4173/projects/${slug}`)
       await page.locator('html[data-enhanced]').waitFor()
       await page.addScriptTag({ path: 'node_modules/axe-core/axe.min.js' })
+      await page.locator('.scenario-disclosure > summary').click()
       const failure =
         slug === 'pcosina' ? 'Connection lost' : 'AI service unavailable'
       const normal = slug === 'pcosina' ? 'Connected' : 'Service configured'
@@ -99,6 +100,11 @@ async (page) => {
           throw new Error('Annotation selection failed')
       }
       await check(`${width}/${slug}/annotation`)
+      if (slug === 'barion') {
+        await page.locator('.recording-disclosure > summary').click()
+        await check(`${width}/${slug}/recording`)
+        await page.locator('.recording-disclosure > summary').click()
+      }
       if ([390, 1440].includes(width))
         await page
           .locator('.product-explorer')
@@ -150,9 +156,10 @@ async (page) => {
       await extraImage.scrollIntoViewIfNeeded()
       await extraImage.evaluate((image) => image.decode())
 
+      if (width < 1024) await page.locator('.case-contents-mobile > summary').click()
       await page
         .getByRole('navigation', { name: 'Case study contents' })
-        .getByRole('link', { name: '05 Engineering decisions' })
+        .getByRole('link', { name: '04 Engineering decisions' })
         .click()
       await page.waitForFunction(
         () =>
@@ -169,47 +176,6 @@ async (page) => {
           .evaluate((el) => el === document.activeElement))
       )
         throw new Error('Contents did not move keyboard focus')
-      if (slug === 'barion') {
-        await page.locator('.decision-challenge summary').click()
-        const options = page
-          .getByRole('group', { name: 'Choose a design decision' })
-          .getByRole('button')
-        if ((await options.count()) !== 3)
-          throw new Error('Expected three decision options')
-        for (const option of await options.all()) {
-          await option.click()
-          await page.locator('.challenge-feedback h4').waitFor()
-          if ((await option.getAttribute('aria-pressed')) !== 'true')
-            throw new Error('Challenge selection failed')
-        }
-        await page
-          .getByRole('button', {
-            name: '02 Keep reviewing cards saved on the device',
-            exact: true,
-          })
-          .click()
-        await page
-          .getByRole('heading', {
-            name: 'The network took a break. Your flashcards didn’t.',
-          })
-          .waitFor()
-        await check(`${width}/${slug}/challenge`)
-        if ([390, 1440].includes(width))
-          await page
-            .locator('.decision-challenge')
-            .screenshot({
-              path: `output/playwright/barion-challenge-${width}.png`,
-            })
-        await page
-          .getByRole('button', { name: 'Read the decision →', exact: true })
-          .click()
-        if (
-          !(await page.locator('.challenge-feedback').textContent()).includes(
-            'AI-assisted generation is optional',
-          )
-        )
-          throw new Error('Direct answer failed')
-      }
       await page.emulateMedia({ reducedMotion: 'reduce' })
       if (
         (await page

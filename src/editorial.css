@@ -364,8 +364,8 @@
   }
   .home-overview {
     grid-template-columns: 1fr;
-    gap: 36px;
-    padding-block: 32px 36px;
+    gap: 24px;
+    padding-block: 24px 28px;
   }
   .home-introduction {
     padding-top: 0;
@@ -378,7 +378,7 @@
     font-size: 2.5rem;
   }
   .intro-description {
-    margin-top: 20px;
+    margin-top: 14px;
   }
   .intro-education {
     margin-top: 12px;

@@ -61,6 +61,13 @@ export function Layout({
               Joshua Salvacion
             </a>
             <p>Mobile applications & supporting systems</p>
+            <nav
+              className="background-links"
+              aria-label="Background and credentials"
+            >
+              <a href="/achievements">Achievements</a>
+              <a href="/certifications">Certifications</a>
+            </nav>
           </div>
           <div className="footer-links">
             <a href={`mailto:${identity.email}`}>

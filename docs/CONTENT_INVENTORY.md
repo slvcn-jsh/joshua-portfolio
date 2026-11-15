@@ -1,5 +1,14 @@
 # Content inventory
 
+## November 16 update
+
+Owner confirmed sole software development for both projects, with AI coding assistance.
+Focused tests are now executed evidence rather than test-file inspection alone;
+details are in `PROJECT_VERIFICATION.md`. Barion's historical images have been replaced
+on the pages by current local-web captures and a silent sample-deck recording.
+Approved resume dates clarify UP Manila (May 10, 2025) and Adamson (May 2, 2025).
+Earlier inventory rows below describe the initial audit; the addenda supersede them.
+
 Audit date: 2026-11-13. No application repository was modified.
 
 | Content                                                                     | Evidence                                                                                                     | Publication decision                                                                   |

@@ -1,0 +1,24 @@
+{
+  "project": "Barion",
+  "executedOn": "2026-11-15",
+  "timezone": "Asia/Manila",
+  "kind": "Focused local working-tree tests, not release certification",
+  "repository": "https://github.com/slvcn-jsh/barion",
+  "baseCommit": "7e83b70917ff68b68bb5eaacaa458b2f096795a7",
+  "workingTree": "Modified. The four hashed files match HEAD, but other files and transitive dependencies may differ.",
+  "environment": "Windows, existing Node and Jest installation",
+  "command": "npm test -- --runTestsByPath src/scheduler/__tests__/fsrs.test.ts src/ai/__tests__/generate.test.ts",
+  "result": { "suitesPassed": 2, "testsPassed": 7, "snapshots": 0, "seconds": 12.707 },
+  "scope": ["Scheduling and deterministic review replay", "Generation contracts and source provenance", "Stubbed provider behavior and extractive fallback"],
+  "sha256": {
+    "src/scheduler/fsrs.ts": "f5ed4ca9b65e4ac2edcc43e55b19aff39228c18a7fc09bb3abc9759c1a73b4a6",
+    "src/scheduler/__tests__/fsrs.test.ts": "5db618b49b0c188c94b81175e18d06623845ba6adc2c7f2f10282f682ea46ba4",
+    "src/ai/generate.ts": "9051492ff4cd199eeaebd7ccab99bfee377efdbf0621568912a0c6082acd53fb",
+    "src/ai/__tests__/generate.test.ts": "1339b1c33e12cb7305ad026d1403532c7b171a6696cdaA30082f08063e510ef0"
+  },
+  "limitations": [
+    "These hashes identify the tested adapters and suites, not a reproducible archive of all local dependencies.",
+    "No live AI-service requests, complete suite, native release or production synchronization checks are represented.",
+    "Passing source/provenance checks does not establish medical accuracy or learning benefit."
+  ]
+}

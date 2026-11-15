@@ -87,8 +87,8 @@ export type Annotation = {
   region: string
 }
 
-// Positions measured against the unchanged source captures. Text describes the
-// pictured interface, not a claim about the current application release.
+// Positions measured against the referenced captures. A local preview is not
+// a production-release claim; capture dates and scope are stated per project.
 export const annotations: Record<
   string,
   { image: string; title: string; note: string; items: Annotation[] }
@@ -119,27 +119,27 @@ export const annotations: Record<
     ],
   },
   barion: {
-    image: '/images/barion-review.webp',
+    image: '/images/barion-current-source.webp',
     title: 'A card with a way back to its source.',
-    note: 'Historical MedStudy interface from the Barion repository—not the current Barion branding. Annotations describe the visible capture only. Sample content is not medical advice.',
+    note: 'Current local web preview, captured 16 November 2026 at mobile width. Built-in sample data; not a native release or medical advice.',
     items: [
       {
         label: 'What the user does',
-        title: 'Recall before revealing.',
-        text: 'The question is shown before the Reveal action. The interface gives the learner a moment to attempt recall instead of immediately displaying an answer.',
-        region: 'review-reveal',
+        title: 'Rate the recalled answer.',
+        text: 'Again, Hard, Good and Easy appear after revealing. The rating supplies the scheduler with the learner’s review response.',
+        region: 'current-rating',
       },
       {
         label: 'What the system handles',
-        title: 'Keep the source reference nearby.',
-        text: 'A source label and page reference are displayed with the question. This capture shows how the review interface makes the original material discoverable.',
-        region: 'review-source',
+        title: 'Inspect the source excerpt.',
+        text: 'Expanding Source shows the sample document, page reference and excerpt beside the answer. The learner can check its origin without leaving the review.',
+        region: 'current-source',
       },
       {
         label: 'Why the decision matters',
-        title: 'Review one clear prompt.',
-        text: 'The card gives the question the strongest emphasis, with the source immediately beneath it. The learning task stays readable while its evidence remains visible.',
-        region: 'review-prompt',
+        title: 'Separate the answer from its evidence.',
+        text: 'The answer and expandable source are distinct. A visible citation supports inspection, but it is not a guarantee of accuracy.',
+        region: 'current-answer',
       },
     ],
   },
