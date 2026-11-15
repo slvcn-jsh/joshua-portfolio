@@ -37,9 +37,17 @@ async (page) => {
       if (violations.length)
         throw new Error(JSON.stringify({ slug, violations }))
     }
+    for (const [path, selector] of [['/certifications', '.certificate-image-link'], ['/achievements', '.event-image-link']]) {
+      await secure.goto('http://127.0.0.1:4173' + path)
+      await secure.locator(selector).first().click()
+      await secure.locator('dialog[open]').waitFor()
+      await secure.getByRole('button', { name: 'Close image' }).click()
+      const violations = await secure.evaluate(() => window.policyViolations)
+      if (violations.length) throw new Error(JSON.stringify({ path, violations }))
+    }
     return {
       policy: 'vercel.json policy applied to local responses',
-      pages: 2,
+      pages: 4,
       violations: 0,
     }
   } finally {

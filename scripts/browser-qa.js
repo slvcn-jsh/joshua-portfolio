@@ -9,6 +9,7 @@ async (page) => {
     '/skills',
     '/about',
     '/achievements',
+    '/certifications',
     '/resume',
     '/contact',
     '/not-a-page',

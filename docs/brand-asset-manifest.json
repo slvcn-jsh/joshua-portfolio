@@ -1,0 +1,132 @@
+{
+  "icons": [
+    {
+      "asset": "/brands/kotlin.svg",
+      "title": "Kotlin",
+      "source": "https://www.jetbrains.com/company/brand/logos/",
+      "guidelines": "https://www.jetbrains.com/company/brand/",
+      "license": "No individual license supplied; brand rights remain with owner"
+    },
+    {
+      "asset": "/brands/python.svg",
+      "title": "Python",
+      "source": "https://www.python.org/community/logos/",
+      "guidelines": "https://www.python.org/community/logos/",
+      "license": "No individual license supplied; brand rights remain with owner"
+    },
+    {
+      "asset": "/brands/typescript.svg",
+      "title": "TypeScript",
+      "source": "https://www.typescriptlang.org/branding",
+      "guidelines": "https://www.typescriptlang.org/branding",
+      "license": "No individual license supplied; brand rights remain with owner"
+    },
+    {
+      "asset": "/brands/jetpackcompose.svg",
+      "title": "Jetpack Compose",
+      "source": "https://developer.android.com/jetpack/compose/",
+      "license": "No individual license supplied; brand rights remain with owner"
+    },
+    {
+      "asset": "/brands/react.svg",
+      "title": "React",
+      "source": "https://github.com/facebook/create-react-app/blob/282c03f9525fdf8061ffa1ec50dce89296d916bd/test/fixtures/relative-paths/src/logo.svg",
+      "license": "No individual license supplied; brand rights remain with owner"
+    },
+    {
+      "asset": "/brands/expo.svg",
+      "title": "Expo",
+      "source": "https://expo.dev/brand/",
+      "guidelines": "https://expo.dev/brand/",
+      "license": "No individual license supplied; brand rights remain with owner"
+    },
+    {
+      "asset": "/brands/fastapi.svg",
+      "title": "FastAPI",
+      "source": "https://github.com/tiangolo/fastapi/blob/ffb4f77a11f83132b521ba0aac6c95792c19e797/docs/en/docs/img/icon-white.svg",
+      "license": "No individual license supplied; brand rights remain with owner"
+    },
+    {
+      "asset": "/brands/firebase.svg",
+      "title": "Firebase",
+      "source": "https://firebase.google.com/brand-guidelines",
+      "guidelines": "https://firebase.google.com/brand-guidelines",
+      "license": "No individual license supplied; brand rights remain with owner"
+    },
+    {
+      "asset": "/brands/supabase.svg",
+      "title": "Supabase",
+      "source": "https://github.com/supabase/supabase/blob/4031a7549f5d46da7bc79c01d56be4177dc7c114/packages/common/assets/images/supabase-logo-wordmark--light.svg",
+      "license": "No individual license supplied; brand rights remain with owner"
+    },
+    {
+      "asset": "/brands/sqlite.svg",
+      "title": "SQLite",
+      "source": "https://github.com/sqlite/sqlite/blob/43e862723ec680542ca6f608f9963c0993dd7324/art/sqlite370.eps",
+      "license": "No individual license supplied; brand rights remain with owner"
+    },
+    {
+      "asset": "/brands/postgresql.svg",
+      "title": "PostgreSQL",
+      "source": "https://wiki.postgresql.org/wiki/Logo",
+      "guidelines": "https://www.postgresql.org/about/policies/trademarks/",
+      "license": "No individual license supplied; brand rights remain with owner"
+    },
+    {
+      "asset": "/brands/git.svg",
+      "title": "Git",
+      "source": "https://git-scm.com/community/logos",
+      "license": {
+        "type": "CC-BY-3.0",
+        "url": "https://spdx.org/licenses/CC-BY-3.0"
+      }
+    },
+    {
+      "asset": "/brands/github.svg",
+      "title": "GitHub",
+      "source": "https://github.com/logos",
+      "guidelines": "https://github.com/logos",
+      "license": "No individual license supplied; brand rights remain with owner"
+    },
+    {
+      "asset": "/brands/androidstudio.svg",
+      "title": "Android Studio",
+      "source": "https://developer.android.com/studio",
+      "license": "No individual license supplied; brand rights remain with owner"
+    },
+    {
+      "asset": "/brands/vite.svg",
+      "title": "Vite",
+      "source": "https://github.com/voidzero-dev/community-design-resources/blob/55902097229cf01cf2a4ceb376f992f5cf306756/brand-assets/vite/vite-icon-color-bracketless.svg",
+      "license": "No individual license supplied; brand rights remain with owner"
+    },
+    {
+      "asset": "/brands/gmail.svg",
+      "title": "Gmail",
+      "source": "https://fonts.gstatic.com/s/i/productlogos/gmail_2020q4/v8/192px.svg",
+      "license": "No individual license supplied; brand rights remain with owner"
+    },
+    {
+      "asset": "/brands/render.svg",
+      "title": "Render",
+      "source": "https://render.com",
+      "license": "No individual license supplied; brand rights remain with owner"
+    }
+  ],
+  "certificates": [
+    {
+      "name": "it-specialist-python",
+      "width": 1584,
+      "height": 1224,
+      "bytes": 270307,
+      "sha256": "7da6ea1734407e2b96bd616149473c53caa1c530a3cbd71327976691c33752bf"
+    },
+    {
+      "name": "sap-autonomous-enterprise",
+      "width": 1584,
+      "height": 1224,
+      "bytes": 299885,
+      "sha256": "ebbeabb5f524229282fdb96d060c7c45c41095d5a0bd575aa442d7cb4844f6ec"
+    }
+  ]
+}

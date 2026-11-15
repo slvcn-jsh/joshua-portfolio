@@ -3,7 +3,7 @@ async (page) => {
   const captures = []
   for (const width of [390, 1440]) {
     await page.setViewportSize({ width, height: width === 390 ? 844 : 1000 })
-    for (const [slug, route] of [['home', '/'], ['pcosina', '/projects/pcosina'], ['barion', '/projects/barion'], ['skills', '/skills'], ['about', '/about'], ['achievements', '/achievements'], ['resume', '/resume'], ['contact', '/contact']]) {
+    for (const [slug, route] of [['home', '/'], ['pcosina', '/projects/pcosina'], ['barion', '/projects/barion'], ['skills', '/skills'], ['about', '/about'], ['achievements', '/achievements'], ['certifications', '/certifications'], ['resume', '/resume'], ['contact', '/contact']]) {
       await page.goto('http://127.0.0.1:4173' + route)
       await page.locator('main h1').waitFor()
       // Request visible lazy images individually; closed disclosures deliberately

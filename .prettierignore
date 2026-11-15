@@ -12,3 +12,4 @@ scripts/enhanced-qa.js
 scripts/csp-qa.js
 scripts/live-qa.js
 scripts/editorial-qa.js
+scripts/identity-qa.js

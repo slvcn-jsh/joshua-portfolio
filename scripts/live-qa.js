@@ -9,7 +9,7 @@ async (page) => {
   let checked = 0
   for (const width of [390, 1440]) {
     await page.setViewportSize({ width, height: width === 390 ? 844 : 1000 })
-    for (const path of ['/', '/projects', '/projects/pcosina', '/projects/barion', '/skills', '/about', '/achievements', '/resume', '/contact']) {
+    for (const path of ['/', '/projects', '/projects/pcosina', '/projects/barion', '/skills', '/about', '/achievements', '/certifications', '/resume', '/contact']) {
       const response = await page.goto(origin + path)
       if (response.status() !== 200) throw new Error('Page unavailable: ' + path)
       await page.locator('html[data-enhanced]').waitFor()

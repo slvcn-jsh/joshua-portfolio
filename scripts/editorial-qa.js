@@ -11,7 +11,7 @@ async (page) => {
     }
     const state = await page.evaluate(() => {
       const box = selector => document.querySelector(selector).getBoundingClientRect().toJSON()
-      const imageSources = [...document.querySelectorAll('main img')].map(i => i.src)
+      const imageSources = [...document.querySelectorAll('.project-preview img')].map(i => i.src)
       return {
         intro: box('.home-introduction'),
         featured: box('.project-featured'),
@@ -19,7 +19,7 @@ async (page) => {
         imageCount: imageSources.length,
         uniqueImages: new Set(imageSources).size,
         obsoleteBlocks: document.querySelectorAll('.hero-project-index, .home-about, main .contact-band').length,
-        eagerFeature: document.querySelector('.project-featured img').loading === 'eager',
+        eagerFeature: document.querySelector('.project-featured .project-preview img').loading === 'eager',
         body: document.querySelector('main').textContent,
       }
     })
@@ -27,7 +27,7 @@ async (page) => {
     if ((state.body.match(/FEU Institute of Technology/g) || []).length !== 1) throw new Error('Education repeated')
     if (width < 768 ? state.featured.top < state.intro.bottom : state.featured.left < state.intro.right) throw new Error('Responsive reading order failed')
     if (state.supporting.top < Math.max(state.featured.bottom, state.intro.bottom)) throw new Error('Project overlap')
-    const captures = page.locator('main img')
+    const captures = page.locator('.project-preview img')
     for (let i = 0; i < state.imageCount; i++) {
       await captures.nth(i).scrollIntoViewIfNeeded()
       const valid = await captures.nth(i).evaluate(async image => {

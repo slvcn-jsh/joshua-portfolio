@@ -4,6 +4,7 @@ export const identity = {
   role: 'Software Engineering Student',
   email: 'salvacion.jsh@gmail.com',
   github: 'https://github.com/slvcn-jsh',
+  linkedin: 'https://www.linkedin.com/in/joshua-salvacion/',
   resume: '/Joshua-Salvacion-Resume.pdf',
 }
 
@@ -13,6 +14,7 @@ export const navigation = [
   { href: '/skills', label: 'Skills' },
   { href: '/about', label: 'About' },
   { href: '/achievements', label: 'Achievements' },
+  { href: '/certifications', label: 'Certifications' },
   { href: '/resume', label: 'Resume' },
   { href: '/contact', label: 'Contact' },
 ]
@@ -52,7 +54,12 @@ export const pageMeta: Record<string, { title: string; description: string }> =
     '/achievements': {
       title: 'Achievements & Activities | Joshua Salvacion',
       description:
-        'Design Thinking Summit and ITAM Design Jam champion, with participation in HACKathon 2025 and BASE BUILD Global Buildathon 2025.',
+        'FEU Tech Design Thinking champion, with event photos from UP Computer Science HACKathon 2025 and BASE BUILD Global Buildathon 2025 at Adamson University.',
+    },
+    '/certifications': {
+      title: 'Certifications | Joshua Salvacion',
+      description:
+        'View Joshua Salvacion’s IT Specialist Python and SAP Positioning the Autonomous Enterprise credentials, with original certificate PDF downloads.',
     },
     '/resume': {
       title: 'Resume | Joshua Salvacion',
@@ -62,7 +69,7 @@ export const pageMeta: Record<string, { title: string; description: string }> =
     '/contact': {
       title: 'Contact | Joshua Salvacion',
       description:
-        'Contact Joshua Salvacion for software engineering internships and project conversations. Email and GitHub links.',
+        'Contact Joshua Salvacion for software engineering internships and project conversations through email, GitHub or LinkedIn.',
     },
     '/404': {
       title: 'Page Not Found | Joshua Salvacion',
@@ -143,21 +150,35 @@ export const achievements = [
     description:
       'Championship recognition at FEU Institute of Technology’s design thinking event.',
     icon: 'award',
+    photo: 'design-thinking-champion',
+    photoWidth: 1600,
+    photoHeight: 1200,
+    photoAlt:
+      'Group photo at the FEU Tech Design Thinking Summit and ITAM Design Jam championship event.',
   },
   {
     type: 'Participation',
-    title: 'HACKathon 2025',
+    title: 'UP Computer Science HACKathon 2025',
     date: '2025',
-    description:
-      'Participated in the student hackathon held as part of Tech Summit 2025.',
+    description: 'Participation in the UP Computer Science hackathon.',
     icon: 'code',
+    photo: 'up-computer-science-hackathon',
+    photoWidth: 1200,
+    photoHeight: 1600,
+    photoAlt:
+      'Participants together at computer workstations during the UP Computer Science hackathon.',
   },
   {
     type: 'Participation',
-    title: 'BASE BUILD Global Buildathon 2025',
+    title: 'BASE BUILD Global Buildathon 2025 — Adamson University',
     date: '2025',
     description:
-      'Participated in the buildathon and technical learning activities.',
+      'Participation in the BASE BUILD Global Buildathon at Adamson University.',
     icon: 'code',
+    photo: 'base-build-adamson',
+    photoWidth: 1600,
+    photoHeight: 1200,
+    photoAlt:
+      'Group photo in a classroom at the BASE BUILD Global Buildathon at Adamson University.',
   },
 ]

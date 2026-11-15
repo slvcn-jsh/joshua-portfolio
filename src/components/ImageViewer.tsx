@@ -8,10 +8,12 @@ export function ImageViewer({
   image,
   children,
   className,
+  label = 'Application capture',
 }: {
   image: Screenshot
   children: ReactNode
   className?: string
+  label?: string
 }) {
   const [open, setOpen] = useState(false)
   const dialogRef = useRef<HTMLDialogElement>(null)
@@ -81,7 +83,7 @@ export function ImageViewer({
         }}
       >
         <div className="image-dialog-toolbar">
-          <p id={labelId}>Application capture</p>
+          <p id={labelId}>{label}</p>
           <button
             type="button"
             className="button button-secondary"
@@ -94,7 +96,7 @@ export function ImageViewer({
         {open && (
           <figure
             tabIndex={0}
-            aria-label="Enlarged application screenshot and caption"
+            aria-label={`Enlarged ${label.toLowerCase()} and caption`}
           >
             <img
               src={image.src}

@@ -2,6 +2,7 @@ import { Layout } from './components/Layout'
 import { CaseStudy } from './components/CaseStudy'
 import { projects } from './content/projects'
 import { Home } from './pages/Home'
+import { Certifications } from './pages/Certifications'
 import {
   About,
   Achievements,
@@ -21,6 +22,7 @@ export function App({ path }: { path: string }) {
     '/skills': Skills,
     '/about': About,
     '/achievements': Achievements,
+    '/certifications': Certifications,
     '/resume': Resume,
     '/contact': Contact,
   }

@@ -2,12 +2,17 @@ import { ArrowRight, Download } from 'lucide-react'
 import { identity } from '../content/site'
 import { projects } from '../content/projects'
 import { ProjectCard } from '../components/ProjectCard'
+import { TechnologyList } from '../components/TechnologyList'
 
 export function Home() {
   return (
     <div className="container home-page">
       <div className="home-overview">
-        <section className="home-introduction" aria-labelledby="intro-title">
+        <section
+          className="home-introduction"
+          aria-labelledby="intro-title"
+          data-reveal
+        >
           <p className="intro-role">Software Engineering Student</p>
           <h1 id="intro-title">
             Joshua Escalicas
@@ -21,9 +26,13 @@ export function Home() {
             Fourth-year BS Computer Science student at FEU Institute of
             Technology, majoring in Software Engineering.
           </p>
-          <p className="intro-languages">
-            <span>Primary languages</span>Kotlin · Python · TypeScript
-          </p>
+          <div className="intro-languages">
+            <span>Primary languages</span>
+            <TechnologyList
+              items={['Kotlin', 'Python', 'TypeScript']}
+              primary
+            />
+          </div>
           <div className="hero-actions">
             <a className="button button-primary" href="/projects">
               View projects <ArrowRight size={16} aria-hidden="true" />

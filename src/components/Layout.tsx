@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react'
-import { ArrowUpRight, GitBranch, Menu, ArrowRight } from 'lucide-react'
+import { ArrowUpRight, Menu, ArrowRight } from 'lucide-react'
 import { identity, navigation } from '../content/site'
+import { BrandIcon } from './BrandIcon'
+import { MotionEnhancements } from './MotionEnhancements'
 
 export function Layout({
   path,
@@ -18,6 +20,7 @@ export function Layout({
   ))
   return (
     <>
+      <MotionEnhancements />
       <a className="skip-link" href="#main">
         Skip to content
       </a>
@@ -61,10 +64,18 @@ export function Layout({
           </div>
           <div className="footer-links">
             <a href={`mailto:${identity.email}`}>
-              Email <ArrowUpRight size={15} aria-hidden="true" />
+              <BrandIcon name="Gmail" /> Email
             </a>
             <a href={identity.github} target="_blank" rel="noopener noreferrer">
-              GitHub <GitBranch size={15} aria-hidden="true" />
+              <BrandIcon name="GitHub" /> GitHub
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+            <a
+              href={identity.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <BrandIcon name="LinkedIn" /> LinkedIn
               <span className="sr-only"> (opens in a new tab)</span>
             </a>
             <a href="/resume">
@@ -108,7 +119,7 @@ export function PageIntro({
   children: ReactNode
 }) {
   return (
-    <div className="page-intro">
+    <div className="page-intro" data-reveal>
       <h1>{title}</h1>
       <div className="intro-copy">{children}</div>
     </div>

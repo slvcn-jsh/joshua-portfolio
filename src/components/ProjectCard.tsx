@@ -23,13 +23,23 @@ export function ProjectCard({
     ? project.screenshots.slice(0, 1)
     : project.screenshots
   return (
-    <article className={`project-card ${project.slug} project-${presentation}`}>
+    <article
+      className={`project-card ${project.slug} project-${presentation}`}
+      data-reveal
+    >
       <div className="project-copy">
         <p className="project-meta">
           {featured ? 'Featured project / Android' : project.category}
         </p>
         <Heading>
           <a href={`/projects/${project.slug}`}>
+            <img
+              className="project-logo"
+              src={`/brands/${project.slug}.webp`}
+              alt=""
+              width="56"
+              height="56"
+            />
             {project.name}
             <ArrowUpRight size={20} aria-hidden="true" />
           </a>

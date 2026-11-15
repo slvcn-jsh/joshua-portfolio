@@ -3,7 +3,7 @@ async (page) => {
   const context = await page.context().browser().newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } })
   const plain = await context.newPage()
   try {
-    for (const route of ['/', '/projects', '/projects/pcosina', '/projects/barion', '/skills', '/about', '/achievements', '/resume', '/contact']) {
+    for (const route of ['/', '/projects', '/projects/pcosina', '/projects/barion', '/skills', '/about', '/achievements', '/certifications', '/resume', '/contact']) {
       const response = await plain.goto('http://127.0.0.1:4173' + route)
       if (response.status() !== 200 || await plain.locator('h1').count() !== 1) throw new Error('Static page failed: ' + route)
     }
@@ -24,6 +24,6 @@ async (page) => {
     await plain.locator('summary').filter({ hasText: 'Menu' }).click()
     await plain.getByRole('navigation', { name: 'Mobile navigation' }).getByRole('link', { name: 'Projects', exact: true }).click()
     await plain.waitForURL('**/projects')
-    return { staticPages: 9, nativeMenuWithoutJavaScript: 'passed', walkthroughAndAnnotationFallbacks: 'passed', challengeFallback: 'passed' }
+    return { staticPages: 10, nativeMenuWithoutJavaScript: 'passed', walkthroughAndAnnotationFallbacks: 'passed', challengeFallback: 'passed' }
   } finally { await context.close() }
 }

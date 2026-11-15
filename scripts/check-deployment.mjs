@@ -23,6 +23,7 @@ const routes = [
   '/skills',
   '/about',
   '/achievements',
+  '/certifications',
   '/resume',
   '/contact',
 ]
@@ -56,7 +57,7 @@ for (const path of routes) {
 const sitemap = await get('/sitemap.xml')
 assert.equal(sitemap.status, 200)
 const sitemapText = await sitemap.text()
-assert.equal((sitemapText.match(/<loc>/g) ?? []).length, 9)
+assert.equal((sitemapText.match(/<loc>/g) ?? []).length, 10)
 for (const path of routes)
   assert(
     sitemapText.includes(`<loc>${origin}${path}</loc>`),
@@ -86,6 +87,28 @@ const manifest = JSON.parse(
   ),
 )
 assert.equal(hash, manifest.resume.sha256, 'Approved PDF integrity')
+const brands = JSON.parse(
+  await readFile('docs/brand-asset-manifest.json', 'utf8'),
+)
+for (const certificate of brands.certificates) {
+  const response = await get(`/certificates/${certificate.name}.pdf`)
+  assert.equal(response.status, 200)
+  assert.equal(
+    createHash('sha256')
+      .update(Buffer.from(await response.arrayBuffer()))
+      .digest('hex'),
+    certificate.sha256,
+    'Public certificate integrity',
+  )
+  assert.equal(
+    (await get(`/certificates/${certificate.name}.webp`)).status,
+    200,
+  )
+}
+const events = JSON.parse(
+  await readFile('docs/event-media-manifest.json', 'utf8'),
+)
+for (const photo of events) assert.equal((await get(photo.asset)).status, 200)
 for (const item of manifest.images)
   assert.equal((await get(item.asset)).status, 200, item.asset)
 const asset = home.match(/src="(\/assets\/[^" ]+\.js)"/)?.[1]
@@ -106,6 +129,8 @@ console.log(
       missingRouteAndAsset: 404,
       approvedResumeSha256: hash,
       projectImages: manifest.images.length,
+      certificatePdfs: brands.certificates.length,
+      eventPhotos: events.length,
       immutableAssets: 'pass',
     },
     null,

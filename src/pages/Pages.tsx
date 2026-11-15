@@ -7,8 +7,7 @@ import {
   Copy,
   Download,
   FileText,
-  GitBranch as Github,
-  Mail,
+  Expand,
   Code2,
   GraduationCap,
 } from 'lucide-react'
@@ -16,6 +15,9 @@ import { identity, skills, achievements } from '../content/site'
 import { projects } from '../content/projects'
 import { PageIntro, ExternalLink, ContactBand } from '../components/Layout'
 import { ProjectCard } from '../components/ProjectCard'
+import { TechnologyList } from '../components/TechnologyList'
+import { BrandIcon } from '../components/BrandIcon'
+import { ImageViewer } from '../components/ImageViewer'
 
 export function Projects() {
   return (
@@ -52,16 +54,12 @@ export function Skills() {
       </PageIntro>
       <div className="skills-list">
         {skills.map((s) => (
-          <section className="skill-row" key={s.name}>
+          <section className="skill-row" key={s.name} data-reveal>
             <div className="skill-title">
               <h2>{s.name}</h2>
             </div>
             <div>
-              <ul className="tag-list">
-                {s.used.map((t) => (
-                  <li key={t}>{t}</li>
-                ))}
-              </ul>
+              <TechnologyList items={s.used} />
               <p className="muted">{s.context}</p>
               {s.studied && (
                 <p className="study-note">
@@ -76,6 +74,9 @@ export function Skills() {
         <a href="/projects" className="text-link">
           See these skills in practice{' '}
           <ArrowRight size={17} aria-hidden="true" />
+        </a>
+        <a className="text-link" href="/certifications">
+          View certifications <ArrowRight size={16} aria-hidden="true" />
         </a>
       </div>
     </div>
@@ -170,6 +171,7 @@ export function Achievements() {
           <article
             className={`achievement ${i === 0 ? 'achievement-featured' : ''}`}
             key={a.title}
+            data-reveal
           >
             <div className="achievement-icon">
               {i === 0 ? (
@@ -183,14 +185,36 @@ export function Achievements() {
               <h2>{a.title}</h2>
             </div>
             <span className="achievement-date">{a.date}</span>
+            <figure className="event-evidence">
+              <ImageViewer
+                className="event-image-link"
+                label="Event photograph"
+                image={{
+                  src: `/images/events/${a.photo}.webp`,
+                  width: a.photoWidth,
+                  height: a.photoHeight,
+                  alt: a.photoAlt,
+                  caption: `${a.title} · ${a.type} · ${a.date}. Photo from my event collection.`,
+                }}
+              >
+                <img
+                  src={`/images/events/${a.photo}.webp`}
+                  alt={a.photoAlt}
+                  width={a.photoWidth}
+                  height={a.photoHeight}
+                  loading="lazy"
+                />
+                <span className="certificate-enlarge">
+                  <Expand size={15} aria-hidden="true" /> Enlarge photo
+                </span>
+              </ImageViewer>
+              <figcaption>From my event collection</figcaption>
+            </figure>
           </article>
         ))}
       </div>
-      <p className="small muted achievement-note">
-        Further training and certifications are included in my resume.
-      </p>
-      <a className="text-link" href="/resume">
-        View the complete resume <ArrowRight size={16} aria-hidden="true" />
+      <a className="text-link achievement-note" href="/certifications">
+        View certification documents <ArrowRight size={16} aria-hidden="true" />
       </a>
     </div>
   )
@@ -269,8 +293,8 @@ export function Contact() {
         </p>
       </PageIntro>
       <div className="contact-grid">
-        <section className="contact-card">
-          <Mail size={25} aria-hidden="true" />
+        <section className="contact-card" data-reveal>
+          <BrandIcon name="Gmail" />
           <p className="eyebrow">Email</p>
           <h2>
             <a href={`mailto:${identity.email}`}>{identity.email}</a>
@@ -300,8 +324,8 @@ export function Contact() {
                 : ''}
           </p>
         </section>
-        <section className="contact-card github-card">
-          <Github size={25} aria-hidden="true" />
+        <section className="contact-card github-card" data-reveal>
+          <BrandIcon name="GitHub" />
           <p className="eyebrow">GitHub</p>
           <h2>slvcn-jsh</h2>
           <p>
@@ -310,6 +334,26 @@ export function Contact() {
           </p>
           <ExternalLink href={identity.github}>
             Visit GitHub profile
+          </ExternalLink>
+        </section>
+        <section className="contact-card linkedin-card" data-reveal>
+          <a
+            className="contact-brand-link"
+            href={identity.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Joshua Salvacion on LinkedIn (opens in a new tab)"
+          >
+            <BrandIcon name="LinkedIn" />
+          </a>
+          <p className="eyebrow">LinkedIn</p>
+          <h2>Joshua Salvacion</h2>
+          <p>
+            Connect with me professionally and continue the conversation about
+            software engineering.
+          </p>
+          <ExternalLink href={identity.linkedin}>
+            Visit LinkedIn profile
           </ExternalLink>
         </section>
       </div>

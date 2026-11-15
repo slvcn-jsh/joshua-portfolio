@@ -1,6 +1,6 @@
 # Joshua Salvacion — portfolio
 
-A light, responsive software engineering portfolio built with React, TypeScript, Vite, Tailwind CSS and Lucide icons. Nine pages are prerendered to static HTML, plus a 404 page. No runtime backend, account system, analytics or external font requests.
+A light, responsive software engineering portfolio built with React, TypeScript, Vite, Tailwind CSS and Lucide icons. Ten pages are prerendered to static HTML, plus a 404 page. No runtime backend, account system, analytics or external font requests.
 
 [Live portfolio](https://joshua-portfolio-phi-lemon.vercel.app) · [Source repository](https://github.com/slvcn-jsh/joshua-portfolio)
 
@@ -42,6 +42,7 @@ npx playwright-cli run-code --filename=scripts/interaction-qa.js
 npx playwright-cli run-code --filename=scripts/enhanced-qa.js
 npx playwright-cli run-code --filename=scripts/nojs-qa.js
 npx playwright-cli run-code --filename=scripts/csp-qa.js
+npx playwright-cli run-code --filename=scripts/identity-qa.js
 ```
 
 The browser sweep checks every page and a missing route at 360, 390, 768, 1024 and 1440px, using axe-core for WCAG A/AA checks. Browser screenshots are saved under ignored `output/playwright/`. The script uses the standalone CLI, not a production dependency. Use the CLI's `install-browser` command if its browser is missing. Manual keyboard and interaction checks remain part of release QA.
@@ -118,6 +119,27 @@ npx playwright-cli run-code --filename=scripts/editorial-qa.js
 ```
 
 ## Dependencies
+
+### Certificates, brand assets and event photos
+
+Edit `src/content/certificates.ts` for credentials. Only publish owner-approved PDFs,
+unchanged. `scripts/prepare-credentials.py` renders them with PyMuPDF; the optional
+`scripts/prepare-brand-assets.mjs` converts previews and reviewed project logos using
+Sharp and exports selected Simple Icons SVGs. These are development-only tools, not
+client imports or deployment requirements. Review the source arguments before running.
+Certificate hashes and icon sources are in `docs/brand-asset-manifest.json`.
+
+`scripts/prepare-event-photos.mjs` takes three owner-approved photo paths in the order
+championship, UP hackathon, Adamson buildathon. It preserves the full frame, strips
+metadata and records source hashes/dimensions in `docs/event-media-manifest.json`.
+Update `src/content/site.ts` if event media or wording changes. Never infer individual
+identities, team roles or competition results from a group photograph.
+
+`src/identity.css` owns brand/evidence presentation and brief one-time motion.
+`MotionEnhancements` never hides content before JavaScript loads. Reduced-motion
+preferences disable animations. Keep visible text alongside decorative brand marks,
+and use semantic Lucide symbols where a technology has no sourced brand asset.
+See [asset provenance](docs/ASSET_PROVENANCE.md) for sources and trademark limitations.
 
 The lockfile is committed. A temporary `minimatch` override selects a patched v11 release for lint tooling. It addresses [GHSA-g3hv-75wg-m249](https://github.com/advisories/GHSA-g3hv-75wg-m249); remove the override once upstream packages use an unaffected version and the checks still pass. No vulnerable runtime packages were reported at handoff.
 

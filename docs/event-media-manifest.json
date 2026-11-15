@@ -1,0 +1,26 @@
+[
+  {
+    "asset": "/images/events/design-thinking-champion.webp",
+    "width": 1600,
+    "height": 1200,
+    "bytes": 245804,
+    "sourceSha256": "49e82e04392be400f2a8448ece88e9e8969be9656db93c4910c28834ebc73298",
+    "provenance": "Owner-supplied event photo; event association confirmed by owner. Uncropped; metadata stripped."
+  },
+  {
+    "asset": "/images/events/up-computer-science-hackathon.webp",
+    "width": 1200,
+    "height": 1600,
+    "bytes": 238972,
+    "sourceSha256": "a2ab9b69e539d178b5dbf77e7c54c5b098c824ffb540c576b986de625819dcd4",
+    "provenance": "Owner-supplied event photo; event association confirmed by owner. Uncropped; metadata stripped."
+  },
+  {
+    "asset": "/images/events/base-build-adamson.webp",
+    "width": 1600,
+    "height": 1200,
+    "bytes": 237914,
+    "sourceSha256": "d3f9994b68b3a2956728d2ac2a6d597a579450c0ff88f0b17b53a142e96c7e5e",
+    "provenance": "Owner-supplied event photo; event association confirmed by owner. Uncropped; metadata stripped."
+  }
+]

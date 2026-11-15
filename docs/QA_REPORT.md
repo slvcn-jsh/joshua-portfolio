@@ -126,3 +126,39 @@ outside the performed checks.
 - `live-qa.js`: 18 live route/viewport combinations, scenario/annotation/dialog/challenge interactions, mobile navigation and actual PDF download passed; zero browser/policy errors or unexpected external requests.
 - GitHub Actions run `43679890548` passed clean installation, lint, TypeScript/build, static checks, SEO fixtures and dependency audit.
 - Public origin remains https://joshua-portfolio-phi-lemon.vercel.app. Updated anonymous production screenshots were inspected. Automatic Git integration was not changed; direct deployment remains the documented update workflow.
+
+## Credentials, logos and original event evidence — 2026-11-15
+
+Scope: two certificate documents, three owner-supplied event photographs, specific
+UP Computer Science/Adamson event wording, genuine project and technology marks,
+LinkedIn and restrained motion. Reused the existing accessible image viewer and
+content architecture. Simple Icons is development-only; no animation library,
+remote media dependency or new external service was introduced.
+
+- Lint, TypeScript, production build and static validation passed: 11 HTML documents
+  (ten content routes and 404), 429 local references and both certificate SHA-256 hashes.
+- Production/preview/unconfigured SEO fixtures passed; npm audit reported zero vulnerabilities.
+- `browser-qa.js`: 55 route/width combinations across 360, 390, 768, 1024 and 1440px;
+  zero axe WCAG A/AA violations, horizontal overflow or browser errors.
+- `identity-qa.js`: all five new evidence dialogs at every width (25 dialog accessibility
+  scans), image decoding, Escape/focus return, icon coverage, both PDF downloads,
+  supplied LinkedIn destination, reduced motion and no-JS certificate fallback passed.
+- `enhanced-qa.js`: ten project/width combinations and 35 interactive accessibility
+  scans passed. `interaction-qa.js`: all 11 prior keyboard, download, copy and link checks passed.
+- `editorial-qa.js`: project presentation deduplication, reading order, screenshot
+  proportions and case-study navigation passed at all five widths.
+- `nojs-qa.js`: ten static pages and existing native fallbacks passed.
+- `csp-qa.js`: both project cases plus certificates and event-photo dialogs passed
+  with zero security-policy violations.
+- Desktop/mobile screenshots captured and visually inspected for home, skills,
+  certificates, achievements and contact. Photos preserve their full frame; portrait
+  images are contained rather than cropped. Certificates remain readable through
+  enlargement and original PDFs. Event photo dates are not redundantly repeated.
+- Build measurement: approximately 90 KB JS gzip, 10 KB CSS gzip and 2.5 MB total
+  static output including all PDF/image assets; not a measured field-performance score.
+
+Original resume and certificate files remain unchanged. Credential information is
+transcribed from owner-approved documents, not an independent issuer-status check.
+Event association and university context are owner-confirmed. No individual people
+were identified from photographs. Chromium testing does not replace physical-device,
+Safari/Firefox or screen-reader audits; those remain unperformed.

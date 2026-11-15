@@ -20,6 +20,13 @@ export function CaseStudy({ project: p }: { project: Project }) {
         </a>
         <p className="eyebrow">Engineering case study</p>
         <h1>
+          <img
+            className="project-logo"
+            src={`/brands/${p.slug}.webp`}
+            alt=""
+            width="64"
+            height="64"
+          />
           {p.name}
           <span className="status-label">{p.status}</span>
         </h1>

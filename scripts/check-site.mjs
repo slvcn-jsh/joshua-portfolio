@@ -1,6 +1,7 @@
 import { readFile, readdir, stat } from 'node:fs/promises'
 import { resolve, relative, extname } from 'node:path'
 import assert from 'node:assert/strict'
+import { createHash } from 'node:crypto'
 
 const root = resolve('dist')
 async function walk(dir) {
@@ -72,7 +73,21 @@ for (const file of htmlFiles) {
     checked++
   }
 }
-assert.equal(htmlFiles.length, 10, 'Expected nine pages and a 404 page')
+assert.equal(htmlFiles.length, 11, 'Expected ten pages and a 404 page')
+const brandManifest = JSON.parse(
+  await readFile('docs/brand-asset-manifest.json', 'utf8'),
+)
+for (const certificate of brandManifest.certificates) {
+  const original = await readFile(
+    resolve(root, `certificates/${certificate.name}.pdf`),
+  )
+  assert.equal(original.subarray(0, 5).toString(), '%PDF-')
+  assert.equal(
+    createHash('sha256').update(original).digest('hex'),
+    certificate.sha256,
+    'Certificate original must remain unchanged',
+  )
+}
 const pdf = await readFile(resolve(root, 'Joshua-Salvacion-Resume.pdf'))
 assert.equal(
   pdf.subarray(0, 5).toString(),
