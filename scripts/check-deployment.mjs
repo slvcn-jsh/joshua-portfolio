@@ -111,6 +111,31 @@ const events = JSON.parse(
 for (const photo of events) assert.equal((await get(photo.asset)).status, 200)
 for (const item of manifest.images)
   assert.equal((await get(item.asset)).status, 200, item.asset)
+const capture = JSON.parse(
+  await readFile('docs/barion-capture-manifest.json', 'utf8'),
+)
+for (const item of capture.assets) {
+  const response = await get(item.path)
+  assert.equal(response.status, 200, item.path)
+  assert.equal(
+    createHash('sha256')
+      .update(Buffer.from(await response.arrayBuffer()))
+      .digest('hex'),
+    item.sha256,
+    `Public capture integrity: ${item.path}`,
+  )
+}
+for (const slug of ['pcosina', 'barion']) {
+  const response = await get(`/evidence/${slug}-verification.json`)
+  assert.equal(response.status, 200)
+  assert.deepEqual(
+    await response.json(),
+    JSON.parse(
+      await readFile(`public/evidence/${slug}-verification.json`, 'utf8'),
+    ),
+    'Published verification record',
+  )
+}
 const asset = home.match(/src="(\/assets\/[^" ]+\.js)"/)?.[1]
 assert(asset, 'Hashed JavaScript entry')
 const js = await get(asset)
@@ -129,6 +154,8 @@ console.log(
       missingRouteAndAsset: 404,
       approvedResumeSha256: hash,
       projectImages: manifest.images.length,
+      currentCaptureAssets: capture.assets.length,
+      verificationRecords: 2,
       certificatePdfs: brands.certificates.length,
       eventPhotos: events.length,
       immutableAssets: 'pass',

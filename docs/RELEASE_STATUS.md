@@ -1,5 +1,32 @@
 # Release status
 
+## Current production release — November 16, 2026
+
+- Runtime revision: `bc638ae` (sole ownership, concise evidence-first case studies,
+  current Barion screenshots and actual recording, compact navigation, automated browser QA).
+- Production deployment: `dpl_9LPYeRmmTqw7E9XfT812dwcWYeJ9`, READY.
+- Public address: https://joshua-portfolio-phi-lemon.vercel.app — anonymous access verified.
+- Unique deployment: https://joshua-portfolio-pcjru1jow-joshua-salvacions-projects.vercel.app.
+- Public verification passed: ten routes, sitemap/canonical/robots, configured security
+  headers, real missing-page/asset 404s, immutable assets, unchanged resume and certificates,
+  four current capture assets with SHA-256 checks and both downloadable test records.
+- Live browser sweep passed 20 page/width combinations, scenario/annotation interactions,
+  evidence dialogs, PDF downloads, keyboard focus, mobile navigation and real video playback;
+  no browser or policy errors were reported.
+- The first new CI browser run (`43737842076`) failed before browser checks because ANSI
+  formatting split the preview URL. The runner now strips terminal formatting before
+  readiness matching. This is test infrastructure only; deployed application code is unchanged.
+- Current clean-environment status: [Portfolio quality workflow](https://github.com/slvcn-jsh/joshua-portfolio/actions/workflows/quality.yml).
+- Automatic GitHub-to-Vercel deployment remains unconnected. Direct deployment is the
+  authorized release path; no account settings or deployment secrets were changed.
+
+The application repositories were inspected and exercised but not edited, committed
+or pushed. PCOSina video capture remains pending a connected Android device.
+`PROJECT_VERIFICATION.md` distinguishes application evidence from portfolio QA;
+`REPOSITORY_HANDOFF.md` contains unapplied README/About recommendations.
+
+## Earlier production records
+
 Owner authorization: public GitHub repository and Vercel deployment after QA,
 explicitly confirmed on 2026-11-14.
 

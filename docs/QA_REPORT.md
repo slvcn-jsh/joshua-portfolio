@@ -45,6 +45,13 @@ is 657 and 664 words respectively. These are website measurements, not applicati
 
 ### Remaining boundaries
 
+Public deployment checks and the 20-case live browser sweep subsequently passed on
+`bc638ae` / `dpl_9LPYeRmmTqw7E9XfT812dwcWYeJ9`. New capture hashes and both evidence
+records were checked anonymously against local approved assets. The first Linux CI
+run exposed a preview-readiness parser issue caused by ANSI coloring, not an application
+failure. The runner was narrowed to normalize terminal control characters; a forced-color
+local rerun and the GitHub workflow provide regression verification.
+
 No connected Android device was available for a fresh PCOSina video. Barion capture proves
 one local web path, not native or deployed readiness. Application repository README/About
 changes are prepared but not applied (`REPOSITORY_HANDOFF.md`). Owner review of personal

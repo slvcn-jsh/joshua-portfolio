@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import { spawn } from 'node:child_process'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { runInThisContext } from 'node:vm'
+import { stripVTControlCharacters } from 'node:util'
 import { chromium } from 'playwright'
 
 // Reuse the same checked-in workflows as the interactive Playwright CLI.
@@ -48,7 +49,10 @@ try {
     let ready = false
     for (let attempt = 0; attempt < 80; attempt++) {
       assert(server.exitCode === null, `Preview failed: ${serverLog}`)
-      if (serverLog.includes('http://127.0.0.1:4173/')) {
+      // CI adds ANSI styling inside the URL (not only around the whole line).
+      if (
+        stripVTControlCharacters(serverLog).includes('http://127.0.0.1:4173/')
+      ) {
         ready = true
         break
       }
