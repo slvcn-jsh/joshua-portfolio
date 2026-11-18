@@ -1,6 +1,36 @@
 # Release status
 
-## Current production release — November 18, 2026
+## Current production release — themes and showcase, November 18, 2026
+
+- Runtime revision: `2f3fd6e`, pushed to the public portfolio repository.
+- Production deployment: `dpl_6cQjr3h9hsQbAsVDWum3wTunBYVm`, READY.
+- Public address: https://joshua-portfolio-phi-lemon.vercel.app.
+- Unique deployment: https://joshua-portfolio-ox4lfd4do-joshua-salvacions-projects.vercel.app.
+- System/light/dark themes, six-project sliding homepage showcase, direct selection,
+  touch/keyboard navigation, selective glass and reduced-motion/static fallbacks.
+- Anonymous deployment checks passed for all fourteen routes, unchanged security
+  headers, canonical/sitemap/robots, genuine missing-route/asset 404s, reviewed
+  captures, approved PDF hashes, existing recordings and immutable asset caching.
+  The published pre-paint theme initializer matches the reviewed source.
+- Full local ten-suite browser report completed at 09:08:12 UTC on 18 November.
+  Includes 150 light/dark route/width checks, 60 showcase states, 24 image-dialog
+  checks and actual Chromium touch input. See `QA_REPORT.md` for limitations.
+- Live browser verification passed 28 route/width combinations at 390px and 1440px.
+  All six projects were selected and enlarged in both themes at both widths (24
+  showcase/dialog states). Theme changes, focus return, old/new galleries, original
+  scenarios, video playback, mobile navigation and PDF downloads passed with zero
+  browser or policy errors.
+- Runtime CI: https://github.com/slvcn-jsh/joshua-portfolio/actions/runs/44273267763.
+  Hosted clean install, build/static checks and SEO passed; browser tests were still
+  running at release-note preparation. The full audit gate remains enabled, with
+  the owner's existing exception for 11 high development-package findings. Runtime
+  dependency audit remains clean; this is not a claim of a green full pipeline.
+- All four newer application repositories were rechecked and remain private.
+  No application source, screenshot, certificate, resume or dependency was changed.
+- Direct authorized Vercel publication; Git integration remains unconnected.
+  Later release-note commits do not change deployed application assets.
+
+## Previous six-project release — November 18, 2026
 
 - Runtime revision: `1446c95`, pushed to the public portfolio repository.
 - Production deployment: `dpl_GzFoG3d7wkXmuAqCVKD4xwzL2w1i`, READY.

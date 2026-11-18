@@ -48,8 +48,18 @@ physical-device, Safari/Firefox or assistive-technology certification.
 
 `npm audit --omit=dev` remains clean. Full audit still reports the same 11 high
 development-package findings covered by the owner's approved exception below.
-The audit gate is unchanged. Production release verification is recorded separately
-in `RELEASE_STATUS.md` after deployment.
+The audit gate is unchanged.
+
+### Production verification
+
+Runtime `2f3fd6e` is deployed to the existing public Vercel address. Anonymous checks
+passed for fourteen routes, security headers, metadata, real 404s, unchanged PDF/media
+hashes and the exact reviewed theme initializer. Live browser verification passed
+28 route/viewport combinations at 390px/1440px, including all six showcase choices
+and image dialogs in both themes (24 states), original interactions, video and PDF
+downloads. Zero browser/policy errors. All four private source repositories were
+rechecked and remain private. `RELEASE_STATUS.md` records deployment and hosted CI
+identity; local and live success do not imply a green full dependency-audit pipeline.
 
 ## Six-project expansion — November 18, 2026
 
