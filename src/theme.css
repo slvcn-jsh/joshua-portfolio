@@ -58,15 +58,6 @@ body {
 .header-inner {
   gap: 22px;
 }
-.brand-portrait {
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
-  object-fit: cover;
-  border: 1px solid var(--color-line);
-  border-radius: 6px;
-  background: #fff;
-}
 .desktop-nav {
   margin-left: auto;
 }
@@ -226,12 +217,7 @@ img.project-logo {
 }
 @media (max-width: 479px) {
   .brand {
-    font-size: 0.8rem;
-    gap: 7px;
-  }
-  .brand-portrait {
-    width: 30px;
-    height: 30px;
+    font-size: 0.84rem;
   }
   .header-inner {
     gap: 10px;

@@ -2,6 +2,9 @@
 
 ## Approved portrait branding — November 18, 2026
 
+Owner clarification: the portrait is used only for browser/saved-site icons.
+The header is text-only; the previously generated WebP is no longer rendered.
+
 The owner supplied `Salvacion_Portfolio_newlogo.png` and explicitly requested its
 use as the portfolio identity. `brands/joshua-portrait.webp` (160×160),
 `favicon-portrait.png` (64×64) and `apple-touch-icon.png` (180×180) are top-aligned

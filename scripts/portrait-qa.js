@@ -13,20 +13,19 @@
       await page.goto(origin)
       await page.locator('html[data-enhanced]').waitFor()
       await page.locator('.theme-control select').selectOption(theme)
-      await page.locator('.brand-portrait').evaluate((img) => img.decode())
+      if (await page.locator('.brand img').count())
+        throw new Error('Header must remain text-only')
       const geometry = await page.evaluate(() => {
         const brand = document.querySelector('.brand').getBoundingClientRect()
         const control = document
           .querySelector('.theme-control')
           .getBoundingClientRect()
-        const img = document.querySelector('.brand-portrait')
         return {
           overflow: document.documentElement.scrollWidth > innerWidth,
           overlap: brand.right > control.left,
-          square: img.naturalWidth === 160 && img.naturalHeight === 160,
         }
       })
-      if (geometry.overflow || geometry.overlap || !geometry.square)
+      if (geometry.overflow || geometry.overlap)
         throw new Error(JSON.stringify({ theme, width, geometry }))
       if (width < 1024) {
         await page.locator('.mobile-nav summary').click()

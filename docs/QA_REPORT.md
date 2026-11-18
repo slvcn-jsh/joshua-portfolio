@@ -1,5 +1,12 @@
 # Final QA report
 
+## Text-only header correction — November 18, 2026
+
+Owner clarified that the portrait belongs only in the browser icon, not beside
+the header name. Removed the header image and its styling, restored the previous
+mobile name size, and updated the focused branding regression to require a
+text-only header while retaining both portrait icon checks.
+
 ## Approved portrait branding — November 18, 2026
 
 - Replaced the JS favicon with the owner-supplied portrait; added an Apple touch
