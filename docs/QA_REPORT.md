@@ -14,7 +14,6 @@
   were visually reviewed. This is focused regression QA, not a rerun of all suites.
 - Existing development-tool security exception is unchanged; no dependency changes.
 
-
 ## Light/dark theme and sliding showcase — November 18, 2026
 
 ### Implemented
