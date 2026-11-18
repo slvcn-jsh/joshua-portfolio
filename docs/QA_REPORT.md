@@ -1,5 +1,20 @@
 # Final QA report
 
+## Approved portrait branding — November 18, 2026
+
+- Replaced the JS favicon with the owner-supplied portrait; added an Apple touch
+  icon and a compact square header portrait beside the existing name/home link.
+- Original file hash unchanged. Metadata stripped from generated assets; header
+  WebP is 4,738 bytes. No new dependencies or project content changes.
+- ESLint, TypeScript, production build and static validation passed (15 pages,
+  669 local references). Focused `portrait` browser suite passed at 360, 390, 768,
+  1024 and 1440px in both themes: no overflow or branding/control overlap, decoded
+  images, working mobile navigation/home link, PNG icon responses, no header axe
+  violations and zero runtime errors. Mobile/light and desktop/dark screenshots
+  were visually reviewed. This is focused regression QA, not a rerun of all suites.
+- Existing development-tool security exception is unchanged; no dependency changes.
+
+
 ## Light/dark theme and sliding showcase — November 18, 2026
 
 ### Implemented

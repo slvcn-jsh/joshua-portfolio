@@ -28,6 +28,13 @@ export function Layout({
       <header className="site-header">
         <div className="container header-inner">
           <a className="brand" href="/" aria-label="Joshua Salvacion, home">
+            <img
+              className="brand-portrait"
+              src="/brands/joshua-portrait.webp"
+              alt=""
+              width={40}
+              height={40}
+            />
             <span>
               Joshua <strong>Salvacion</strong>
             </span>

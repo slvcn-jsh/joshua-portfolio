@@ -27,6 +27,7 @@ const suites = requestedSuite
         'refinement',
         'expansion',
         'design',
+        'portrait',
       ]
 const ownServer =
   !process.argv.includes('--reuse-preview') && !process.argv.includes('--live')

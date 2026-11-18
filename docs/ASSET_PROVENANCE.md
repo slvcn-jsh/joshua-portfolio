@@ -1,5 +1,17 @@
 # Public asset provenance
 
+## Approved portrait branding — November 18, 2026
+
+The owner supplied `Salvacion_Portfolio_newlogo.png` and explicitly requested its
+use as the portfolio identity. `brands/joshua-portrait.webp` (160×160),
+`favicon-portrait.png` (64×64) and `apple-touch-icon.png` (180×180) are top-aligned
+square crops, resized with Sharp and stripped of metadata. No retouching or AI
+generation is applied. The original remains unchanged; SHA-256:
+`0ecb9524db3652651da31540057daaba1d3e9c8ed5a6cd3e5a8f27a79edce553`.
+Recreate with `node scripts/prepare-portrait.mjs "<approved source path>"`.
+The header retains the visible name and accessible home-link label. This explicit
+approval supersedes the initial no-portrait direction for branding only.
+
 ## Current Barion media — November 16, 2026
 
 `images/barion-current-{home,source,review}.webp` and `videos/barion-review.webm`
@@ -14,17 +26,17 @@ are historical import records, no longer used by the pages.
 
 ## Original asset import
 
-All assets were inspected locally before being included. No project database, private dataset, credential file, raw manuscript or personal portrait is included.
+All assets were inspected locally before being included. No project database, private dataset, credential file or raw manuscript is included. The later owner-approved portrait is documented above.
 
-| Portfolio asset                  | Source                                               | Treatment                                                                                    |
-| -------------------------------- | ---------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `images/pcosina-plan.webp`       | PCOSina `tools/avp/v2_3d/public/assets/week.png`     | WebP encoding; unchanged 784 × 1745 image content                                            |
-| `images/pcosina-grocery.webp`    | PCOSina `tools/avp/v2_3d/public/assets/shopping.png` | WebP encoding; unchanged 784 × 1745 image content                                            |
-| `images/barion-home.webp`        | Barion local checkout `medstudy-home-settled.png`    | WebP encoding; historical MedStudy dashboard, 1366 × 900                                     |
-| `images/barion-review.webp`      | Barion local checkout `medstudy-study-mobile.png`    | WebP encoding; historical sample study screen, 390 × 844                                     |
-| `Joshua-Salvacion-Resume.pdf`    | Owner-selected `SALVACION_JOSHUA_RESUME.pdf`         | Byte-for-byte copy; includes contact details already present in the approved public document |
-| `images/resume-preview.webp`     | Render of approved PDF                               | WebP page preview; original PDF untouched                                                    |
-| `favicon.svg`, `social-card.png` | Portfolio typographic artwork                        | Generated from local SVG, no synthetic project UI                                            |
+| Portfolio asset               | Source                                               | Treatment                                                                                    |
+| ----------------------------- | ---------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `images/pcosina-plan.webp`    | PCOSina `tools/avp/v2_3d/public/assets/week.png`     | WebP encoding; unchanged 784 × 1745 image content                                            |
+| `images/pcosina-grocery.webp` | PCOSina `tools/avp/v2_3d/public/assets/shopping.png` | WebP encoding; unchanged 784 × 1745 image content                                            |
+| `images/barion-home.webp`     | Barion local checkout `medstudy-home-settled.png`    | WebP encoding; historical MedStudy dashboard, 1366 × 900                                     |
+| `images/barion-review.webp`   | Barion local checkout `medstudy-study-mobile.png`    | WebP encoding; historical sample study screen, 390 × 844                                     |
+| `Joshua-Salvacion-Resume.pdf` | Owner-selected `SALVACION_JOSHUA_RESUME.pdf`         | Byte-for-byte copy; includes contact details already present in the approved public document |
+| `images/resume-preview.webp`  | Render of approved PDF                               | WebP page preview; original PDF untouched                                                    |
+| `social-card.png`             | Portfolio typographic artwork                        | Generated from local SVG, no synthetic project UI                                            |
 
 The PCOSina captures also appear in the project's presentation assets. They show application functionality, not a portfolio-created UI. The Barion captures are clearly labeled as earlier development-stage media; their seeded values are sample UI data, not usage statistics or project outcomes.
 
