@@ -1,5 +1,56 @@
 # Final QA report
 
+## Light/dark theme and sliding showcase — November 18, 2026
+
+### Implemented
+
+- Light, dark and system modes on all routes. Same-origin pre-paint initialization,
+  optional local storage, system updates and cross-tab synchronization. No inline
+  script or CSP relaxation. Screenshot/certificate/photo colors remain unchanged.
+- One six-project homepage showcase replaces the two featured cards and additional
+  project index. Direct project selection, previous/next, keyboard arrows/Home/End,
+  touch swipe, status announcement and native image enlargement. Inactive slides
+  are inert. No autoplay or intercepted vertical scrolling.
+- Responsive media/text composition, restrained project-tinted stages, overlapping
+  frosted selector and solid-surface fallback. Coordinated 520ms directional slides;
+  reduced motion removes displacement. No-JS and print retain the full sequence.
+- Original type hierarchy, project overview, case studies and evidence preserved.
+  No new runtime dependency, image asset or project/content claim.
+
+### Local evidence
+
+- TypeScript, ESLint, production build, formatting and static validation passed:
+  15 HTML files, 624 local references, unchanged approved PDFs and media hashes.
+- Production/preview/unconfigured SEO checks passed in isolated fixtures.
+- Full ten-suite browser regression passed. Light and dark route sweeps cover 150
+  page/width combinations at 360, 390, 768, 1024 and 1440px; zero detected WCAG A/AA
+  axe violations or horizontal page overflow.
+- New design suite: 60 project/theme/width states, 24 image-dialog checks, keyboard
+  selection and focus return, rapid selection, boundaries and live announcements.
+  Real Chromium touch dispatch over a screenshot advances the project without
+  opening its dialog; vertical gesture handling does not change the selection.
+- Stored preference survives navigation; tabs synchronize; system-mode changes
+  update immediately. Blocked storage remains usable. The correct dark background
+  renders with the hydration bundle blocked, and with JavaScript disabled.
+- Existing walkthroughs, gallery dialogs, certificate/resume downloads, video,
+  mobile navigation and contact fallbacks pass. The expanded CSP suite covers five
+  pages, including theme selection and the new showcase, with zero policy violations.
+- Visual inspection: light/dark desktop homepage, mobile dark homepage, native/web
+  showcase layouts, dark skills and PCOSina case study. Removed the introductory
+  entrance shift; surface/text colors switch together to avoid low-contrast
+  intermediate theme colors. Focus outlines are intentional and retained.
+- Output: CSS 73.48 KB / 14.95 KB gzip; JavaScript 323.44 KB / 98.93 KB gzip.
+  No runtime package or dependency-lock changes.
+
+Report: `output/playwright/browser-report.json`; captures are ignored local QA
+artifacts. This verifies Chromium browser behavior and an Edge visual review, not
+physical-device, Safari/Firefox or assistive-technology certification.
+
+`npm audit --omit=dev` remains clean. Full audit still reports the same 11 high
+development-package findings covered by the owner's approved exception below.
+The audit gate is unchanged. Production release verification is recorded separately
+in `RELEASE_STATUS.md` after deployment.
+
 ## Six-project expansion — November 18, 2026
 
 This section supersedes prior portfolio page counts. Application test records are

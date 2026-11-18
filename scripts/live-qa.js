@@ -14,7 +14,23 @@ async (page) => {
       if (response.status() !== 200) throw new Error('Page unavailable: ' + path)
       await page.locator('html[data-enhanced]').waitFor()
       if (await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)) throw new Error('Overflow: ' + path)
-      if (path === '/') await page.screenshot({ path: `output/playwright/live-home-${width}.png` })
+      if (path === '/') {
+        for (const theme of ['light', 'dark']) {
+          await page.getByLabel('Color theme').selectOption(theme)
+          await page.locator('html[data-theme="' + theme + '"]').waitFor()
+          for (const [name, slug] of [['PCOSina','pcosina'], ['Barion','barion'], ['FocusLoop','focusloop'], ['ResolveOps','resolveops'], ['Procura','procura'], ['FreshKeep','freshkeep']]) {
+            await page.getByRole('button', { name, exact: true }).click()
+            const slide = page.locator('#showcase-' + slug)
+            await slide.locator('.showcase-capture').click()
+            await page.locator('dialog[open] img').evaluate(image => image.decode())
+            await page.keyboard.press('Escape')
+            if (!await slide.locator('.showcase-capture').evaluate(el => el === document.activeElement)) throw new Error('Live showcase focus return')
+          }
+          await page.getByRole('button', { name: 'PCOSina', exact: true }).click()
+          await page.locator('.showcase-viewport').evaluate(async el => { await Promise.all(el.getAnimations({subtree:true}).map(a=>a.finished.catch(()=>{}))) })
+          await page.screenshot({ path: `output/playwright/live-home-${theme}-${width}.png`, fullPage: true })
+        }
+      }
       if (path === '/certifications' || path === '/achievements') {
         const selector = path === '/certifications' ? '.certificate-image-link' : '.event-image-link'
         const triggers = page.locator(selector)

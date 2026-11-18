@@ -1,5 +1,21 @@
 # Implementation plan and progress
 
+## November 18 — theme and showcase sequence
+
+1. Defined paired semantic tokens and system/light/dark preference behavior.
+2. Added pre-paint initialization under the unchanged CSP, storage fallbacks and
+   cross-tab/system synchronization; preserved static rendering and no-JS behavior.
+3. Replaced the homepage's split project presentations with one six-project showcase.
+   Added direct selection, keyboard navigation, bounded sliding, swipe and enlargement.
+4. Applied selective glass to the selector and navigation controls; reviewed mobile
+   and desktop in both themes. Kept all original media and project facts unchanged.
+5. Extended QA for dark routes, showcase states, real browser touch dispatch, reduced
+   motion, blocked storage, pre-hydration theme, dialogs and production CSP. Results
+   and release identity are tracked in `QA_REPORT.md` and `RELEASE_STATUS.md`.
+
+No runtime dependency was added. The existing approved build-tool audit exception
+remains separate from functional release checks; no audit suppression was added.
+
 ## November 18 — expansion sequence
 
 Repository/content audit and publication consent completed; six-project design and

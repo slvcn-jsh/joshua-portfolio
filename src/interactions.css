@@ -10,7 +10,7 @@
     border-radius: 6px;
     padding: 26px;
     margin-top: 28px;
-    background: #fafbfd;
+    background: var(--color-surface);
     scroll-margin-top: 28px;
   }
   .scenario-heading {
@@ -51,12 +51,12 @@
     border: 1px solid var(--color-line);
     border-radius: 4px;
     color: var(--color-ink);
-    background: white;
+    background: var(--color-elevated);
     font-size: 0.78rem;
   }
   .scenario-controls button[aria-pressed='true'] {
-    color: white;
-    background: var(--color-navy);
+    color: var(--color-on-action);
+    background: var(--color-action);
     border-color: var(--color-navy);
   }
   .scenario-controls button:hover {
@@ -89,9 +89,9 @@
   .scenario-path {
     position: relative;
     padding: 18px;
-    border: 1px solid #a6b8cd;
+    border: 1px solid var(--color-line-strong);
     border-top: 2px solid var(--color-accent);
-    background: white;
+    background: var(--color-elevated);
     border-radius: 3px;
     transition:
       border-color 180ms,
@@ -129,16 +129,16 @@
   .path-interrupted {
     border-style: dashed;
     border-color: #92703e;
-    background: #fcf8f1;
+    background: var(--color-warning-surface);
   }
   .path-interrupted .path-status {
-    color: #76551f;
+    color: var(--color-warning);
   }
   .path-interrupted .path-connector {
     border-left: 1px dashed #92703e;
   }
   .path-interrupted .path-connector svg {
-    color: #76551f;
+    color: var(--color-warning);
   }
   .scenario-result {
     margin-top: 22px;
@@ -211,8 +211,8 @@
     position: absolute;
     top: -12px;
     left: 8px;
-    background: var(--color-navy);
-    color: white;
+    background: var(--color-action);
+    color: var(--color-on-action);
     border: 2px solid white;
     padding: 2px 5px;
     border-radius: 3px;
@@ -283,7 +283,7 @@
     align-items: center;
     min-height: 48px;
     text-align: left;
-    background: white;
+    background: var(--color-elevated);
     border: 1px solid var(--color-line);
     border-radius: 4px;
     padding: 10px 12px;
@@ -291,7 +291,7 @@
   }
   .annotation-controls button[aria-pressed='true'] {
     border-color: var(--color-accent);
-    background: #edf2f8;
+    background: var(--color-highlight);
     color: var(--color-accent);
   }
   .annotation-explanation {
@@ -337,7 +337,7 @@
     border: 1px solid var(--color-line);
     border-radius: 6px;
     margin: auto;
-    background: white;
+    background: var(--color-elevated);
     color: var(--color-ink);
   }
   .image-dialog::backdrop {
@@ -347,7 +347,7 @@
     position: sticky;
     top: 0;
     z-index: 1;
-    background: white;
+    background: var(--color-elevated);
     border-bottom: 1px solid var(--color-line);
     padding: 14px 20px;
     display: flex;
@@ -378,7 +378,7 @@
     font-weight: 600;
     border-left: 2px solid var(--color-accent);
     padding-left: 10px;
-    background: #f4f7fb;
+    background: var(--color-surface);
   }
   .case-aside a {
     min-height: 44px;

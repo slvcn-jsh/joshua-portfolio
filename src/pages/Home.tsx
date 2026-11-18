@@ -1,25 +1,19 @@
 import { ArrowRight, Download } from 'lucide-react'
 import { identity } from '../content/site'
-import { projects } from '../content/projects'
-import { ProjectCard } from '../components/ProjectCard'
 import { TechnologyList } from '../components/TechnologyList'
-import { MoreProjects } from '../components/ProjectCollection'
+import { ProjectShowcase } from '../components/ProjectShowcase'
 
 export function Home() {
   return (
     <div className="container home-page">
-      <div className="home-overview">
-        <section
-          className="home-introduction"
-          aria-labelledby="intro-title"
-          data-reveal
-        >
-          <p className="intro-role">Software Engineering Student</p>
-          <h1 id="intro-title">
-            Joshua Escalicas
-            <br />
-            <span>Salvacion</span>
-          </h1>
+      <section className="home-introduction" aria-labelledby="intro-title">
+        <p className="intro-role">Software Engineering Student</p>
+        <h1 id="intro-title">
+          Joshua Escalicas
+          <br />
+          <span>Salvacion</span>
+        </h1>
+        <div className="intro-context">
           <p className="intro-description">
             I build mobile and web applications, from interface to data
             integrity.
@@ -49,19 +43,9 @@ export function Home() {
           >
             {identity.email}
           </a>
-        </section>
-        <ProjectCard
-          project={projects[0]}
-          headingAs="h2"
-          presentation="featured"
-        />
-      </div>
-      <ProjectCard
-        project={projects[1]}
-        headingAs="h2"
-        presentation="supporting"
-      />
-      <MoreProjects />
+        </div>
+      </section>
+      <ProjectShowcase />
     </div>
   )
 }

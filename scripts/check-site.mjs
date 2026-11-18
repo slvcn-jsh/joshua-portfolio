@@ -33,6 +33,11 @@ for (const file of htmlFiles) {
   )
   assert.match(html, /<main id="main"/, `${page}: missing main landmark`)
   assert(!html.includes('<!--app-html-->'), `${page}: not prerendered`)
+  const bootstrap = html.indexOf('<script src="/theme-init.js"></script>')
+  assert(
+    bootstrap > 0 && bootstrap < html.indexOf('</head>'),
+    `${page}: pre-paint theme bootstrap missing`,
+  )
   const title = html.match(/<title>(.*?)<\/title>/)?.[1]
   assert(title && !titles.has(title), `${page}: missing or repeated title`)
   titles.add(title)

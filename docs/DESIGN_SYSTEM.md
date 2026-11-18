@@ -1,5 +1,29 @@
 # Design system
 
+## Theme and sliding showcase — November 18, 2026
+
+This extension supersedes the historical light-only and homepage layout notes below.
+The editorial type, 1120px container and restrained palette remain. `src/theme.css`
+is the authoritative semantic palette: off-white `#fcfcfa` / charcoal `#14171c`
+canvas; white / `#1c2129` surfaces; charcoal / soft-white ink; muted blue accents.
+Separate action-background and on-action tokens preserve contrast in both themes.
+Reading surfaces stay solid. Original screenshots and documents remain unchanged;
+brand artwork receives a neutral backing, never an inversion filter.
+
+The homepage uses one six-project showcase. At desktop widths, text and real captures
+share a stage; below 768px media sits above the project explanation. A 6-column
+selector becomes 3 columns on mobile. Its frosted surface overlaps the stage edge;
+full-opacity fallback applies without backdrop-filter. All projects are directly
+selectable, with keyboard arrows/Home/End and previous/next controls. Directional
+slides take 520ms; interactive feedback takes 180–260ms. No opacity animation on text,
+autoplay or scroll hijacking. Reduced motion disables displacement; no-JS and print
+show the complete project sequence. The project overview remains a filterable grid.
+
+Theme changes switch text/surface colors together to avoid low-contrast crossfade
+midpoints. Only the control icon animates briefly. The pre-paint script follows
+system preference until overridden, supports cross-tab changes and tolerates blocked
+storage. See `DESIGN_EVOLUTION.md` for acceptance and `QA_REPORT.md` for evidence.
+
 ## Six-project collection — November 18, 2026
 
 `collection.css` owns the new collection, compact homepage project index and capture

@@ -6,7 +6,9 @@ Recruiters can identify Joshua, his education, core stack, six selected projects
 
 ## Routes
 
-`/`: identity, role, concise introduction, primary stack, project and resume/contact actions, PCOSina/Barion featured presentations and a compact index of the other four projects.
+`/`: identity, role, concise introduction, primary stack and resume/contact actions,
+followed by one six-project sliding showcase. PCOSina is selected initially; all six
+projects are directly selectable. The static fallback shows the complete sequence.
 
 `/projects`: six-project collection, PCOSina first, with platform filtering, purpose, status, stack and case studies. Public source links only for PCOSina/Barion; private-source labels for the other four.
 
@@ -20,13 +22,19 @@ Recruiters can identify Joshua, his education, core stack, six selected projects
 
 `/resume`: approved PDF viewing/download, no rewritten resume.
 
-`/contact`: email, copy email with fallback, GitHub.
+`/contact`: email, copy email with fallback, GitHub and approved LinkedIn profile.
 
 Unknown routes: clear 404 with navigation back to projects/home.
 
 ## Architecture
 
 React + TypeScript + Vite + Tailwind CSS + Lucide. Static React rendering at build time produces each route's HTML with page-specific metadata; client hydration adds small interactions. Standard links preserve browser behavior and make navigation work without JS. No runtime server, database, auth, analytics, remote fonts or motion library.
+
+System/light/dark preference uses an early same-origin script and semantic CSS
+tokens. Browser storage is optional; no server preference or tracking is introduced.
+The shared header exposes an accessible native theme selector on every hydrated page.
+Showcase motion is user-triggered and disabled under reduced motion. See
+`DESIGN_EVOLUTION.md` for this extension's interaction and acceptance details.
 
 Content lives in typed modules; shared layout, project summary, section intro, architecture flow and case-study components own repeated presentation. Vercel serves static HTML with clean URLs, security headers and a proper 404. No SPA catch-all rewrite hiding missing assets.
 

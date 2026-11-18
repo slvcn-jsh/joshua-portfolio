@@ -3,6 +3,7 @@ import { ArrowUpRight, Menu, ArrowRight } from 'lucide-react'
 import { identity, navigation } from '../content/site'
 import { BrandIcon } from './BrandIcon'
 import { MotionEnhancements } from './MotionEnhancements'
+import { ThemeControl } from './ThemeControl'
 
 export function Layout({
   path,
@@ -34,6 +35,7 @@ export function Layout({
           <nav className="desktop-nav" aria-label="Main navigation">
             {links}
           </nav>
+          <ThemeControl />
           <details
             className="mobile-nav"
             onKeyDown={(event) => {

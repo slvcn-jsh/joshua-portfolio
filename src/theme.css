@@ -1,0 +1,249 @@
+/* Semantic colors: one source for both complete themes, including no-JS system mode. */
+:root {
+  color-scheme: light;
+  --color-bg: light-dark(#fcfcfa, #14171c);
+  --color-elevated: light-dark(#ffffff, #1c2129);
+  --color-ink: light-dark(#202b39, #ecedf0);
+  --color-muted: light-dark(#556272, #adb8c7);
+  --color-accent: light-dark(#234b80, #a5c7f2);
+  --color-navy: light-dark(#172e4d, #d0def2);
+  --color-action: light-dark(#172e4d, #bed4f1);
+  --color-action-hover: light-dark(#284a76, #d3e3f8);
+  --color-on-action: light-dark(#ffffff, #162334);
+  --color-surface: light-dark(#f3f5f7, #1b2027);
+  --color-paper: light-dark(#f3f1ed, #22252b);
+  --color-line: light-dark(#dce2e9, #343d49);
+  --color-line-strong: light-dark(#8899ae, #73859e);
+  --color-highlight: light-dark(#e9eff7, #29364a);
+  --color-focus: light-dark(#477ab9, #95c3ff);
+  --color-warning: light-dark(#76551f, #e3c38b);
+  --color-warning-surface: light-dark(#fcf8f1, #302b23);
+  --color-glass: light-dark(rgb(255 255 255 / 82%), rgb(28 33 41 / 87%));
+  --color-glass-edge: light-dark(
+    rgb(255 255 255 / 95%),
+    rgb(255 255 255 / 10%)
+  );
+  --shadow-soft: 0 8px 30px light-dark(#172e4d09, #00000026);
+  --shadow-media: 0 18px 40px light-dark(#172e4d20, #00000055);
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
+}
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+  }
+}
+body {
+  background: var(--color-bg);
+}
+:focus-visible {
+  outline-color: var(--color-focus);
+}
+::selection {
+  background: var(--color-highlight);
+  color: var(--color-ink);
+}
+.button-primary:hover {
+  background: var(--color-action-hover);
+}
+.site-header {
+  position: relative;
+  z-index: 40;
+  background: var(--color-elevated);
+}
+.header-inner {
+  gap: 22px;
+}
+.desktop-nav {
+  margin-left: auto;
+}
+.theme-control {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  color: var(--color-muted);
+  border: 1px solid var(--color-line);
+  border-radius: 6px;
+  padding-left: 10px;
+  background: var(--color-elevated);
+}
+html[data-enhanced] .theme-control {
+  display: flex;
+}
+.theme-control select {
+  background: transparent;
+  color: var(--color-ink);
+  font: inherit;
+  font-size: 0.78rem;
+  border: 0;
+  min-height: 42px;
+  max-width: 85px;
+  padding: 0 5px 0 0;
+  cursor: pointer;
+}
+.theme-control option {
+  background: var(--color-elevated);
+  color: var(--color-ink);
+}
+.mobile-nav nav {
+  background: var(--color-elevated);
+}
+.collection-toolbar,
+.image-dialog-toolbar {
+  background: var(--color-elevated);
+}
+@supports (backdrop-filter: blur(16px)) {
+  .site-header,
+  .collection-toolbar,
+  .image-dialog-toolbar {
+    background: var(--color-glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+}
+.collection-card {
+  background: var(--color-elevated);
+}
+.collection-card,
+.showcase,
+.showcase-slide {
+  --project-tint: light-dark(#edf2f7, #222c38);
+}
+:is(.collection-card, .showcase, .showcase-slide).pcosina {
+  --project-tint: light-dark(#f1ecef, #30272e);
+}
+:is(.collection-card, .showcase, .showcase-slide).barion {
+  --project-tint: light-dark(#f0eff7, #28273b);
+}
+:is(.collection-card, .showcase, .showcase-slide).focusloop {
+  --project-tint: light-dark(#e8f2f1, #1c3032);
+}
+:is(.collection-card, .showcase, .showcase-slide).freshkeep {
+  --project-tint: light-dark(#edf2e9, #243026);
+}
+:is(.collection-card, .showcase, .showcase-slide).procura {
+  --project-tint: light-dark(#ebeff8, #232c40);
+}
+.project-symbol {
+  background: light-dark(#e5f3f2, #203c40);
+  color: light-dark(#0e7782, #91d6d6);
+}
+.project-symbol.freshkeep {
+  background: light-dark(#eaf3e8, #293d2e);
+  color: light-dark(#276749, #a6d6aa);
+}
+/* Brand artwork stays intact and gains a neutral backing, not an inversion filter. */
+img.brand-icon,
+img.project-logo {
+  background: #fff;
+  border-radius: 4px;
+  padding: 2px;
+}
+.image-dialog {
+  color: var(--color-ink);
+  box-shadow: var(--shadow-media);
+}
+.image-dialog::backdrop {
+  background: rgb(10 15 23 / 78%);
+}
+.image-dialog-toolbar {
+  border-bottom: 1px solid var(--color-line);
+}
+.image-dialog figure {
+  background: var(--color-elevated);
+}
+.annotation-controls button {
+  color: var(--color-ink);
+}
+.path-interrupted {
+  background: var(--color-warning-surface);
+  border-color: var(--color-warning);
+}
+.path-interrupted :is(.path-status, .path-connector svg) {
+  color: var(--color-warning);
+}
+.case-aside a span,
+.preview-caption,
+.barion-preview .preview-caption {
+  color: var(--color-muted);
+}
+.tag-list li:not(:last-child)::after {
+  color: var(--color-muted);
+}
+.collection-copy .tag-list li::after {
+  content: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  /* Switch paired surface/text colors together: crossfading inverted colors
+     creates a low-contrast midpoint. Motion belongs to controls and media. */
+  .theme-control svg {
+    animation: theme-icon-enter 180ms ease-out;
+  }
+  @keyframes theme-icon-enter {
+    from {
+      transform: rotate(-15deg) scale(0.9);
+    }
+    to {
+      transform: none;
+    }
+  }
+  .button:active {
+    transform: translateY(1px);
+  }
+  .image-dialog[open] {
+    animation: image-expand 220ms cubic-bezier(0.2, 0.75, 0.25, 1);
+  }
+  @keyframes image-expand {
+    from {
+      transform: translateY(8px) scale(0.975);
+    }
+    to {
+      transform: none;
+    }
+  }
+}
+@media (max-width: 1023px) {
+  .header-inner {
+    gap: 12px;
+  }
+  .theme-control {
+    margin-left: auto;
+  }
+}
+@media (max-width: 479px) {
+  .brand {
+    font-size: 0.84rem;
+  }
+  .header-inner {
+    gap: 10px;
+    min-height: 72px;
+  }
+  .theme-control {
+    padding-left: 6px;
+    gap: 3px;
+  }
+  .theme-control select {
+    max-width: 72px;
+    font-size: 0.72rem;
+  }
+  .mobile-nav summary {
+    gap: 4px;
+    font-size: 0.76rem;
+  }
+}
+@media print {
+  :root {
+    color-scheme: light !important;
+  }
+  .theme-control {
+    display: none !important;
+  }
+  body {
+    background: white;
+  }
+}

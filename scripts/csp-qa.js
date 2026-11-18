@@ -46,9 +46,16 @@ async (page) => {
       const violations = await secure.evaluate(() => window.policyViolations)
       if (violations.length) throw new Error(JSON.stringify({ path, violations }))
     }
+    await secure.goto('http://127.0.0.1:4173/')
+    await secure.getByLabel('Color theme').selectOption('dark')
+    await secure.locator('html[data-theme="dark"]').waitFor()
+    await secure.getByRole('button', { name: 'Procura', exact: true }).click()
+    await secure.locator('#showcase-procura .showcase-capture').click()
+    await secure.getByRole('button', { name: 'Close image' }).click()
+    if ((await secure.evaluate(() => window.policyViolations)).length) throw new Error('Theme/showcase CSP violation')
     return {
       policy: 'vercel.json policy applied to local responses',
-      pages: 4,
+      pages: 5,
       violations: 0,
     }
   } finally {

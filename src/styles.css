@@ -20,7 +20,7 @@
   }
   body {
     margin: 0;
-    background: white;
+    background: var(--color-elevated);
     color: var(--color-ink);
     font-family: var(--font-sans);
     font-size: 16px;
@@ -163,23 +163,23 @@
     font-weight: 600;
   }
   .button-primary {
-    background: var(--color-navy);
-    color: white;
+    background: var(--color-action);
+    color: var(--color-on-action);
   }
   .button-primary:hover {
     background: #284a76;
   }
   .button-secondary {
-    background: white;
-    border-color: #cbd4df;
+    background: var(--color-elevated);
+    border-color: var(--color-line-strong);
     color: var(--color-ink);
   }
   .button-secondary:hover {
     border-color: var(--color-accent);
-    background: #f5f8fc;
+    background: var(--color-surface);
   }
   .button-light {
-    background: white;
+    background: var(--color-elevated);
     color: var(--color-navy);
   }
   .button-light:hover {
@@ -195,8 +195,8 @@
     left: 16px;
     top: -90px;
     z-index: 100;
-    background: var(--color-navy);
-    color: white;
+    background: var(--color-action);
+    color: var(--color-on-action);
     padding: 12px 20px;
   }
   .skip-link:focus {
@@ -204,7 +204,7 @@
   }
   .site-header {
     border-bottom: 1px solid var(--color-line);
-    background: white;
+    background: var(--color-elevated);
   }
   .header-inner {
     display: flex;
@@ -429,8 +429,8 @@
     justify-content: space-between;
     align-items: center;
     gap: 32px;
-    background: var(--color-navy);
-    color: white;
+    background: var(--color-action);
+    color: var(--color-on-action);
     padding: 32px 36px;
     border-radius: 6px;
   }
@@ -577,7 +577,7 @@
     border-bottom: 1px solid var(--color-line);
   }
   .achievement-featured {
-    background: #f5f8fc;
+    background: var(--color-surface);
   }
   .achievement-icon {
     display: flex;
@@ -585,7 +585,7 @@
     align-items: center;
     width: 50px;
     height: 50px;
-    background: white;
+    background: var(--color-elevated);
     border: 1px solid var(--color-line);
     border-radius: 5px;
     color: var(--color-accent);
@@ -633,7 +633,7 @@
   .file-icon {
     display: inline-flex;
     padding: 15px;
-    background: #eef3f9;
+    background: var(--color-highlight);
     color: var(--color-accent);
     border-radius: 5px;
     margin-bottom: 24px;
@@ -797,7 +797,7 @@
     padding: 9px 0;
   }
   .case-aside a span {
-    color: #55687f;
+    color: var(--color-muted);
     font-family: var(--font-mono);
     font-size: 0.62rem;
     padding-top: 2px;
@@ -831,7 +831,7 @@
   }
   .user-callout {
     border-left: 2px solid #6385ad;
-    background: #f6f8fb;
+    background: var(--color-surface);
     padding: 16px 20px;
     margin: 24px 0;
   }
@@ -863,7 +863,7 @@
     display: flex;
     justify-content: center;
     align-items: start;
-    background: #f7f4f5;
+    background: var(--color-paper);
     border: 1px solid var(--color-line);
     border-radius: 5px;
     padding: 20px;
@@ -888,7 +888,7 @@
     grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
   }
   .barion-gallery figure > a {
-    background: #f1f5f7;
+    background: var(--color-surface);
     min-height: 355px;
     align-items: center;
     padding: 15px;
@@ -913,9 +913,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #edf2f8;
+    background: var(--color-highlight);
     color: var(--color-accent);
-    border: 1px solid #dae3ef;
+    border: 1px solid var(--color-line);
     border-radius: 4px;
     width: 28px;
     height: 28px;
@@ -942,9 +942,9 @@
     gap: 16px;
   }
   .architecture-node {
-    background: white;
+    background: var(--color-elevated);
     padding: 18px;
-    border: 1px solid #d6dfea;
+    border: 1px solid var(--color-line);
     border-top: 2px solid #6b87aa;
     border-radius: 3px;
   }
@@ -1002,7 +1002,7 @@
     margin: 10px 0;
   }
   .status-panel {
-    background: #f6f8fb;
+    background: var(--color-surface);
     border: 1px solid var(--color-line);
     border-radius: 5px;
     padding: 22px;
@@ -1116,7 +1116,7 @@
     left: -16px;
     right: -16px;
     z-index: 30;
-    background: white;
+    background: var(--color-elevated);
     padding: 12px 20px 20px;
     box-shadow: 0 14px 24px #172e4d10;
     border: 1px solid var(--color-line);
@@ -1131,7 +1131,7 @@
     border-radius: 4px;
   }
   .mobile-nav nav a[aria-current] {
-    background: #edf2f8;
+    background: var(--color-highlight);
     color: var(--color-accent);
     font-weight: 600;
   }

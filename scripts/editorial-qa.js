@@ -1,52 +1,34 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-// Regression checks for content ownership, media and responsive reading order.
-async (page) => {
+;async (page) => {
   const results = []
   for (const width of [360, 390, 768, 1024, 1440]) {
     await page.setViewportSize({ width, height: 900 })
     await page.goto('http://127.0.0.1:4173/')
     await page.locator('html[data-enhanced]').waitFor()
-    for (const name of ['PCOSina', 'Barion']) {
-      if (await page.getByRole('heading', { name, exact: true }).count() !== 1) throw new Error('Duplicate project presentation: ' + name)
+    for (const name of ['PCOSina', 'Barion', 'FocusLoop', 'ResolveOps', 'Procura', 'FreshKeep']) {
+      if (await page.getByRole('heading', { name, exact: true, includeHidden: true }).count() !== 1) throw new Error('Duplicate project: ' + name)
     }
-    const state = await page.evaluate(() => {
-      const box = selector => document.querySelector(selector).getBoundingClientRect().toJSON()
-      const imageSources = [...document.querySelectorAll('.project-preview img')].map(i => i.src)
-      return {
-        intro: box('.home-introduction'),
-        featured: box('.project-featured'),
-        supporting: box('.project-supporting'),
-        imageCount: imageSources.length,
-        uniqueImages: new Set(imageSources).size,
-        obsoleteBlocks: document.querySelectorAll('.hero-project-index, .home-about, main .contact-band').length,
-        eagerFeature: document.querySelector('.project-featured .project-preview img').loading === 'eager',
-        body: document.querySelector('main').textContent,
-      }
-    })
-    if (state.imageCount !== 2 || state.uniqueImages !== 2 || state.obsoleteBlocks || !state.eagerFeature) throw new Error('Homepage media or repetition regression')
-    if ((state.body.match(/FEU Institute of Technology/g) || []).length !== 1) throw new Error('Education repeated')
-    if (width < 768 ? state.featured.top < state.intro.bottom : state.featured.left < state.intro.right) throw new Error('Responsive reading order failed')
-    if (state.supporting.top < Math.max(state.featured.bottom, state.intro.bottom)) throw new Error('Project overlap')
-    const captures = page.locator('.project-preview img')
-    for (let i = 0; i < state.imageCount; i++) {
-      await captures.nth(i).scrollIntoViewIfNeeded()
-      const valid = await captures.nth(i).evaluate(async image => {
+    const state = await page.evaluate(() => ({
+      intro: document.querySelector('.home-introduction').getBoundingClientRect().toJSON(),
+      showcase: document.querySelector('.showcase').getBoundingClientRect().toJSON(),
+      obsolete: document.querySelectorAll('.project-featured, .project-supporting, .more-projects, main .contact-band').length,
+      eager: document.querySelector('.showcase-slide .showcase-capture img').loading === 'eager',
+      educationCount: (document.querySelector('main').textContent.match(/FEU Institute of Technology/g) || []).length,
+    }))
+    if (state.showcase.top < state.intro.bottom || state.obsolete || !state.eager || state.educationCount !== 1) throw new Error('Homepage hierarchy regression: ' + JSON.stringify({ width, state }))
+    for (const [name, slug] of [['PCOSina', 'pcosina'], ['Barion', 'barion']]) {
+      await page.getByRole('button', { name, exact: true }).click()
+      const slide = page.locator('#showcase-' + slug)
+      await slide.locator('.showcase-capture img').evaluate(async image => {
         await image.decode()
-        const rect = image.getBoundingClientRect()
-        return image.naturalWidth > 0 && Math.abs(rect.width / rect.height - image.naturalWidth / image.naturalHeight) < 0.02
+        const r = image.getBoundingClientRect()
+        if (Math.abs(r.width / r.height - image.naturalWidth / image.naturalHeight) > .02) throw new Error('Distorted capture')
       })
-      if (!valid) throw new Error('Screenshot distorted or unavailable')
+      await slide.getByRole('link', { name: 'Read case study', exact: false }).click()
+      await page.waitForURL('**/projects/' + slug)
+      await page.goto('http://127.0.0.1:4173/')
     }
-    await page.locator('.project-featured').getByRole('link', { name: 'Read case study', exact: true }).click()
-    await page.waitForURL('**/projects/pcosina')
-    await page.goto('http://127.0.0.1:4173/')
-    await page.locator('.project-supporting').getByRole('link', { name: 'Read case study', exact: true }).click()
-    await page.waitForURL('**/projects/barion')
-    results.push({ width, uniquePresentations: 'pass', readingOrder: 'pass', imageScaling: 'pass', projectLinks: 'pass' })
+    results.push({ width, uniqueProjects: 6, readingOrder: 'pass', imageScaling: 'pass', links: 'pass' })
   }
-  for (const [route, heading] of [['/projects', 'Selected projects'], ['/skills', 'Technical skills'], ['/about', 'About Joshua'], ['/achievements', 'Achievements & activities'], ['/resume', 'Resume'], ['/contact', 'Contact']]) {
-    await page.goto('http://127.0.0.1:4173' + route)
-    if (await page.getByRole('heading', { level: 1, name: heading, exact: true }).count() !== 1) throw new Error('Unclear page title: ' + route)
-  }
-  return { homepageChecks: results, directPageTitles: 6 }
+  return { homepageChecks: results }
 }

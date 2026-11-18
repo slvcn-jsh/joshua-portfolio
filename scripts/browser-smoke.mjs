@@ -7,19 +7,27 @@ import { chromium } from 'playwright'
 
 // Reuse the same checked-in workflows as the interactive Playwright CLI.
 // Only trusted repository scripts are evaluated; no page or remote code.
-const suites = process.argv.includes('--live')
-  ? ['live']
-  : [
-      'browser',
-      'enhanced',
-      'identity',
-      'interaction',
-      'editorial',
-      'nojs',
-      'csp',
-      'refinement',
-      'expansion',
-    ]
+const requestedSuite = process.argv
+  .find((arg) => arg.startsWith('--suite='))
+  ?.slice(8)
+if (requestedSuite)
+  assert(/^[a-z-]+$/.test(requestedSuite), 'Invalid suite name')
+const suites = requestedSuite
+  ? [requestedSuite]
+  : process.argv.includes('--live')
+    ? ['live']
+    : [
+        'browser',
+        'enhanced',
+        'identity',
+        'interaction',
+        'editorial',
+        'nojs',
+        'csp',
+        'refinement',
+        'expansion',
+        'design',
+      ]
 const ownServer =
   !process.argv.includes('--reuse-preview') && !process.argv.includes('--live')
 const server = ownServer

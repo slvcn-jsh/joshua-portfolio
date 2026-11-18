@@ -52,6 +52,10 @@ for (const path of routes) {
     assert.equal(response.headers.get(key), value, `${path}: ${key}`)
   const html = await response.text()
   assert(
+    html.includes('<script src="/theme-init.js"></script>'),
+    `${path}: theme bootstrap`,
+  )
+  assert(
     html.includes(`rel="canonical" href="${origin}${path}"`),
     `${path}: canonical`,
   )
@@ -65,6 +69,13 @@ for (const path of routes) {
   if (path === '/') home = html
 }
 const sitemap = await get('/sitemap.xml')
+const themeScript = await get('/theme-init.js')
+assert.equal(themeScript.status, 200, 'Theme bootstrap available')
+assert.equal(
+  (await themeScript.text()).replaceAll('\r\n', '\n'),
+  (await readFile('public/theme-init.js', 'utf8')).replaceAll('\r\n', '\n'),
+  'Published theme initializer matches reviewed source',
+)
 assert.equal(sitemap.status, 200)
 const sitemapText = await sitemap.text()
 assert.equal((sitemapText.match(/<loc>/g) ?? []).length, 14)
@@ -173,6 +184,7 @@ console.log(
       certificatePdfs: brands.certificates.length,
       eventPhotos: events.length,
       immutableAssets: 'pass',
+      themeBootstrap: 'pass',
     },
     null,
     2,

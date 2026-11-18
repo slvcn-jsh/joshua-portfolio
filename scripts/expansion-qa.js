@@ -138,7 +138,11 @@
     'Procura',
     'FreshKeep',
   ]) {
-    if ((await page.getByRole('heading', { name, exact: true }).count()) !== 1)
+    if (
+      (await page
+        .getByRole('heading', { name, exact: true, includeHidden: true })
+        .count()) !== 1
+    )
       throw new Error('Homepage duplication or omission: ' + name)
   }
   if (errors.length) throw new Error(JSON.stringify(errors))

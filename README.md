@@ -149,6 +149,22 @@ npm run test:browser -- --live
 
 ## Visual maintenance
 
+The current theme/showcase extension is specified in [design evolution](docs/DESIGN_EVOLUTION.md).
+`src/theme.css` owns paired semantic light/dark colors; `public/theme-init.js` applies
+the saved or system preference before paint under the existing self-only CSP.
+`ThemeControl` subscribes to that browser state without changing server-rendered HTML.
+Keep the bootstrap script in the document head and do not add inline script exceptions.
+
+`ProjectShowcase` and `src/showcase.css` own the single homepage presentation. They
+read the same project data as the collection and case studies. Selectors, previous/next
+buttons and swipe change the same active index; inactive slides are inert. Without
+JavaScript all projects remain readable; reduced motion switches without sliding.
+Do not add autoplay, duplicate homepage project sections or image inversion in dark mode.
+
+The full browser runner includes `scripts/design-qa.js`: both-theme showcase states,
+dark routes, storage/system synchronization, pre-hydration and no-JS behavior.
+For a focused local run: `node scripts/browser-smoke.mjs --suite=design`.
+
 The current work-led editorial layout is specified in [editorial refinement](docs/EDITORIAL_REFINEMENT.md)
 and [design system](docs/DESIGN_SYSTEM.md). `src/editorial.css` owns presentation refinements;
 `src/interactions.css` owns the walkthroughs, annotations and dialogs. Typography uses
