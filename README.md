@@ -1,6 +1,6 @@
 # Joshua Salvacion — portfolio
 
-A light, responsive software engineering portfolio built with React, TypeScript, Vite, Tailwind CSS and Lucide icons. Ten pages are prerendered to static HTML, plus a 404 page. No runtime backend, account system, analytics or external font requests.
+A light, responsive software engineering portfolio built with React, TypeScript, Vite, Tailwind CSS and Lucide icons. Fourteen pages are prerendered to static HTML, plus a 404 page. Six application case studies; no runtime backend, account system, analytics or external font requests.
 
 [Live portfolio](https://joshua-portfolio-phi-lemon.vercel.app) · [Source repository](https://github.com/slvcn-jsh/joshua-portfolio)
 
@@ -62,6 +62,7 @@ src/pages/             Home and supporting pages
 src/styles.css         Design tokens and responsive component styles
 src/interactions.css   Scenario, annotation and dialog styles
 src/case-study.css     Ownership brief, data-flow maps and compact case-study structure
+src/collection.css     Six-project filters, responsive collection and capture galleries
 public/                Approved PDF, optimized screenshots, preview and social card
 scripts/prerender.tsx  Static HTML, metadata, robots and optional sitemap generation
 docs/                  Content evidence, specification, asset provenance and QA
@@ -77,6 +78,25 @@ controls, a written alternative and a download. Essential content works without 
 ### Update content
 
 Edit `src/content/site.ts` for profile information, navigation, route metadata and skills. Edit `src/content/projects.ts` for case studies. Validate new claims against the project repository and add their evidence to `docs/PROJECT_AUDIT.md`.
+
+The four private-source case studies live in `src/content/additional-projects.ts`
+and are assembled into the same typed project list. Their `repository` field is
+intentionally absent: never add inaccessible source links. `platform` drives filters;
+`system` describes actual architecture boundaries; optional verification downloads
+are only used when a publishable record exists. Update route metadata, route-count
+checks and browser coverage together when adding a project.
+
+`ProjectCollection` renders all six projects without JavaScript and progressively
+enhances platform filters. `MoreProjects` keeps the homepage selective. Existing
+scenario walkthroughs apply only to PCOSina/Barion; new pages use `ProjectGallery`
+with the shared keyboard-accessible image dialog. Reduced motion is respected.
+
+New image provenance and hashes are in `docs/project-expansion-media.json`. Optional
+`scripts/import-project-media.mjs` imports only explicitly reviewed assets from two
+provided source parent directories; it is not part of builds or deployment. Never
+copy entire private repositories. Preserve synthetic-data captions and the distinction
+between ResolveOps' preview and authenticated workflow. Procura's evidence is from
+a disclosed uncommitted local snapshot. See `docs/SIX_PROJECT_EXPANSION.md`.
 
 Edit `src/content/interactions.ts` for walkthrough text and screenshot explanations.
 Remeasure named CSS annotation regions when replacing screenshots. Scenario controls

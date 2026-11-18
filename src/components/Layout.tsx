@@ -60,7 +60,7 @@ export function Layout({
             <a className="footer-name" href="/">
               Joshua Salvacion
             </a>
-            <p>Mobile applications & supporting systems</p>
+            <p>Mobile & web application development</p>
             <nav
               className="background-links"
               aria-label="Background and credentials"

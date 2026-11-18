@@ -92,7 +92,9 @@ export function ProjectCard({
           <a className="text-link" href={`/projects/${project.slug}`}>
             Read case study <ArrowRight size={16} aria-hidden="true" />
           </a>
-          <ExternalLink href={project.repository}>Source code</ExternalLink>
+          {project.repository && (
+            <ExternalLink href={project.repository}>Source code</ExternalLink>
+          )}
         </div>
         {!featured && (
           <a

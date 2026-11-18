@@ -49,7 +49,7 @@ for (const scenario of [
   if (scenario.index) {
     assert(html.includes('https://portfolio.example/projects/barion'))
     const xml = await readFile(sitemap, 'utf8')
-    assert.equal((xml.match(/<loc>/g) ?? []).length, 10)
+    assert.equal((xml.match(/<loc>/g) ?? []).length, 14)
     assert(!xml.includes('/404'))
   } else {
     await assert.rejects(access(sitemap))

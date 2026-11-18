@@ -1,5 +1,16 @@
 # Content inventory
 
+## November 18 — six-project collection
+
+FocusLoop, ResolveOps, Procura and FreshKeep join PCOSina and Barion. The new
+repositories remain private; the owner explicitly approved sanitized public case
+studies and safe screenshots. See `SIX_PROJECT_EXPANSION.md` for snapshot-specific
+facts and limitations, and `project-expansion-media.json` for reviewed image hashes.
+Procura uses an uncommitted local implementation beyond its GitHub baseline. New
+application test counts are attributed historical records, not fresh executions.
+The approved resume and certification PDFs are unchanged. Earlier two-project
+inventory statements below are historical.
+
 ## November 16 update
 
 Owner confirmed sole software development for both projects, with AI coding assistance.

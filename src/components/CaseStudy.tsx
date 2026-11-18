@@ -8,9 +8,16 @@ import { ProductExplorer } from './ProductExplorer'
 import { CaseContents } from './CaseContents'
 import { SystemMap } from './SystemMap'
 import { ProjectRecording } from './ProjectRecording'
+import { ProjectIdentity } from './ProjectIdentity'
+import { ProjectGallery } from './ProjectGallery'
+import { TechnologyList } from './TechnologyList'
 
 export function CaseStudy({ project: p }: { project: Project }) {
-  const other = projects.find((x) => x.slug !== p.slug)!
+  const other =
+    projects[
+      (projects.findIndex((x) => x.slug === p.slug) + 1) % projects.length
+    ]
+  const interactive = p.slug === 'pcosina' || p.slug === 'barion'
   const scenario = useRef<HTMLDetailsElement>(null)
   useEffect(() => {
     const openLinkedScenario = () => {
@@ -32,22 +39,16 @@ export function CaseStudy({ project: p }: { project: Project }) {
         </a>
         <p className="eyebrow">{p.category}</p>
         <h1>
-          <img
-            className="project-logo"
-            src={`/brands/${p.slug}.webp`}
-            alt=""
-            width="64"
-            height="64"
-          />
+          <ProjectIdentity project={p} />
           {p.name}
         </h1>
         <p className="case-summary">{p.summary}</p>
         <div className="project-brief" id="contributions">
           <div>
-            <h2>Sole developer</h2>
+            <h2>{interactive ? 'Sole developer' : 'Development work'}</h2>
             <p>{p.ownership}</p>
             <p className="brief-assistance">
-              Developed independently with AI coding assistance.
+              Developed with AI coding assistance.
             </p>
           </div>
           <div>
@@ -61,10 +62,16 @@ export function CaseStudy({ project: p }: { project: Project }) {
         </div>
         <div className="case-actions">
           <span className="status-label">{p.status}</span>
-          <ExternalLink href={p.repository} className="text-link">
-            <Code2 size={17} aria-hidden="true" />
-            View source
-          </ExternalLink>
+          {p.repository ? (
+            <ExternalLink href={p.repository} className="text-link">
+              <Code2 size={17} aria-hidden="true" />
+              View source
+            </ExternalLink>
+          ) : (
+            <span className="private-source-note">
+              Source repository is private
+            </span>
+          )}
           <a className="text-link" href="#product">
             See application <ArrowRight size={16} aria-hidden="true" />
           </a>
@@ -91,7 +98,11 @@ export function CaseStudy({ project: p }: { project: Project }) {
           </section>
           <section id="product" className="case-section">
             <h2>Inside the application</h2>
-            <ProductExplorer project={p} />
+            {interactive ? (
+              <ProductExplorer project={p} />
+            ) : (
+              <ProjectGallery project={p} />
+            )}
             {p.video && <ProjectRecording video={p.video} />}
             <ul className="feature-summary">
               {p.features.map((f) => (
@@ -105,18 +116,13 @@ export function CaseStudy({ project: p }: { project: Project }) {
           <section id="architecture" className="case-section">
             <h2>System architecture</h2>
             <SystemMap project={p} />
-            <details className="scenario-disclosure" ref={scenario}>
-              <summary>Explore the failure path</summary>
-              <ScenarioWalkthrough slug={p.slug} />
-            </details>
-            <ul
-              className="tag-list stack-list"
-              aria-label="Core technology stack"
-            >
-              {p.stack.map((s) => (
-                <li key={s}>{s}</li>
-              ))}
-            </ul>
+            {interactive && (
+              <details className="scenario-disclosure" ref={scenario}>
+                <summary>Explore the failure path</summary>
+                <ScenarioWalkthrough slug={p.slug} />
+              </details>
+            )}
+            <TechnologyList items={p.stack} />
           </section>
           <section id="engineering" className="case-section">
             <h2>Engineering decisions</h2>
@@ -125,12 +131,18 @@ export function CaseStudy({ project: p }: { project: Project }) {
                 <div key={d.title}>
                   <h3>{d.title}</h3>
                   <p>{d.text}</p>
-                  <ExternalLink
-                    className="text-link decision-evidence"
-                    href={`${p.repository}/blob/${p.sourceRef}/${d.evidence.path}`}
-                  >
-                    Source: {d.evidence.label}
-                  </ExternalLink>
+                  {p.repository ? (
+                    <ExternalLink
+                      className="text-link decision-evidence"
+                      href={`${p.repository}/blob/${p.sourceRef}/${d.evidence.path}`}
+                    >
+                      Source: {d.evidence.label}
+                    </ExternalLink>
+                  ) : (
+                    <p className="small muted decision-evidence">
+                      Reviewed: {d.evidence.label}
+                    </p>
+                  )}
                 </div>
               ))}
             </div>
@@ -151,10 +163,12 @@ export function CaseStudy({ project: p }: { project: Project }) {
             <p className="small muted">{p.verification.scope}</p>
             <p>{p.account.verification}</p>
             <p className="verification-limit">{p.account.limit}</p>
-            <a className="text-link" href={p.verification.record} download>
-              Download verification record (JSON)
-              <ArrowRight size={15} aria-hidden="true" />
-            </a>
+            {p.verification.record && (
+              <a className="text-link" href={p.verification.record} download>
+                Download verification record (JSON)
+                <ArrowRight size={15} aria-hidden="true" />
+              </a>
+            )}
             <div className="status-panel">
               <h3>{p.status}</h3>
               <p>{p.result}</p>
@@ -166,16 +180,28 @@ export function CaseStudy({ project: p }: { project: Project }) {
             <p>{p.lessons}</p>
             <p>{p.next}</p>
             <div className="source-panel">
-              <h3>Explore the implementation</h3>
+              <h3>
+                {p.repository
+                  ? 'Explore the implementation'
+                  : 'Source & evidence access'}
+              </h3>
+              {!p.repository && (
+                <p>
+                  The repository remains private. This case study shares
+                  reviewed implementation summaries and safe application
+                  captures, not source code or operational records.
+                </p>
+              )}
               <div className="source-links">
-                {p.evidence.map((e) => (
-                  <ExternalLink
-                    key={e.path}
-                    href={`${p.repository}/blob/${p.sourceRef}/${e.path}`}
-                  >
-                    {e.label}
-                  </ExternalLink>
-                ))}
+                {p.repository &&
+                  p.evidence.map((e) => (
+                    <ExternalLink
+                      key={e.path}
+                      href={`${p.repository}/blob/${p.sourceRef}/${e.path}`}
+                    >
+                      {e.label}
+                    </ExternalLink>
+                  ))}
               </div>
               <p className="small muted">{p.snapshot}</p>
             </div>

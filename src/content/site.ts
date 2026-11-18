@@ -21,12 +21,12 @@ export const pageMeta: Record<string, { title: string; description: string }> =
     '/': {
       title: 'Joshua Salvacion | Software Engineering Student',
       description:
-        'Joshua Escalicas Salvacion, fourth-year Computer Science student at FEU Tech. Explore Android and cross-platform projects, engineering case studies, skills and resume.',
+        'Joshua Escalicas Salvacion, fourth-year Computer Science student at FEU Tech. Explore six mobile and web projects, engineering case studies, skills and resume.',
     },
     '/projects': {
       title: 'Selected Projects | Joshua Salvacion',
       description:
-        'PCOSina and Barion: software engineering case studies covering mobile applications, local data, backend integration and testing.',
+        'Six engineering case studies: PCOSina, Barion, FocusLoop, ResolveOps, Procura and FreshKeep. Native Android, cross-platform learning and transactional web workflows.',
     },
     '/projects/pcosina': {
       title: 'PCOSina — Meal Planning Case Study | Joshua Salvacion',
@@ -37,6 +37,26 @@ export const pageMeta: Record<string, { title: string; description: string }> =
       title: 'Barion — Learning Application Case Study | Joshua Salvacion',
       description:
         'A React Native and Expo learning application with SQLite storage, FSRS scheduling, source-linked cards and an optional Python AI gateway.',
+    },
+    '/projects/focusloop': {
+      title: 'FocusLoop — Digital Wellbeing Case Study | Joshua Salvacion',
+      description:
+        'Native Kotlin and Compose focus sessions, Room persistence, optional Android usage access and explicit recovery states.',
+    },
+    '/projects/resolveops': {
+      title: 'ResolveOps — Service Desk Case Study | Joshua Salvacion',
+      description:
+        'A React and NestJS incident workflow with server-enforced permissions, versioned tickets and transactional PostgreSQL history.',
+    },
+    '/projects/procura': {
+      title: 'Procura — Procurement Controls Case Study | Joshua Salvacion',
+      description:
+        'A React and Express request-to-approval workflow with Prisma, PostgreSQL, manager policies, stale-edit protection and atomic audit events.',
+    },
+    '/projects/freshkeep': {
+      title: 'FreshKeep — Offline Inventory Case Study | Joshua Salvacion',
+      description:
+        'A Kotlin and Compose household inventory with Room transactions, exact quantities, independent batches and explicit date labels.',
     },
     '/skills': {
       title: 'Technical Skills | Joshua Salvacion',
@@ -87,19 +107,34 @@ export const skills = [
     name: 'Mobile & application development',
     used: ['Jetpack Compose', 'React Native', 'Expo', 'React'],
     context:
-      'PCOSina’s native Android client, Barion’s shared application code, and this portfolio.',
+      'Native Compose in PCOSina, FocusLoop and FreshKeep; React Native/Expo in Barion; React web interfaces in ResolveOps, Procura and this portfolio.',
   },
   {
     name: 'Backend development',
-    used: ['FastAPI', 'REST APIs', 'Firebase', 'Supabase integration'],
+    used: [
+      'FastAPI',
+      'NestJS',
+      'Express',
+      'REST APIs',
+      'Zod',
+      'Firebase',
+      'Supabase integration',
+    ],
     context:
-      'Planning and AI gateway services, REST integration and configurable cloud authentication.',
+      'FastAPI planning/generation services; NestJS ticket and identity modules in ResolveOps; Express request policies and Zod validation in Procura. Firebase and Supabase are project integrations, not standalone backend implementations.',
   },
   {
-    name: 'Databases',
-    used: ['SQLite', 'Expo SQLite', 'PostgreSQL', 'Jetpack DataStore'],
+    name: 'Databases & persistence',
+    used: [
+      'SQLite',
+      'Expo SQLite',
+      'PostgreSQL',
+      'Room',
+      'Prisma',
+      'Jetpack DataStore',
+    ],
     context:
-      'Local study data, backend persistence and Android preferences. DataStore is a persistence tool, not a relational database.',
+      'SQLite for Barion; Room transactions for FocusLoop/FreshKeep; Prisma with PostgreSQL for ResolveOps/Procura. Room and Prisma are data-access tools; DataStore holds Android preferences.',
   },
   {
     name: 'AI, ML & optimization',
@@ -120,10 +155,11 @@ export const skills = [
       'Android Studio',
       'VS Code',
       'Vite',
+      'Docker',
       'Render configuration',
     ],
     context:
-      'Version control, application builds and deployment configuration. This portfolio is hosted on Vercel.',
+      'Version control, Android/web builds and Docker Compose for local PostgreSQL in the web projects. This portfolio is hosted on Vercel; application deployment is not implied.',
   },
   {
     name: 'Engineering practices',
@@ -133,9 +169,13 @@ export const skills = [
       'Browser testing',
       'CI checks',
       'Local-first design',
+      'Kotlin coroutines',
+      'Jest',
+      'Vitest',
+      'Playwright',
     ],
     context:
-      'Project work with pytest, Jest, Android tests and Playwright, alongside debugging, fallback design, schema migration and validation.',
+      'pytest and Jest in PCOSina/Barion; JUnit and device/Compose tests in FocusLoop/FreshKeep; Jest/PostgreSQL checks in ResolveOps and Vitest/Supertest in Procura. Work includes version conflicts, transaction rollback, permission boundaries and schema migrations.',
   },
 ]
 

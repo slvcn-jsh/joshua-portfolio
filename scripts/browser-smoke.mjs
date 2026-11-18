@@ -18,6 +18,7 @@ const suites = process.argv.includes('--live')
       'nojs',
       'csp',
       'refinement',
+      'expansion',
     ]
 const ownServer =
   !process.argv.includes('--reuse-preview') && !process.argv.includes('--live')

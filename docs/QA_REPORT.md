@@ -1,5 +1,53 @@
 # Final QA report
 
+## Six-project expansion — November 18, 2026
+
+This section supersedes prior portfolio page counts. Application test records are
+historical, attributed evidence; no new application suite was run in this task.
+
+### Implemented and checked
+
+- Four audited case studies, bringing the collection to six projects and fourteen
+  content routes plus 404. Private repositories remain private; no inaccessible links.
+- All/Android/Cross-platform/Web filters, a compact homepage index, bounded motion,
+  and project-backed skills including Room, NestJS, Express, Prisma, Zod and Docker.
+- Seven reviewed application captures. FocusLoop/FreshKeep use synthetic native
+  fixtures; ResolveOps is labeled fictional UI preview; Procura uses an isolated
+  persisted test workflow. No credentials, real usage records or business data copied.
+- TypeScript, ESLint, production build and static-link/image/metadata checks passed.
+  Fifteen HTML pages and 601 local references validated. Approved PDF hashes unchanged.
+- SEO checks passed for production, preview and unconfigured builds.
+- Browser sweep: 75 route/width combinations at 360/390/768/1024/1440px, zero detected
+  WCAG A/AA axe violations, page overflows or JavaScript errors.
+- New features: 20 case-study/width combinations, 20 keyboard filter checks and 35
+  image-dialog checks; focus return, reduced motion and all six homepage entries pass.
+- Existing walkthroughs, video, contact controls, certificate/event dialogs and PDF
+  downloads pass. All fourteen content routes work without JavaScript.
+- Visual review: desktop/mobile home, collection, project briefs and media. Initial
+  card-opacity animation reduced transient contrast; removed opacity animation rather
+  than masking the failure in tests. Large web captures use a readable viewport preview
+  with access to the complete image instead of an illegible full-page thumbnail.
+
+### Approved build-tool security exception
+
+`npm audit --omit=dev`: zero findings. Full `npm audit`: 11 high affected-package
+findings rooted in development dependency `picomatch` 4.0.7. GitHub advisory
+[GHSA-fc5q-39xc-vjpf](https://github.com/advisories/GHSA-fc5q-39xc-vjpf)
+lists no patched version, and the registry's latest version is 4.0.7 as checked
+18 November. It concerns attacker-supplied glob patterns and Node event-loop denial
+of service. This project has no public Node backend or user-controlled build-glob
+input; the dependency is build/lint tooling, not browser runtime. This is a scoped
+risk assessment, not a clean full-audit result.
+
+The owner explicitly approved publication of the static portfolio with this
+documented exception on 18 November. No force downgrade, unsupported local dependency
+patch or audit suppression was applied. CI's full audit gate is retained and is
+expected to fail on this advisory. Recheck upstream releases and remove the exception
+after a compatible patched dependency can pass a fresh full audit.
+
+Automated accessibility checks are not a formal conformance certification. Broader
+screen-reader and real-device browser coverage remains useful follow-up work.
+
 ## Evidence-first release — November 16, 2026
 
 This section supersedes earlier portfolio snapshots below. Application verification

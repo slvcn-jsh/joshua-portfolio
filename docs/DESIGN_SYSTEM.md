@@ -1,5 +1,22 @@
 # Design system
 
+## Six-project collection — November 18, 2026
+
+`collection.css` owns the new collection, compact homepage project index and capture
+gallery. Desktop uses two columns; below 768px cards stack. Filters wrap into a
+two-column control group below 480px and have 44px minimum targets. The filter surface
+uses subtle translucency with an opaque fallback; content surfaces remain solid.
+
+All / Android / Cross-platform / Web are native toggle buttons with `aria-pressed`,
+stable keyboard focus and a polite result count. Without JS all projects remain
+visible and inactive filters are hidden. Content is never behind a card flip.
+Motion is 260ms translation only (no text-opacity animation), with reduced-motion
+overrides. Hover media movement is limited to fine-pointer devices; no autoplay.
+
+Real images retain full content in accessible enlarge dialogs, with provenance
+captions. Application favicons identify web projects; existing PCOSina/Barion marks
+remain. Native project symbols are descriptive Lucide icons, not fabricated brands.
+
 ## Evidence-first refinement — November 16, 2026
 
 Keep the approved white/navy editorial layout. Five primary links prioritize Projects,

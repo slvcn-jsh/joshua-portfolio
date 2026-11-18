@@ -1,5 +1,14 @@
 # Implementation plan and progress
 
+## November 18 — expansion sequence
+
+Repository/content audit and publication consent completed; six-project design and
+private-source boundaries documented in `SIX_PROJECT_EXPANSION.md`. Implementation
+adds four case studies, seven reviewed captures, platform filters, an expanded skills
+inventory and a compact homepage index. No new runtime dependency or application
+repository change. Final browser, publication and deployment evidence belongs in
+`QA_REPORT.md` and `RELEASE_STATUS.md`, not inferred from a successful build.
+
 1. Audit repositories and assets; record supported claims and conflicts. Complete.
 2. Specify route structure, static rendering, content models and responsive design. Complete.
 3. Implement reusable layout, structured content and all routes. Complete.

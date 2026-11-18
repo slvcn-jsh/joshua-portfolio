@@ -12,9 +12,8 @@ import {
   GraduationCap,
 } from 'lucide-react'
 import { identity, skills, achievements } from '../content/site'
-import { projects } from '../content/projects'
 import { PageIntro, ExternalLink, ContactBand } from '../components/Layout'
-import { ProjectCard } from '../components/ProjectCard'
+import { ProjectCollection } from '../components/ProjectCollection'
 import { TechnologyList } from '../components/TechnologyList'
 import { BrandIcon } from '../components/BrandIcon'
 import { ImageViewer } from '../components/ImageViewer'
@@ -24,15 +23,12 @@ export function Projects() {
     <div className="container page-bottom">
       <PageIntro title="Selected projects">
         <p>
-          Two applications, from interface to implementation. Explore the
-          decisions, tradeoffs and development work behind each one.
+          Six projects across native Android, cross-platform learning and web
+          workflows. Explore the product, implementation decisions and evidence
+          behind each one.
         </p>
       </PageIntro>
-      <div className="project-list">
-        {projects.map((p) => (
-          <ProjectCard key={p.slug} project={p} headingAs="h2" />
-        ))}
-      </div>
+      <ProjectCollection />
       <div className="editorial-note">
         <Code2 size={20} aria-hidden="true" />
         <p>
@@ -50,7 +46,10 @@ export function Skills() {
   return (
     <div className="container page-bottom">
       <PageIntro title="Technical skills">
-        <p>The tools I’ve used to build PCOSina, Barion and this portfolio.</p>
+        <p>
+          Tools used across six application projects and this portfolio, with
+          the work behind each category.
+        </p>
       </PageIntro>
       <div className="skills-list">
         {skills.map((s) => (
@@ -88,8 +87,9 @@ export function About() {
     <div className="container page-bottom">
       <PageIntro title="About Joshua">
         <p>
-          My development interests span mobile applications, backend services
-          and local data. I’m working toward a career in software engineering.
+          My development interests span mobile and web applications, backend
+          services and reliable data. I’m working toward a career in software
+          engineering.
         </p>
       </PageIntro>
       <div className="about-layout">
@@ -99,8 +99,9 @@ export function About() {
             <p>
               I’m the sole developer of PCOSina and Barion, working across the
               interface, local storage and supporting backend services with AI
-              coding assistance. My focus is mobile application development:
-              Kotlin on Android and TypeScript with React Native.
+              coding assistance. FocusLoop and FreshKeep extend my native
+              Android work; ResolveOps and Procura bring that attention to data
+              and workflow correctness into React and TypeScript web systems.
             </p>
           </section>
           <section>

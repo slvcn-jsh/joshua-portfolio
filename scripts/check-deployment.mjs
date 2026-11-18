@@ -20,6 +20,10 @@ const routes = [
   '/projects',
   '/projects/pcosina',
   '/projects/barion',
+  '/projects/focusloop',
+  '/projects/resolveops',
+  '/projects/procura',
+  '/projects/freshkeep',
   '/skills',
   '/about',
   '/achievements',
@@ -52,12 +56,18 @@ for (const path of routes) {
     `${path}: canonical`,
   )
   assert(html.includes('content="index, follow"'), `${path}: robots metadata`)
+  assert(
+    !/github\.com\/slvcn-jsh\/(?:FocusLoop|ResolveOps|procura|freshkeep)/i.test(
+      html,
+    ),
+    `${path}: private source URL exposed`,
+  )
   if (path === '/') home = html
 }
 const sitemap = await get('/sitemap.xml')
 assert.equal(sitemap.status, 200)
 const sitemapText = await sitemap.text()
-assert.equal((sitemapText.match(/<loc>/g) ?? []).length, 10)
+assert.equal((sitemapText.match(/<loc>/g) ?? []).length, 14)
 for (const path of routes)
   assert(
     sitemapText.includes(`<loc>${origin}${path}</loc>`),
@@ -114,7 +124,10 @@ for (const item of manifest.images)
 const capture = JSON.parse(
   await readFile('docs/barion-capture-manifest.json', 'utf8'),
 )
-for (const item of capture.assets) {
+const expansion = JSON.parse(
+  await readFile('docs/project-expansion-media.json', 'utf8'),
+)
+for (const item of [...capture.assets, ...expansion.assets]) {
   const response = await get(item.path)
   assert.equal(response.status, 200, item.path)
   assert.equal(

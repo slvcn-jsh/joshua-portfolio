@@ -1,5 +1,19 @@
 # Verification and missing assets
 
+## November 18 expansion
+
+- [x] Four new repositories audited; approved public summaries, private source preserved.
+- [x] Seven existing application captures reviewed and optimized; synthetic-data and preview boundaries remain visible.
+- [x] Existing Procura/ResolveOps favicon assets reused. FocusLoop/FreshKeep use descriptive portfolio symbols, not purported official logos.
+- [ ] Authenticated ResolveOps workflow recording/captures: existing published image is explicitly a fictional UI preview, not the live workflow.
+- [ ] Optional current recordings for the four new projects. No fabricated playback or disabled demo buttons.
+- [ ] Fresh full application verification and release readiness. Historical report dates/limits appear in every new case study.
+- [ ] Procura source milestone review/commit is outside this portfolio task; local working-tree evidence is disclosed.
+- [ ] Owner review of first-person summaries remains useful; descriptions are grounded in implementation rather than invented personal anecdotes.
+- [ ] A newly approved resume covering the expanded portfolio, if desired. Existing approved PDF is preserved without silent edits.
+
+The checklist below records earlier portfolio milestones.
+
 - [x] Owner selected the approved resume PDF; original, public copy and downloaded copy have identical SHA-256 hashes (see ASSET_PROVENANCE.md).
 - [x] Public source URLs verified for both projects.
 - [x] Existing application images located and inspected for personal data.

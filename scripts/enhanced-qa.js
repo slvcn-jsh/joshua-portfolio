@@ -186,7 +186,7 @@ async (page) => {
         throw new Error('Reduced motion failed')
       await page.emulateMedia({ reducedMotion: 'no-preference' })
       const next = await page.locator('.next-project').getAttribute('href')
-      if (next !== `/projects/${slug === 'pcosina' ? 'barion' : 'pcosina'}`)
+      if (next !== `/projects/${slug === 'pcosina' ? 'barion' : 'focusloop'}`)
         throw new Error('Project navigation failed')
       results.push({ width, slug, result: 'pass' })
     }

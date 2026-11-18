@@ -2,6 +2,23 @@ import { ArrowDown, ArrowUp } from 'lucide-react'
 import type { Project } from '../content/projects'
 
 export function SystemMap({ project }: { project: Project }) {
+  if (project.system)
+    return (
+      <figure className="system-map system-sequence">
+        <div className="system-sequence-nodes">
+          {project.system.map((node, index) => (
+            <div className="system-node" key={node.title}>
+              <span className="eyebrow">
+                0{index + 1} / {node.boundary}
+              </span>
+              <h3>{node.title}</h3>
+              <p>{node.text}</p>
+            </div>
+          ))}
+        </div>
+        <figcaption>{project.architectureNote}</figcaption>
+      </figure>
+    )
   const planning = project.slug === 'pcosina'
   return (
     <figure className="system-map">

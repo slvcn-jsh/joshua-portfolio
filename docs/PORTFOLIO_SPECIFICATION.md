@@ -2,15 +2,15 @@
 
 ## Outcome
 
-Recruiters can identify Joshua, his education, core stack, two selected projects, resume and contact without searching. Technical reviewers can inspect problem, architecture, decisions, tests, contributions and limitations.
+Recruiters can identify Joshua, his education, core stack, six selected projects, resume and contact without searching. Technical reviewers can inspect problem, architecture, decisions, tests, contributions and limitations.
 
 ## Routes
 
-`/`: identity, role, concise introduction, primary stack, project and resume/contact actions, both featured projects, academic summary.
+`/`: identity, role, concise introduction, primary stack, project and resume/contact actions, PCOSina/Barion featured presentations and a compact index of the other four projects.
 
-`/projects`: two complete project summaries, PCOSina first, with status, stack, case studies and sources.
+`/projects`: six-project collection, PCOSina first, with platform filtering, purpose, status, stack and case studies. Public source links only for PCOSina/Barion; private-source labels for the other four.
 
-`/projects/pcosina` and `/projects/barion`: overview/context/users; features and real media; workflow; implementation architecture and decisions; challenges; testing and status; contributions, lessons and next steps; source links. Group related topics to keep reading concise.
+`/projects/pcosina`, `/projects/barion`, `/projects/focusloop`, `/projects/resolveops`, `/projects/procura`, `/projects/freshkeep`: overview/context/users; features and real media; workflow; implementation architecture and decisions; challenges; testing and status; development work, lessons and next steps. Only public repositories receive source links. Historical test records and unfinished modules are explicitly labeled.
 
 `/skills`: seven capability categories, with project-used versus studied distinctions and no ratings.
 

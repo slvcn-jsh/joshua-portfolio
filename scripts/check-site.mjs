@@ -73,7 +73,27 @@ for (const file of htmlFiles) {
     checked++
   }
 }
-assert.equal(htmlFiles.length, 11, 'Expected ten pages and a 404 page')
+assert.equal(htmlFiles.length, 15, 'Expected fourteen pages and a 404 page')
+const expansionMedia = JSON.parse(
+  await readFile('docs/project-expansion-media.json', 'utf8'),
+)
+for (const asset of expansionMedia.assets) {
+  const bytes = await readFile(resolve(root, asset.path.slice(1)))
+  assert.equal(
+    createHash('sha256').update(bytes).digest('hex'),
+    asset.sha256,
+    `Reviewed media integrity: ${asset.path}`,
+  )
+}
+for (const file of htmlFiles) {
+  const html = await readFile(file, 'utf8')
+  assert(
+    !/github\.com\/slvcn-jsh\/(?:FocusLoop|ResolveOps|procura|freshkeep)/i.test(
+      html,
+    ),
+    'Private source URL must not be published',
+  )
+}
 const brandManifest = JSON.parse(
   await readFile('docs/brand-asset-manifest.json', 'utf8'),
 )

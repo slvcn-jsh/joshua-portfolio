@@ -1,5 +1,16 @@
 # Release status
 
+## November 18 candidate — six projects
+
+Implementation and local functional QA are complete; four new source repositories
+remain private. Owner approved publication with the unpatched development-tool audit
+exception documented in `QA_REPORT.md`. The full audit gate has not been disabled.
+Deployment identity and public verification will be recorded after publication.
+
+Previous housekeeping CI run `43797517914` for `8865b07` was rechecked during this
+task and concluded successfully. The production runtime below remains unchanged
+until the new candidate is deployed and anonymously verified.
+
 ## Current production release — November 16, 2026
 
 - Runtime revision: `bc638ae` (sole ownership, concise evidence-first case studies,

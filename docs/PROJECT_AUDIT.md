@@ -1,5 +1,18 @@
 # Project audit
 
+## November 18 expansion
+
+The current portfolio contains six projects. The four new repository audits,
+implemented/deferred boundaries, historical verification provenance and media
+review are in [Six-project expansion](SIX_PROJECT_EXPANSION.md). Dependency manifests,
+implementation rules/services, tests and schema were inspected; remote HEADs were
+checked against local snapshots. All four new repositories remain private. The
+portfolio publishes summaries only, not private source or original audit documents.
+
+No new application test run or production-readiness claim is made by this audit.
+ResolveOps' recorded dependency gate is unresolved. Procura's local working tree
+is ahead of its private remote baseline and has open dependency advisories.
+
 **November 15–16 update:** the original source-only audit below is supplemented by
 five passing PCOSina planner tests, seven passing Barion tests and an actual Barion
 web recording. See [verification scope](PROJECT_VERIFICATION.md). These checks do

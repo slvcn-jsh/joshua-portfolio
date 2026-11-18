@@ -9,7 +9,7 @@ async (page) => {
   let checked = 0
   for (const width of [390, 1440]) {
     await page.setViewportSize({ width, height: width === 390 ? 844 : 1000 })
-    for (const path of ['/', '/projects', '/projects/pcosina', '/projects/barion', '/skills', '/about', '/achievements', '/certifications', '/resume', '/contact']) {
+    for (const path of ['/', '/projects', '/projects/pcosina', '/projects/barion', '/projects/focusloop', '/projects/resolveops', '/projects/procura', '/projects/freshkeep', '/skills', '/about', '/achievements', '/certifications', '/resume', '/contact']) {
       const response = await page.goto(origin + path)
       if (response.status() !== 200) throw new Error('Page unavailable: ' + path)
       await page.locator('html[data-enhanced]').waitFor()
@@ -34,7 +34,19 @@ async (page) => {
           }
         }
       }
-      if (path.startsWith('/projects/')) {
+      if (path === '/projects') {
+        if (await page.locator('.collection-card').count() !== 6) throw new Error('Live collection incomplete')
+        await page.getByRole('button', { name: 'Web 2', exact: true }).click()
+        if (await page.locator('.collection-card').count() !== 2) throw new Error('Live filtering failed')
+      }
+      if (['/projects/focusloop', '/projects/resolveops', '/projects/procura', '/projects/freshkeep'].includes(path)) {
+        await page.locator('.gallery-capture').first().click()
+        await page.locator('dialog[open] img').evaluate(image => image.decode())
+        await page.keyboard.press('Escape')
+        if (!await page.locator('.gallery-capture').first().evaluate(el => el === document.activeElement)) throw new Error('New gallery focus failed')
+        if (await page.locator('.private-source-note').count() !== 1) throw new Error('Private source disclosure missing')
+      }
+      if (path === '/projects/pcosina' || path === '/projects/barion') {
         const pcosina = path.endsWith('pcosina')
         await page.locator('.scenario-disclosure > summary').click()
         await page.getByRole('button', { name: pcosina ? 'Connection lost' : 'AI service unavailable', exact: true }).click()

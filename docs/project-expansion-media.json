@@ -1,0 +1,140 @@
+{
+  "reviewedOn": "2026-11-18",
+  "approval": "Owner approved sanitized summaries and safe screenshots; source remains private.",
+  "processing": "Resize only when needed, WebP compression, metadata stripped. No content replacement or synthetic UI generation.",
+  "assets": [
+    {
+      "path": "/images/projects/focusloop-home.webp",
+      "project": "focusloop",
+      "source": "docs/qa/evidence/native-ui/compact-home.png",
+      "context": "Native Compose capture; synthetic injected state; test banner retained.",
+      "width": 945,
+      "height": 2176,
+      "bytes": 81424,
+      "sha256": "4c376dc596e7b1791fc30ba6fa7bd5868e722e87f1bc9eeabf3cfbb3927296c5"
+    },
+    {
+      "path": "/images/projects/focusloop-session.webp",
+      "project": "focusloop",
+      "source": "docs/qa/evidence/native-ui/compact-active.png",
+      "context": "Native Compose session; synthetic injected state.",
+      "width": 945,
+      "height": 2176,
+      "bytes": 60792,
+      "sha256": "8dc95f26ca29e970644f4b02a9b7885fe25c1d4fb9be4b9727a4d045cfa31de4"
+    },
+    {
+      "path": "/images/projects/freshkeep-inventory.webp",
+      "project": "freshkeep",
+      "source": "docs/screenshots/S04-inventory.png",
+      "context": "Native Compose inventory; synthetic fixture data.",
+      "width": 720,
+      "height": 1600,
+      "bytes": 39372,
+      "sha256": "95e7985054dc15c8a60ee3d45501324b1bfd08366ff5d0042b054c1be06159bd"
+    },
+    {
+      "path": "/images/projects/freshkeep-batches.webp",
+      "project": "freshkeep",
+      "source": "docs/screenshots/S12-multiple-batches.png",
+      "context": "Native Compose independent batches; synthetic fixture data.",
+      "width": 720,
+      "height": 1600,
+      "bytes": 51252,
+      "sha256": "74dd28342506a1b3b58a8adb9f75c0f1d94cbe40dc740def8b5998d90fedf4c5"
+    },
+    {
+      "path": "/images/projects/resolveops-queue.webp",
+      "project": "resolveops",
+      "source": "tests/e2e/visual.spec.ts-snapshots/S10-1440-chromium-win32.png",
+      "context": "Fictional React UI preview; not the authenticated workspace. SLA values are illustrative.",
+      "width": 1440,
+      "height": 900,
+      "bytes": 92884,
+      "sha256": "30e6313087c39631898f56a22e2a26e6537334e2aa1ecfb4dafd4f930c4ee4e6"
+    },
+    {
+      "path": "/images/projects/procura-approval.webp",
+      "project": "procura",
+      "source": "output/playwright/live/approved-desktop.png",
+      "context": "Persisted approval in an isolated browser-test database; synthetic accounts and request. Downstream modules are not implemented.",
+      "width": 1440,
+      "height": 1590,
+      "bytes": 94452,
+      "sha256": "3532c60f6e8a4e648f297c2ecff1110b9cd858224c2520642565c98b93f0d1dd"
+    },
+    {
+      "path": "/images/projects/procura-mobile.webp",
+      "project": "procura",
+      "source": "output/playwright/live/approved-mobile.png",
+      "context": "Same isolated persisted approval flow at mobile width.",
+      "width": 390,
+      "height": 2222,
+      "bytes": 60312,
+      "sha256": "bcf296e61925570a0aaa64454ab75fad77b1cc70f922a9e3552ace83e7656cb8"
+    },
+    {
+      "path": "/brands/procura.svg",
+      "project": "procura",
+      "source": "apps/web/public/favicon.svg",
+      "context": "Existing application favicon, unchanged.",
+      "bytes": 280,
+      "sha256": "86d06d275b691777d0c1fed0b817cd234726c55a6c608372f5b28b57f3096043"
+    },
+    {
+      "path": "/brands/resolveops.svg",
+      "project": "resolveops",
+      "source": "apps/web/public/favicon.svg",
+      "context": "Existing application favicon, unchanged.",
+      "bytes": 253,
+      "sha256": "59916ed5ffff45f68a215e9f0ee346027755f67b7a44286acb0a48521038123f"
+    }
+  ],
+  "icons": [
+    {
+      "path": "/brands/nestjs.svg",
+      "title": "NestJS",
+      "source": "https://nestjs.com",
+      "license": "Brand rights remain with owner; Simple Icons artwork under CC0."
+    },
+    {
+      "path": "/brands/express.svg",
+      "title": "Express",
+      "source": "https://github.com/openjs-foundation/artwork/blob/3816245ebbf4707bdafde748350ac8476b6b5b62/projects/express/express-icon-black.svg",
+      "license": "Brand rights remain with owner; Simple Icons artwork under CC0."
+    },
+    {
+      "path": "/brands/prisma.svg",
+      "title": "Prisma",
+      "source": "https://github.com/prisma/presskit/tree/4bcb64181f266723439d955d60afa1c55fefa715",
+      "license": "Brand rights remain with owner; Simple Icons artwork under CC0."
+    },
+    {
+      "path": "/brands/zod.svg",
+      "title": "Zod",
+      "source": "https://github.com/colinhacks/zod/blob/ff89187172ac6aa4a6264592980d1628ee785242/logo/Logo%20White.ai",
+      "license": {
+        "type": "MIT",
+        "url": "https://spdx.org/licenses/MIT"
+      }
+    },
+    {
+      "path": "/brands/docker.svg",
+      "title": "Docker",
+      "source": "https://www.docker.com/company/newsroom/media-resources",
+      "license": "Brand rights remain with owner; Simple Icons artwork under CC0."
+    },
+    {
+      "path": "/brands/jest.svg",
+      "title": "Jest",
+      "source": "https://jestjs.io",
+      "license": "Brand rights remain with owner; Simple Icons artwork under CC0."
+    },
+    {
+      "path": "/brands/vitest.svg",
+      "title": "Vitest",
+      "source": "https://github.com/voidzero-dev/community-design-resources/blob/55902097229cf01cf2a4ceb376f992f5cf306756/brand-assets/vitest/vitest-icon-color-bracketless.svg",
+      "license": "Brand rights remain with owner; Simple Icons artwork under CC0."
+    }
+  ]
+}

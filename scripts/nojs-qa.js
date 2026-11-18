@@ -3,7 +3,7 @@ async (page) => {
   const context = await page.context().browser().newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } })
   const plain = await context.newPage()
   try {
-    for (const route of ['/', '/projects', '/projects/pcosina', '/projects/barion', '/skills', '/about', '/achievements', '/certifications', '/resume', '/contact']) {
+    for (const route of ['/', '/projects', '/projects/pcosina', '/projects/barion', '/projects/focusloop', '/projects/resolveops', '/projects/procura', '/projects/freshkeep', '/skills', '/about', '/achievements', '/certifications', '/resume', '/contact']) {
       const response = await plain.goto('http://127.0.0.1:4173' + route)
       if (response.status() !== 200 || await plain.locator('h1').count() !== 1) throw new Error('Static page failed: ' + route)
     }
@@ -26,6 +26,13 @@ async (page) => {
     await plain.locator('summary').filter({ hasText: 'Menu' }).click()
     await plain.getByRole('navigation', { name: 'Mobile navigation' }).getByRole('link', { name: 'Projects', exact: true }).click()
     await plain.waitForURL('**/projects')
-    return { staticPages: 10, nativeMenuWithoutJavaScript: 'passed', walkthroughAndAnnotationFallbacks: 'passed' }
+    if (await plain.locator('.collection-card').count() !== 6) throw new Error('No-JS project collection incomplete')
+    if (await plain.locator('.collection-filters').isVisible()) throw new Error('Inactive filter controls shown without JS')
+    for (const slug of ['focusloop', 'resolveops', 'procura', 'freshkeep']) {
+      await plain.goto('http://127.0.0.1:4173/projects/' + slug)
+      const href = await plain.locator('.gallery-capture').first().getAttribute('href')
+      if (!href.endsWith('.webp')) throw new Error('Native gallery fallback missing')
+    }
+    return { staticPages: 14, nativeMenuWithoutJavaScript: 'passed', allSixProjectsWithoutJavaScript: 'passed', walkthroughAndAnnotationFallbacks: 'passed' }
   } finally { await context.close() }
 }

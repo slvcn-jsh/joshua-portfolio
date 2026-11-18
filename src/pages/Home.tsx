@@ -3,6 +3,7 @@ import { identity } from '../content/site'
 import { projects } from '../content/projects'
 import { ProjectCard } from '../components/ProjectCard'
 import { TechnologyList } from '../components/TechnologyList'
+import { MoreProjects } from '../components/ProjectCollection'
 
 export function Home() {
   return (
@@ -20,7 +21,8 @@ export function Home() {
             <span>Salvacion</span>
           </h1>
           <p className="intro-description">
-            I build mobile applications and the systems behind them.
+            I build mobile and web applications, from interface to data
+            integrity.
           </p>
           <p className="intro-education">
             Fourth-year BS Computer Science student at FEU Institute of
@@ -59,6 +61,7 @@ export function Home() {
         headingAs="h2"
         presentation="supporting"
       />
+      <MoreProjects />
     </div>
   )
 }

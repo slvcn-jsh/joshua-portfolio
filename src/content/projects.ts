@@ -1,11 +1,16 @@
+import { additionalProjects } from './additional-projects'
+
 export type Project = {
   slug: string
   name: string
   category: string
+  platform: 'Android' | 'Cross-platform' | 'Web'
+  headline: string
+  previewLabel: string
   status: string
   summary: string
   stack: string[]
-  repository: string
+  repository?: string
   sourceRef: string
   focus: string
   ownership: string
@@ -34,7 +39,8 @@ export type Project = {
     verification: string
     limit: string
   }
-  verification: { summary: string; scope: string; record: string }
+  verification: { summary: string; scope: string; record?: string }
+  system?: { boundary: string; title: string; text: string }[]
   result: string
   limitations: string
   lessons: string
@@ -48,6 +54,9 @@ export const projects: Project[] = [
     slug: 'pcosina',
     name: 'PCOSina',
     category: 'Android · Wellness & meal planning',
+    platform: 'Android',
+    headline: 'Meal planning around real constraints.',
+    previewLabel: 'Application capture · Sample meal plan',
     status: 'Tester-stage project',
     summary:
       'A Filipino-focused meal-planning application that brings food preferences, pantry ingredients and budget into a structured weekly plan.',
@@ -163,6 +172,9 @@ export const projects: Project[] = [
     slug: 'barion',
     name: 'Barion',
     category: 'Cross-platform · Learning application',
+    platform: 'Cross-platform',
+    headline: 'From source material to the next review.',
+    previewLabel: 'Local web preview · Sample deck',
     status: 'In development',
     summary:
       'A local-first learning application that connects source material, flashcards and spaced repetition, with an optional AI-assisted generation path.',
@@ -276,4 +288,5 @@ export const projects: Project[] = [
     snapshot:
       'Source links are pinned to public commit 7e83b70. Tests and media use a newer local working tree; neither is presented as a clean-public-commit release check.',
   },
+  ...additionalProjects,
 ]
