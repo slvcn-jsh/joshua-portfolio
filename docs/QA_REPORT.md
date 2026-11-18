@@ -7,6 +7,11 @@ the header name. Removed the header image and its styling, restored the previous
 mobile name size, and updated the focused branding regression to require a
 text-only header while retaining both portrait icon checks.
 
+Build, lint, typecheck, formatting and static checks passed. Focused browser QA
+passed ten width/theme combinations locally and again on the public deployment,
+with no header accessibility violations or runtime errors. Mobile layout visually
+reviewed. Browser and Apple touch icons still return valid PNG responses.
+
 ## Approved portrait branding — November 18, 2026
 
 - Replaced the JS favicon with the owner-supplied portrait; added an Apple touch

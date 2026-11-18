@@ -1,6 +1,15 @@
 # Release status
 
-## Current production release — portrait branding, November 18, 2026
+## Current production release — text-only header, November 18, 2026
+
+- Revision: `5651750`; deployment: `dpl_Ctpb27j3wemSq9M8PGPF1TgYq1Ar`, READY.
+- Public address: https://joshua-portfolio-phi-lemon.vercel.app.
+- Per owner clarification, header shows only the name. Photo remains in browser
+  and saved-site icons. Build/static checks and ten local plus ten anonymous
+  production width/theme branding checks passed, including header accessibility,
+  mobile navigation and icon loading. Existing security exception unchanged.
+
+## Previous production release — portrait branding, November 18, 2026
 
 - Runtime change: `7fc2518`; deployed revision: `c2a940f` (QA formatting follow-up).
 - Production deployment: `dpl_7HVAVuGiFRejt6L2LxeRjZkeVmRo`, READY.
