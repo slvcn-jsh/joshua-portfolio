@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 ;async (page) => {
   const origin = process.env.PORTFOLIO_QA_ORIGIN || 'http://127.0.0.1:4173'
+  // Browser instrumentation, not a page script: production CSP stays unchanged.
+  await page.addInitScript({ path: 'node_modules/axe-core/axe.min.js' })
   const errors = []
   page.on('pageerror', (error) => errors.push(error.message))
   const results = []
@@ -37,7 +39,6 @@
           .click()
         await page.waitForURL(origin + '/')
       }
-      await page.addScriptTag({ path: 'node_modules/axe-core/axe.min.js' })
       const violations = await page.evaluate(async () =>
         (
           await window.axe.run(document.querySelector('.site-header'))

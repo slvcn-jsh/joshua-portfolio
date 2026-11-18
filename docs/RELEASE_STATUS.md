@@ -1,6 +1,19 @@
 # Release status
 
-## Current production release — themes and showcase, November 18, 2026
+## Current production release — portrait branding, November 18, 2026
+
+- Runtime change: `7fc2518`; deployed revision: `c2a940f` (QA formatting follow-up).
+- Production deployment: `dpl_7HVAVuGiFRejt6L2LxeRjZkeVmRo`, READY.
+- Public address: https://joshua-portfolio-phi-lemon.vercel.app.
+- Owner-approved portrait replaces the JS browser icon and accompanies the header
+  name; includes an Apple touch icon. Original file untouched; no new dependencies.
+- Build, lint, typecheck and static checks passed. Focused local and anonymous
+  production browser checks each passed ten width/theme combinations, including
+  header accessibility, menu/home navigation and icon responses. No runtime errors.
+- Existing build-tool audit exception remains unchanged. Test/release-note commits
+  after deployment do not change runtime assets. Git integration remains unconnected.
+
+## Previous production release — themes and showcase, November 18, 2026
 
 - Runtime revision: `2f3fd6e`, pushed to the public portfolio repository.
 - Production deployment: `dpl_6cQjr3h9hsQbAsVDWum3wTunBYVm`, READY.
