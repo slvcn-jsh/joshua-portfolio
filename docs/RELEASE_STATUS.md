@@ -1,17 +1,40 @@
 # Release status
 
-## November 18 candidate — six projects
+## Current production release — November 18, 2026
 
-Implementation and local functional QA are complete; four new source repositories
-remain private. Owner approved publication with the unpatched development-tool audit
-exception documented in `QA_REPORT.md`. The full audit gate has not been disabled.
-Deployment identity and public verification will be recorded after publication.
+- Runtime revision: `1446c95`, pushed to the public portfolio repository.
+- Production deployment: `dpl_GzFoG3d7wkXmuAqCVKD4xwzL2w1i`, READY.
+- Public address: https://joshua-portfolio-phi-lemon.vercel.app.
+- Unique deployment: https://joshua-portfolio-b7ixh37qz-joshua-salvacions-projects.vercel.app.
+- Six case studies, fourteen content routes plus 404, new platform filters and
+  skills, seven reviewed captures, unchanged approved PDFs.
+- Anonymous production checks passed for all fourteen routes, canonical/sitemap/
+  robots, configured headers, real missing-route/asset 404s, original PDF hashes,
+  new media hashes, existing recordings/evidence records and immutable asset caching.
+- Live browser verification passed 28 page/width combinations at 390px and 1440px:
+  filters, new/old dialogs, keyboard focus, mobile navigation, certificate/resume
+  downloads and actual video playback. Zero browser or policy errors.
+- FocusLoop, ResolveOps, Procura and FreshKeep repository visibility was rechecked:
+  all remain private. No application repository was edited, committed or pushed.
+- Owner explicitly approved the documented unpatched build-tool audit exception.
+  Runtime audit has zero findings; full audit retains 11 high affected-package
+  findings. The full CI audit gate remains intact; see `QA_REPORT.md`.
+- Runtime CI: https://github.com/slvcn-jsh/joshua-portfolio/actions/runs/44233761853.
+  Completed: clean install, build/static checks, SEO and browser suites passed.
+  The only failed step was the full dependency audit covered by the approved
+  exception. The pipeline is not green.
+- Automatic GitHub-to-Vercel deployment remains unconnected; this was an authorized
+  direct deployment. No account settings or deployment secrets were changed.
 
-Previous housekeeping CI run `43797517914` for `8865b07` was rechecked during this
-task and concluded successfully. The production runtime below remains unchanged
-until the new candidate is deployed and anonymously verified.
+Local reports: `output/playwright/browser-report.json` (03:53:59 UTC) and
+`output/playwright/live-report.json` (03:56:40 UTC), 18 November 2026. Reports and
+screenshots are ignored local QA artifacts. Subsequent release-note edits do not
+alter the deployed application assets.
 
-## Current production release — November 16, 2026
+Previous housekeeping CI run `43797517914` for `8865b07` was rechecked and concluded
+successfully. The older production snapshot below is retained as release history.
+
+## Previous production release — November 16, 2026
 
 - Runtime revision: `bc638ae` (sole ownership, concise evidence-first case studies,
   current Barion screenshots and actual recording, compact navigation, automated browser QA).

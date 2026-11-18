@@ -168,6 +168,7 @@ console.log(
       approvedResumeSha256: hash,
       projectImages: manifest.images.length,
       currentCaptureAssets: capture.assets.length,
+      reviewedExpansionAssets: expansion.assets.length,
       verificationRecords: 2,
       certificatePdfs: brands.certificates.length,
       eventPhotos: events.length,

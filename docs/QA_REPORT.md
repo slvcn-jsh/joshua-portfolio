@@ -28,6 +28,23 @@ historical, attributed evidence; no new application suite was run in this task.
   than masking the failure in tests. Large web captures use a readable viewport preview
   with access to the complete image instead of an illegible full-page thumbnail.
 
+### Production verification and review
+
+Published runtime `1446c95` to the existing Vercel alias after owner approval.
+Anonymous deployment checks passed for fourteen routes, security headers, real 404s,
+canonical/sitemap/robots, new reviewed asset hashes, original PDFs and existing
+video/evidence files. Live browser checks passed 28 route/viewport combinations at
+390px and 1440px, including filters, enlarged captures, original interactions and
+downloads; zero browser/policy errors. Details are in `RELEASE_STATUS.md`.
+
+- Recruiter review: identity and education stay first; original featured projects
+  remain prominent; the other four are reachable through a compact index.
+- Technical review: each project exposes its actual purpose, stack, implementation
+  decisions, test provenance and limitations without a hover-only reveal.
+- Engineering review: separate data authority, concurrency and failure handling are
+  explained. Fictional UI, historical tests and uncommitted implementation are not
+  represented as production evidence. The approved resume remains unchanged.
+
 ### Approved build-tool security exception
 
 `npm audit --omit=dev`: zero findings. Full `npm audit`: 11 high affected-package
@@ -41,8 +58,10 @@ risk assessment, not a clean full-audit result.
 
 The owner explicitly approved publication of the static portfolio with this
 documented exception on 18 November. No force downgrade, unsupported local dependency
-patch or audit suppression was applied. CI's full audit gate is retained and is
-expected to fail on this advisory. Recheck upstream releases and remove the exception
+patch or audit suppression was applied. CI's full audit gate is retained. Runtime
+workflow [44233761853](https://github.com/slvcn-jsh/joshua-portfolio/actions/runs/44233761853)
+passed clean install, build/static checks, SEO and browser suites; only the full
+dependency audit failed. Recheck upstream releases and remove the exception
 after a compatible patched dependency can pass a fresh full audit.
 
 Automated accessibility checks are not a formal conformance certification. Broader
