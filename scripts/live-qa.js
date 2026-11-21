@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 // Public, anonymous production smoke test. Update origin if the approved domain changes.
 async (page) => {
-  const origin = 'https://joshua-portfolio-phi-lemon.vercel.app'
+  const origin = 'https://joshuasalvacion.dev'
   const issues = []
   page.on('pageerror', error => issues.push(error.message))
   page.on('console', message => { if (message.type() === 'error') issues.push(message.text()) })

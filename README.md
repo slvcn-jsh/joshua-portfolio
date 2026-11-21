@@ -2,7 +2,7 @@
 
 A responsive software engineering portfolio built with React, TypeScript, Vite, Tailwind CSS and Lucide icons. Fourteen pages are prerendered to static HTML, plus a 404 page. Six application case studies, a fixed collapsible sidebar, adaptive themes and optional private email feedback; no runtime backend, account system, analytics or external font requests.
 
-[Live portfolio](https://joshua-portfolio-phi-lemon.vercel.app) · [Source repository](https://github.com/slvcn-jsh/joshua-portfolio)
+[Live portfolio](https://joshuasalvacion.dev) · [Source repository](https://github.com/slvcn-jsh/joshua-portfolio)
 
 ## Run locally
 
@@ -143,9 +143,17 @@ After deployment authorization, verify direct links to both case studies, the PD
 The initial production release has passed those checks. The GitHub integration is not yet connected: until it is confirmed, a GitHub push alone does not update the website. Use the authenticated direct-deployment command in [release status](docs/RELEASE_STATUS.md).
 
 ```sh
-node scripts/check-deployment.mjs https://joshua-portfolio-phi-lemon.vercel.app
+node scripts/check-deployment.mjs https://joshuasalvacion.dev
 npm run test:browser -- --live
 ```
+
+The approved primary domain is `joshuasalvacion.dev`, registered at Name.com and
+attached to the existing Vercel `joshua-portfolio` project. Name.com continues to
+manage DNS; Vercel manages HTTPS and deployment. Production `SITE_URL` uses this
+origin. Keep the checkpoint in `docs/RELEASE_STATUS.md` when changing domains;
+verify DNS, TLS, direct routes, canonical/sitemap and old-host redirects before
+calling a future cutover complete. Do not purchase another hosting or SSL product
+to maintain this setup.
 
 ## Visual maintenance
 
