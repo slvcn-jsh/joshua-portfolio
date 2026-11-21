@@ -1,6 +1,63 @@
 # Release status
 
-## Current production release — November 21, 2026
+## Current production release — custom domain, November 21, 2026
+
+- Primary public portfolio: **https://joshuasalvacion.dev**.
+- Domain registered by the owner at Name.com and explicitly attached to the
+  existing Vercel `joshua-portfolio` project, ID
+  `prj_9vPtkBnSpTxz4cpzBAxvi2x0808A`. No other project was changed.
+- Name.com remains the DNS provider; the owner saved the two root A records
+  `216.198.79.1` and `64.29.17.1`. Project-scoped verification now reports
+  `configured-correctly`, attached and verified, with no conflicts.
+- Vercel automatically issued the managed `joshuasalvacion.dev` certificate with
+  automatic renewal enabled. Anonymous browser verification confirms hostname
+  match and TLS 1.3. No separate SSL/hosting product was purchased and no TLS
+  validation was disabled. The brief initial connection failure ended after the
+  managed certificate was provisioned; no DNS workaround was needed.
+- Production `SITE_URL` is now `https://joshuasalvacion.dev`. A fresh production
+  build uses this origin for canonical/OG/social-image URLs, robots and the
+  fourteen-entry sitemap. Preview/unconfigured noindex behavior is preserved.
+- Deployment source revision: `ad13d78ad44acfc4804a09f8a1fa45ae4a827f70`.
+  Application JS/CSS hashes are unchanged from the verified portfolio checkpoint;
+  the source changes are the approved example origin, README and live-test target.
+- Deployment: `dpl_9uJkjeKJSfkFUcveTkc3GaGtnCGr`, READY. Unique address:
+  https://joshua-portfolio-dyfjqg9mh-joshua-salvacions-projects.vercel.app.
+  Use the primary domain for anonymous access; deployment protection can apply to
+  the unique address.
+- The old public host `joshua-portfolio-phi-lemon.vercel.app` has a project-domain
+  redirect to `joshuasalvacion.dev`, status 308. Anonymous checks confirm root,
+  project and resume paths plus query strings are preserved; a followed project
+  link ends at the matching `.dev` page without a loop. The unrelated generated
+  aliases and prior immutable deployments were not removed.
+- `npm run check`, `npm run check:seo`, repository formatting and diff checks pass.
+  Public `check-deployment.mjs https://joshuasalvacion.dev` passes all fourteen
+  routes, security headers, canonical/sitemap/robots, genuine page/asset 404s,
+  reviewed media/approved PDF integrity, verification records, immutable caching
+  and exact theme bootstrap. Additional canonical/OG/social-image checks pass.
+- Anonymous live Chromium suite passes 28 route/viewport states at the `.dev`
+  origin, with no browser/policy errors: themes, project/image dialogs, filters,
+  scenarios, recording playback, mobile navigation and downloads. Separate
+  390/1440px checks pass actual theme controls, one/docked feedback launcher,
+  draft retention, absence of Copy message, focus return and intercepted form
+  acknowledgments. No real email was sent; inbox activation/receipt remain unverified.
+- The original backup tag `portfolio-checkpoint-2026-11-21` and complete-history
+  local bundle are preserved. No application repository, project UI, resume,
+  registrar contact details, account plan or nameserver was changed in this cutover.
+- Completed-domain source/configuration record:
+  `portfolio-domain-launch-2026-11-21`. A separate complete-history local bundle is
+  saved at `output/backups/joshua-portfolio-domain-2026-11-21.bundle`; the earlier
+  pre-cutover bundle was not overwritten. The follow-up release record is docs-only
+  and skips repeating CI; deployment source remains `ad13d78`.
+
+Future changes: keep domain renewal under the owner's Name.com account and preserve
+these DNS records while hosting on this Vercel project. Re-check live Vercel
+recommendations before changing them. To roll back a future domain cutover, first
+remove/update the old-host redirect and restore the desired production `SITE_URL`,
+then rebuild and verify; restoring Git files alone does not revert external DNS,
+environment variables or project-domain settings. Never reset a dirty worktree to
+restore a backup.
+
+## Previous production release — before custom-domain cutover, November 21, 2026
 
 - Owner explicitly authorized backup, GitHub publication, production deployment and
   the `joshuasalvacion.dev` setup on November 21. The owner subsequently confirmed

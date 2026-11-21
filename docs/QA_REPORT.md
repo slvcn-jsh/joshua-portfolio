@@ -1,5 +1,36 @@
 # Final QA report
 
+## Verified custom-domain cutover — November 21, 2026
+
+`https://joshuasalvacion.dev` is now the primary public portfolio address. The
+owner saved Name.com DNS; Vercel's project-scoped check confirms both root A
+records and correct assignment to `joshua-portfolio`. The managed certificate is
+issued with automatic renewal; a normal anonymous Chromium connection verifies
+the hostname and TLS 1.3 without bypassing certificate validation.
+
+Production `SITE_URL` was updated only after the domain served the latest site
+over valid HTTPS. Deployment `dpl_9uJkjeKJSfkFUcveTkc3GaGtnCGr` from `ad13d78` is
+READY. Its application JS/CSS hashes match the earlier verified checkpoint; no
+component, design, media or dependency change was made during the domain cutover.
+Fresh lint/typecheck/build/static validation, SEO fixtures and repository formatting
+pass. A separate explicit formatter invocation on `.env.example` reported no parser
+(unsupported format); the normal repository formatting check passes.
+
+Anonymous production checks against `.dev` pass fourteen routes, configured headers,
+canonical URLs, sitemap/robots, actual 404s, approved PDF/media hashes, evidence
+records, exact theme bootstrap and immutable caching. Extra checks confirm OG URL
+and social-image origin. The live suite passes 28 route/viewport states with theme,
+evidence, filtering, scenarios, actual recording playback, mobile navigation and
+downloads; no browser/policy errors. Additional 390/1440px theme/feedback checks
+pass one/docked launcher, draft retention, removal of Copy message, focus return and
+intercepted submission acknowledgments. No actual email was sent or receipt verified.
+
+After those checks passed, the old public Vercel host was configured with a 308
+project-domain redirect to `.dev`. Root, case-study and resume paths, a query string
+and a missing-route path preserve their destinations. Following an old project link
+returns the matching `.dev` page with status 200, without a redirect loop. Existing
+backups are preserved; no registrar credentials or receipt/order IDs were committed.
+
 ## Domain assignment checkpoint — November 21, 2026
 
 After owner-confirmed domain registration, `joshuasalvacion.dev` was explicitly
