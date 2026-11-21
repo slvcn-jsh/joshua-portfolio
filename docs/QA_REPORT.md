@@ -1,5 +1,17 @@
 # Final QA report
 
+## Domain assignment checkpoint — November 21, 2026
+
+After owner-confirmed domain registration, `joshuasalvacion.dev` was explicitly
+attached to the existing `joshua-portfolio` Vercel project (not another project).
+Project-scoped verification confirms attachment/ownership but reports invalid DNS:
+the Name.com-hosted root A record remains `91.195.240.94` (parking). The returned
+recommended root A values are `216.198.79.1` and `64.29.17.1`. Registrar DNS edits
+require the owner's signed-in account. No DNS, primary-host, `SITE_URL`, redirect
+or application source change was made at this checkpoint. A working `.dev` TLS
+connection and route checks are not yet claimed. See `RELEASE_STATUS.md` for the
+exact pending action and project identity. No order/account receipt was committed.
+
 ## Authorized backup and production release — November 21, 2026
 
 Runtime checkpoint `d5142c7` is pushed to GitHub with annotated tag

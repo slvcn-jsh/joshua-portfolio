@@ -3,8 +3,9 @@
 ## Current production release — November 21, 2026
 
 - Owner explicitly authorized backup, GitHub publication, production deployment and
-  the `joshuasalvacion.dev` setup on November 21. The domain is not yet registered
-  or connected by the agent; owner redemption is pending.
+  the `joshuasalvacion.dev` setup on November 21. The owner subsequently confirmed
+  registration. The domain is explicitly assigned to `joshua-portfolio` in Vercel;
+  external DNS setup remains pending as recorded below.
 - Runtime revision: `d5142c7f9c058797dcd25d5a706052851dd80542`, pushed to `main`.
 - Recoverable source snapshot: annotated tag `portfolio-checkpoint-2026-11-21`,
   also pushed. [Browse the checkpoint](https://github.com/slvcn-jsh/joshua-portfolio/tree/portfolio-checkpoint-2026-11-21)
@@ -38,11 +39,35 @@
   redirect, DNS or nameserver was prematurely changed to an unregistered address.
   The registry RDAP lookup returned HTTP 404 / `joshuasalvacion.dev not found` on
   November 21; that is not a checkout availability, price or benefit-eligibility
-  guarantee. The owner is completing the Name.com/GitHub Education redemption.
-  Add the domain and verify TLS/DNS only after registration is confirmed.
+  guarantee. The owner subsequently confirmed Name.com registration. The domain
+  was added to the named portfolio project; TLS/DNS validation is still pending.
 - FormSubmit inbox activation and real delivery are still unverified. The resume
   is still publicly downloadable. No application repository, backend or live-demo
   URL was changed in this release.
+
+### Domain connection — project assigned, Name.com DNS action required
+
+On November 21, the owner confirmed completed registration of
+`joshuasalvacion.dev`. `vercel domains add joshuasalvacion.dev joshua-portfolio`
+assigned it to project `prj_9vPtkBnSpTxz4cpzBAxvi2x0808A` in the existing
+`joshua-salvacions-projects` account. Verification explicitly against that project
+reports attached/ownership-verified, but invalid DNS configuration. This is not a
+random project assignment and is not yet a working HTTPS domain.
+
+Current external nameservers are Name.com's. The root A record still resolves to
+parking IP `91.195.240.94`. Vercel's live project-scoped recommendation at this
+checkpoint is two root A records: `216.198.79.1` and `64.29.17.1`. The owner must
+replace the parking root A record with these in Name.com DNS management, preserving
+unrelated email/TXT/subdomain records. Do not change nameservers as well as adding
+these records. These are date-specific recommendations; re-run verification before
+reusing them for a future reconfiguration.
+
+No registrar credentials were requested or accessed, and no registrar DNS edits
+were performed by the agent. No separate SSL product was purchased. Vercel's
+automatic certificate provisioning still requires valid propagated DNS. The old
+public Vercel address, production `SITE_URL`, deployment and redirects are unchanged
+until the `.dev` site is verified working. Next: owner saves DNS, then verify DNS,
+certificate and all portfolio routes before canonical/redirect cutover.
 
 ### Student benefits worth considering next
 
