@@ -9,8 +9,17 @@
       const ownership = await page
         .getByRole('heading', { name: 'Sole developer', exact: true })
         .boundingBox()
-      if (!ownership || ownership.y > 600)
-        throw new Error('Ownership is buried')
+      const opening = await page.locator('.case-opening-media').boundingBox()
+      if (
+        !opening ||
+        opening.y > 550 ||
+        !ownership ||
+        ownership.y > 1200 ||
+        opening.y >= ownership.y
+      )
+        throw new Error(
+          'Expected early application evidence followed by ownership',
+        )
       if (
         width < 1024 &&
         (await page.locator('.case-contents-mobile').getAttribute('open')) !==
@@ -107,7 +116,9 @@
       path: `output/playwright/refined-home-${width}.png`,
       fullPage: true,
     })
-    if ((await page.locator('.desktop-nav a').count()) !== 5)
+    if (
+      (await page.locator('.portfolio-sidebar .sidebar-links a').count()) !== 6
+    )
       throw new Error('Primary navigation regression')
     for (const href of ['/achievements', '/certifications']) {
       if ((await page.locator(`footer a[href="${href}"]`).count()) !== 1)

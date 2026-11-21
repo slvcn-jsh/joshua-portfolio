@@ -11,8 +11,8 @@
 }
 .technology-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
-  gap: 12px 24px;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
   list-style: none;
   padding: 0;
   margin: 0 0 18px;
@@ -25,15 +25,33 @@
   min-height: 44px;
   font-size: 0.88rem;
   line-height: 1.4;
+  padding: 10px 12px;
+  border: 1px solid var(--color-line);
+  border-radius: 8px;
+  background: var(--color-elevated);
+  height: 100%;
+  min-width: 0;
 }
 .primary-technologies {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 24px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
   margin: 8px 0 0;
 }
 .primary-technologies a {
-  gap: 9px;
+  gap: 7px;
+  font-size: 0.78rem;
+  padding: 10px 8px;
+}
+.technology-list li {
+  min-width: 0;
+}
+.technology-item > span {
+  overflow-wrap: anywhere;
+}
+.primary-technologies .brand-icon {
+  width: 21px;
+  height: 21px;
 }
 .primary-technologies a:hover span {
   text-decoration: underline;
@@ -183,9 +201,6 @@
 .contact-card > .brand-icon {
   margin-block: 9px 33px;
 }
-.desktop-nav {
-  gap: 20px;
-}
 @media (min-width: 1200px) {
   .contact-grid {
     grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr));
@@ -204,15 +219,15 @@
     gap: 10px 18px;
   }
   .primary-technologies {
-    display: flex;
-    gap: 6px 18px;
+    display: grid;
+    gap: 8px;
   }
   .technology-item {
     gap: 10px;
     font-size: 0.82rem;
   }
   .primary-technologies a {
-    font-size: 0.82rem;
+    font-size: 0.76rem;
   }
   .primary-technologies .brand-icon {
     width: 23px;
@@ -294,5 +309,124 @@
     animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
+  }
+}
+.skills-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  border: 0;
+}
+.skill-row {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 26px;
+  border: 1px solid var(--color-line);
+  border-radius: 12px;
+  background: var(--color-surface);
+  min-width: 0;
+}
+.skill-row .technology-list {
+  margin-bottom: 0;
+}
+.skill-row p.muted {
+  margin: 0;
+}
+.resume-obscured {
+  position: relative;
+  overflow: hidden;
+  min-height: 580px;
+  padding: 32px;
+  background: var(--color-surface);
+  border-radius: 12px;
+}
+.resume-silhouette {
+  width: 100%;
+  min-height: 540px;
+  padding: 40px 32px;
+  background: var(--color-elevated);
+  filter: blur(7px);
+  opacity: 0.5;
+  user-select: none;
+}
+.resume-silhouette-title {
+  width: 62%;
+  height: 19px;
+  background: var(--color-muted);
+  margin-bottom: 13px;
+}
+.resume-silhouette-subtitle {
+  width: 40%;
+  height: 7px;
+  background: var(--color-line-strong);
+  margin-bottom: 34px;
+}
+.resume-silhouette-section {
+  margin-block: 28px;
+}
+.resume-silhouette-section span,
+.resume-silhouette-section i {
+  display: block;
+  height: 6px;
+  margin-block: 10px;
+  background: var(--color-line-strong);
+}
+.resume-silhouette-section span {
+  height: 9px;
+  width: 35%;
+  background: var(--color-muted);
+  margin-bottom: 16px;
+}
+.resume-silhouette-section i:last-child {
+  width: 65%;
+}
+.resume-download-cover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px;
+  text-align: center;
+}
+.resume-download-cover > svg {
+  color: var(--color-accent);
+}
+.resume-download-cover > p {
+  font-family: var(--font-editorial);
+  font-size: 2rem;
+}
+.resume-download-cover > span {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+.resume-download-cover .button {
+  margin-top: 8px;
+}
+@media (max-width: 767px) {
+  .skills-list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+  .skill-row {
+    padding: 22px;
+  }
+  .resume-obscured {
+    min-height: 440px;
+  }
+  .resume-silhouette {
+    min-height: 400px;
+    padding: 20px;
+  }
+  .resume-download-cover > p {
+    font-size: 1.6rem;
+  }
+}
+@media print {
+  .resume-download-cover {
+    display: none;
   }
 }

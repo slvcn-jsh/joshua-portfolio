@@ -2,6 +2,7 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
 import { renderToString } from 'react-dom/server'
 import { App } from '../src/App'
+import { resolvePage } from '../src/routes'
 import { pageMeta } from '../src/content/site'
 
 const dist = resolve(process.argv[2] ?? 'dist')
@@ -57,11 +58,14 @@ for (const [route, meta] of Object.entries(pageMeta)) {
       ? `<link rel="canonical" href="${escape(canonical)}" /><meta property="og:url" content="${escape(canonical)}" />`
       : '',
   ].join('\n    ')
+  const rendered = renderToString(
+    <App path={route}>{await resolvePage(route)}</App>,
+  )
   const html = template
     .replace(/<title>.*?<\/title>/, `<title>${escape(meta.title)}</title>`)
     .replace('<!--page-head-->', head)
     .replace('<div id="root">', `<div id="root" data-page="${route}">`)
-    .replace('<!--app-html-->', () => renderToString(<App path={route} />))
+    .replace('<!--app-html-->', () => rendered)
   const file = resolve(
     dist,
     route === '/' ? 'index.html' : `${route.slice(1)}.html`,

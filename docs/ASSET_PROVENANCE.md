@@ -1,5 +1,16 @@
 # Public asset provenance
 
+## Responsive derivatives — November 21, 2026
+
+`scripts/prepare-preview-assets.ts` creates resized WebP derivatives from the
+approved FEU logo and eleven approved application captures only. No UI was
+generated, reconstructed or enlarged. Source files remain unchanged. The exact
+source/variant SHA-256 hashes, dimensions and encoded sizes are recorded in
+`preview-asset-manifest.json` and checked against the built public files.
+Home's 26px FEU badge selects a 64px (2970 bytes) or 128px (7566 bytes) image instead
+of the 205812-byte source. Home, collection and case-opening captures use srcset;
+enlargement dialogs and existing full case galleries retain approved originals.
+
 ## Approved portrait branding — November 18, 2026
 
 Owner clarification: the portrait is used only for browser/saved-site icons.
@@ -31,15 +42,15 @@ are historical import records, no longer used by the pages.
 
 All assets were inspected locally before being included. No project database, private dataset, credential file or raw manuscript is included. The later owner-approved portrait is documented above.
 
-| Portfolio asset               | Source                                               | Treatment                                                                                    |
-| ----------------------------- | ---------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `images/pcosina-plan.webp`    | PCOSina `tools/avp/v2_3d/public/assets/week.png`     | WebP encoding; unchanged 784 × 1745 image content                                            |
-| `images/pcosina-grocery.webp` | PCOSina `tools/avp/v2_3d/public/assets/shopping.png` | WebP encoding; unchanged 784 × 1745 image content                                            |
-| `images/barion-home.webp`     | Barion local checkout `medstudy-home-settled.png`    | WebP encoding; historical MedStudy dashboard, 1366 × 900                                     |
-| `images/barion-review.webp`   | Barion local checkout `medstudy-study-mobile.png`    | WebP encoding; historical sample study screen, 390 × 844                                     |
-| `Joshua-Salvacion-Resume.pdf` | Owner-selected `SALVACION_JOSHUA_RESUME.pdf`         | Byte-for-byte copy; includes contact details already present in the approved public document |
-| `images/resume-preview.webp`  | Render of approved PDF                               | WebP page preview; original PDF untouched                                                    |
-| `social-card.png`             | Portfolio typographic artwork                        | Generated from local SVG, no synthetic project UI                                            |
+| Portfolio asset                     | Source                                               | Treatment                                                                                                                                                                                 |
+| ----------------------------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `images/pcosina-plan.webp`          | PCOSina `tools/avp/v2_3d/public/assets/week.png`     | WebP encoding; unchanged 784 × 1745 image content                                                                                                                                         |
+| `images/pcosina-grocery.webp`       | PCOSina `tools/avp/v2_3d/public/assets/shopping.png` | WebP encoding; unchanged 784 × 1745 image content                                                                                                                                         |
+| `images/barion-home.webp`           | Barion local checkout `medstudy-home-settled.png`    | WebP encoding; historical MedStudy dashboard, 1366 × 900                                                                                                                                  |
+| `images/barion-review.webp`         | Barion local checkout `medstudy-study-mobile.png`    | WebP encoding; historical sample study screen, 390 × 844                                                                                                                                  |
+| `Joshua-Salvacion-Resume.pdf`       | Owner-selected `SALVACION_JOSHUA_RESUME.pdf`         | Byte-for-byte copy; includes contact details already present in the approved public document                                                                                              |
+| Former `images/resume-preview.webp` | Render of approved PDF                               | Removed from public assets November 21; recoverable local backup at ignored `output/resume-preview-original.webp`. Current preview is an abstract CSS silhouette; approved PDF untouched. |
+| `social-card.png`                   | Portfolio typographic artwork                        | Generated from local SVG, no synthetic project UI                                                                                                                                         |
 
 The PCOSina captures also appear in the project's presentation assets. They show application functionality, not a portfolio-created UI. The Barion captures are clearly labeled as earlier development-stage media; their seeded values are sample UI data, not usage statistics or project outcomes.
 
@@ -80,6 +91,20 @@ Original source files and application repositories remain unchanged.
   icon is not used.
 
 ### Third-party marks
+
+FEU Tech education mark (November 20, 2026): downloaded from the official site's
+`https://www.feutech.edu.ph/images/Tech_Logo.png`, linked from
+`https://www.feutech.edu.ph/`. Original PNG: 1313 × 1600, 329,646 bytes,
+SHA-256 `b3ad9a9486cb914c052f5c75a07efb9b3cdde14057d441f5ef43b277c800d8e8`.
+Local `brands/feu-tech.webp`: lossless WebP conversion at unchanged dimensions,
+205,812 bytes, SHA-256 `0c626dd723cc84b272221596bbd8c2bcf12f48f3662c8b8a010679c5b83bbea4`.
+No cropping, recoloring, invented details or upscaling. The mark identifies the
+owner's stated school; it does not independently verify enrollment or imply endorsement.
+Original download is retained in ignored `output/brand-sources/`.
+
+The approved `brands/joshua-portrait.webp` is reused without modification in the
+November 20 sidebar/mobile brand. This supersedes the November 18 text-only-header
+presentation decision; favicon and Apple touch icon remain unchanged.
 
 Seventeen technology/contact SVGs are exported from Simple Icons 16.37.0 (development
 dependency) and served locally; no complete icon collection is shipped to the browser.

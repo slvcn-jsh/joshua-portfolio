@@ -11,6 +11,8 @@ import { ProjectRecording } from './ProjectRecording'
 import { ProjectIdentity } from './ProjectIdentity'
 import { ProjectGallery } from './ProjectGallery'
 import { TechnologyList } from './TechnologyList'
+import { ImageViewer } from './ImageViewer'
+import { ResponsiveCapture } from './ResponsiveCapture'
 
 export function CaseStudy({ project: p }: { project: Project }) {
   const other =
@@ -37,12 +39,53 @@ export function CaseStudy({ project: p }: { project: Project }) {
           <ArrowLeft size={16} aria-hidden="true" />
           All projects
         </a>
-        <p className="eyebrow">{p.category}</p>
-        <h1>
-          <ProjectIdentity project={p} />
-          {p.name}
-        </h1>
-        <p className="case-summary">{p.summary}</p>
+        <div className="case-opening">
+          <div className="case-opening-copy">
+            <p className="eyebrow">{p.category}</p>
+            <h1>
+              <ProjectIdentity project={p} />
+              {p.name}
+            </h1>
+            <p className="case-summary">{p.summary}</p>
+            <a className="text-link case-opening-link" href="#product">
+              Explore the application{' '}
+              <ArrowRight size={16} aria-hidden="true" />
+            </a>
+          </div>
+          <figure
+            className={`case-opening-media ${p.platform === 'Android' ? 'case-opening-native' : ''}`}
+          >
+            <ImageViewer
+              image={p.screenshots[0]}
+              className="case-opening-capture"
+              label={`${p.name} opening application capture`}
+            >
+              <div className="case-opening-images">
+                <ResponsiveCapture
+                  image={p.screenshots[0]}
+                  sizes={
+                    p.platform === 'Android'
+                      ? '180px'
+                      : '(min-width: 1024px) 500px, 350px'
+                  }
+                  loading="eager"
+                  fetchPriority="high"
+                />
+                {p.platform === 'Android' && p.screenshots[1] && (
+                  <ResponsiveCapture
+                    image={p.screenshots[1]}
+                    sizes="150px"
+                    decorative
+                  />
+                )}
+              </div>
+              <span className="case-opening-enlarge">
+                View full capture <ArrowRight size={15} aria-hidden="true" />
+              </span>
+            </ImageViewer>
+            <figcaption>{p.previewLabel}</figcaption>
+          </figure>
+        </div>
         <div className="project-brief" id="contributions">
           <div>
             <h2>{interactive ? 'Sole developer' : 'Development work'}</h2>
@@ -75,6 +118,17 @@ export function CaseStudy({ project: p }: { project: Project }) {
           <a className="text-link" href="#product">
             See application <ArrowRight size={16} aria-hidden="true" />
           </a>
+          {p.demoUrl && (
+            <a
+              className="text-link"
+              href={p.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Live demo <ArrowRight size={16} aria-hidden="true" />
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+          )}
         </div>
       </header>
       <div className="case-layout">

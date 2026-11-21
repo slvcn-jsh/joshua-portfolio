@@ -33,6 +33,9 @@ async (page) => {
       const href = await plain.locator('.gallery-capture').first().getAttribute('href')
       if (!href.endsWith('.webp')) throw new Error('Native gallery fallback missing')
     }
+    await plain.goto('http://127.0.0.1:4173/contact')
+    if (await plain.locator('main form').count()) throw new Error('Duplicate contact form remains')
+    if (await plain.getByRole('link', { name: 'Send email', exact: true }).getAttribute('href') !== 'mailto:salvacion.jsh@gmail.com') throw new Error('No-JS email fallback missing')
     return { staticPages: 14, nativeMenuWithoutJavaScript: 'passed', allSixProjectsWithoutJavaScript: 'passed', walkthroughAndAnnotationFallbacks: 'passed' }
   } finally { await context.close() }
 }

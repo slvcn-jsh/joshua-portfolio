@@ -1,10 +1,25 @@
-import { useRef, useState, useSyncExternalStore } from 'react'
-import { ArrowLeft, ArrowRight, ArrowUpRight, Expand } from 'lucide-react'
-import { projects } from '../content/projects'
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
+import { Pause, Play, ArrowUpRight, Expand } from 'lucide-react'
+import {
+  projectSummaries as projects,
+  featuredProjectSlugs,
+} from '../content/project-index'
 import { ProjectIdentity } from './ProjectIdentity'
 import { ImageViewer } from './ImageViewer'
+import { ProjectPreview } from './ProjectPreview'
+import { ResponsiveCapture } from './ResponsiveCapture'
 
 const subscribe = () => () => {}
+const subscribeMotion = (callback: () => void) => {
+  const media = matchMedia('(prefers-reduced-motion: reduce)')
+  media.addEventListener('change', callback)
+  return () => media.removeEventListener('change', callback)
+}
+const subscribeVisibility = (callback: () => void) => {
+  document.addEventListener('visibilitychange', callback)
+  return () => document.removeEventListener('visibilitychange', callback)
+}
+const loop = (index: number) => (index + projects.length) % projects.length
 
 export function ProjectShowcase() {
   const enhanced = useSyncExternalStore(
@@ -12,24 +27,84 @@ export function ProjectShowcase() {
     () => true,
     () => false,
   )
-  const [active, setActive] = useState(0)
+  const [{ active, previous, direction }, setSlide] = useState<{
+    active: number
+    previous: number | null
+    direction: number
+  }>({ active: 0, previous: null, direction: 1 })
+  const section = useRef<HTMLElement>(null)
+  const [inView, setInView] = useState(false)
+  const [hovered, setHovered] = useState(false)
+  const [paused, setPaused] = useState(false)
   const [announced, setAnnounced] = useState(false)
+  const reduced = useSyncExternalStore(
+    subscribeMotion,
+    () => matchMedia('(prefers-reduced-motion: reduce)').matches,
+    () => true,
+  )
+  const visible = useSyncExternalStore(
+    subscribeVisibility,
+    () => document.visibilityState === 'visible',
+    () => false,
+  )
+  const rotating =
+    enhanced && inView && visible && !reduced && !hovered && !paused
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.15 },
+    )
+    observer.observe(section.current!)
+    return () => observer.disconnect()
+  }, [])
+  useEffect(() => {
+    if (!rotating) return
+    const timer = window.setTimeout(() => {
+      setSlide((current) => ({
+        active: loop(current.active + 1),
+        previous: current.active,
+        direction: 1,
+      }))
+      setAnnounced(false)
+    }, 8000)
+    return () => window.clearTimeout(timer)
+  }, [active, rotating])
   const pointer = useRef<{ x: number; y: number } | null>(null)
   const suppressClick = useRef(false)
   const selectors = useRef<(HTMLButtonElement | null)[]>([])
-  function select(index: number) {
-    setActive(Math.max(0, Math.min(projects.length - 1, index)))
+  function select(index: number, nextDirection = index > active ? 1 : -1) {
+    setPaused(true)
+    setSlide((current) =>
+      loop(index) === current.active
+        ? current
+        : {
+            active: loop(index),
+            previous: current.active,
+            direction: nextDirection,
+          },
+    )
     setAnnounced(true)
   }
   return (
     <section
+      ref={section}
       className={`showcase ${projects[active].slug}`}
       aria-labelledby="showcase-title"
+      aria-roledescription="carousel"
+      data-direction={direction > 0 ? 'next' : 'previous'}
+      data-animated={previous !== null}
+      data-rotating={rotating}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocusCapture={(event) => {
+        if (!(event.target as Element).closest('[data-rotation-control]'))
+          setPaused(true)
+      }}
     >
       <header className="showcase-heading">
         <div>
           <p className="eyebrow">Selected work / Mobile & web</p>
-          <h2 id="showcase-title">Six projects. A closer look.</h2>
+          <h2 id="showcase-title">Six projects. Two to start with.</h2>
         </div>
         <a href="/projects" className="text-link">
           Project overview <ArrowUpRight size={16} aria-hidden="true" />
@@ -63,7 +138,14 @@ export function ProjectShowcase() {
                         : null
               if (destination === null) return
               event.preventDefault()
-              select(destination)
+              select(
+                destination,
+                event.key === 'ArrowRight'
+                  ? 1
+                  : event.key === 'ArrowLeft'
+                    ? -1
+                    : undefined,
+              )
               selectors.current[destination]?.focus({ preventScroll: true })
             }}
           >
@@ -75,6 +157,7 @@ export function ProjectShowcase() {
       <div
         className="showcase-viewport"
         onPointerDown={(event) => {
+          setPaused(true)
           suppressClick.current = false
           if (
             event.pointerType === 'mouse' ||
@@ -91,7 +174,7 @@ export function ProjectShowcase() {
           const dy = event.clientY - start.y
           if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.5) {
             suppressClick.current = true
-            select(active + (dx < 0 ? 1 : -1))
+            select(active + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1)
           }
         }}
         onClickCapture={(event) => {
@@ -113,29 +196,41 @@ export function ProjectShowcase() {
               index < active ? 'before' : index > active ? 'after' : 'active'
             }
             inert={enhanced && index !== active}
+            data-departing={index === previous}
             aria-label={`${project.name}, project ${index + 1} of ${projects.length}`}
           >
             <div className="showcase-copy">
-              <p className="eyebrow">{project.category}</p>
+              <p className="eyebrow">
+                {featuredProjectSlugs.includes(project.slug)
+                  ? 'Featured case study'
+                  : 'More to explore'}{' '}
+                · {project.category}
+              </p>
               <h3>{project.name}</h3>
-              <p className="showcase-headline">{project.headline}</p>
               <p className="showcase-summary">{project.summary}</p>
               <ul
                 className="tag-list"
-                aria-label={`${project.name} technologies`}
+                aria-label={`${project.name} key technologies`}
               >
-                {project.stack.map((tech) => (
+                {project.stack.slice(0, 3).map((tech) => (
                   <li key={tech}>{tech}</li>
                 ))}
               </ul>
-              <p className="showcase-detail">
-                <span>Engineering focus</span>
-                {project.focus}
-              </p>
               <div className="showcase-actions">
                 <a className="text-link" href={`/projects/${project.slug}`}>
                   Read case study <ArrowUpRight size={16} aria-hidden="true" />
                 </a>
+                {project.demoUrl && (
+                  <a
+                    className="text-link"
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Live demo <ArrowUpRight size={16} aria-hidden="true" />
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                )}
                 <span className="project-status">{project.status}</span>
               </div>
             </div>
@@ -148,11 +243,13 @@ export function ProjectShowcase() {
                   className="showcase-capture"
                   label={`${project.name} application capture`}
                 >
-                  <img
-                    src={project.screenshots[0].src}
-                    alt={project.screenshots[0].alt}
-                    width={project.screenshots[0].width}
-                    height={project.screenshots[0].height}
+                  <ResponsiveCapture
+                    image={project.screenshots[0]}
+                    sizes={
+                      project.platform === 'Android'
+                        ? '180px'
+                        : '(min-width: 1280px) 600px, (min-width: 768px) 480px, 300px'
+                    }
                     loading={index === 0 ? 'eager' : 'lazy'}
                     fetchPriority={index === 0 ? 'high' : 'auto'}
                   />
@@ -164,52 +261,61 @@ export function ProjectShowcase() {
                   </span>
                 </ImageViewer>
                 {project.platform === 'Android' && project.screenshots[1] && (
-                  <img
+                  <ResponsiveCapture
+                    image={project.screenshots[1]}
+                    sizes="150px"
                     className="showcase-secondary"
-                    src={project.screenshots[1].src}
-                    alt=""
-                    aria-hidden="true"
-                    width={project.screenshots[1].width}
-                    height={project.screenshots[1].height}
-                    loading="lazy"
+                    decorative
+                    loading={index === 0 ? 'eager' : 'lazy'}
                   />
                 )}
               </div>
-              <p className="showcase-caption">{project.previewLabel}</p>
+              <div className="showcase-media-footer">
+                <p className="showcase-caption">{project.previewLabel}</p>
+                <ProjectPreview project={project} />
+              </div>
             </div>
           </article>
         ))}
       </div>
       <div className="showcase-bottom">
         <p className="showcase-hint">
-          Explore at your own pace<span> · Swipe or choose a project</span>
+          {reduced
+            ? 'Choose a project to explore'
+            : paused
+              ? 'Your pace. Your project.'
+              : hovered
+                ? 'Paused while you explore'
+                : 'A new project, every eight seconds'}
+          <span> · Select any project to stay</span>
         </p>
         <div className="showcase-pagination">
           <span className="showcase-position" aria-hidden="true">
-            {String(active + 1).padStart(2, '0')} <span>/ 06</span>
+            {String(active + 1).padStart(2, '0')}{' '}
+            <span>/ {String(projects.length).padStart(2, '0')}</span>
           </span>
-          <button
-            type="button"
-            aria-label="Previous project"
-            aria-disabled={active === 0}
-            onClick={() => select(active - 1)}
-          >
-            <ArrowLeft size={18} aria-hidden="true" />
-          </button>
-          <button
-            type="button"
-            aria-label="Next project"
-            aria-disabled={active === projects.length - 1}
-            onClick={() => select(active + 1)}
-          >
-            <ArrowRight size={18} aria-hidden="true" />
-          </button>
+          {!reduced && (
+            <button
+              type="button"
+              data-rotation-control
+              aria-label={
+                paused ? 'Resume project rotation' : 'Pause project rotation'
+              }
+              onClick={() => setPaused(!paused)}
+            >
+              {paused ? (
+                <Play size={15} aria-hidden="true" />
+              ) : (
+                <Pause size={15} aria-hidden="true" />
+              )}
+            </button>
+          )}
         </div>
       </div>
       <p
         className="sr-only"
         role="status"
-        aria-live="polite"
+        aria-live={rotating ? 'off' : 'polite'}
         aria-atomic="true"
       >
         {announced

@@ -1,5 +1,77 @@
 # Release status
 
+## Local extension — November 21, 2026 (not published)
+
+Latest selected-plan implementation: earlier authentic case captures, explicit
+internship positioning, two featured starting projects with all six retained,
+responsive preview assets, larger metadata/controls, one sidebar-docked desktop
+feedback launcher, removal of Copy message, page/content code splitting, CSS
+ownership cleanup and Firefox/WebKit compatibility gates. Skills redesign,
+supporting-page storytelling and application/live-demo development remain deferred.
+No resume content was changed. See the newest QA section for measured results.
+
+### Domain decision — researched, not configured
+
+Recommendation: obtain an eligible student `.dev` domain, but **keep Vercel as the
+host**. A domain is an address, not a hosting provider; receiving it through GitHub
+Education does not require deploying on GitHub Pages. No domain was purchased,
+registered or transferred, and no DNS or production settings were changed.
+
+The current [GitHub Student Developer Pack](https://education.github.com/pack)
+lists a Name.com offer including selected `.dev` names. This is separate from
+Namecheap's `.me` offer. [Name.com's own benefit description](https://github.com/namedotcom/student-pack)
+says the first registration year is free, not lifetime registration. Student
+eligibility, redemption status, name availability, premium-name exclusions and the
+actual renewal/auto-renew terms must be checked in the owner's account/checkout;
+none can be confirmed from the repository. Do not commit to an unverified price.
+
+[Vercel supports attaching an existing custom domain](https://vercel.com/docs/domains/working-with-domains/add-a-domain).
+The registrar can remain Name.com. Use the DNS records shown for this project in
+Vercel, not an assumed universal IP address. The address change alone does not
+alter the deployed HTML, CSS, layout or features. It gives a portable branded
+address, not an automatic speed or search-ranking improvement. Risks are renewal
+cost, losing the name through expiry, and DNS/certificate mistakes during cutover.
+Google Registry confirms that [.dev requires HTTPS and a certificate](https://www.registry.google/domains/dev/)
+before browsers will load it; verify TLS before redirecting existing traffic.
+
+[GitHub Pages is static hosting](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages)
+and [also accepts custom domains](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages).
+This prerendered site could be adapted to it, but there is no need to migrate to
+claim the domain. A migration would require a deployment workflow, verification of
+extensionless nested URLs/404 handling and root-relative assets (especially on a
+repository-path URL). The current `vercel.json` headers/redirect configuration
+would not configure Pages. Both choices still depend on FormSubmit for the present
+email feature; the domain itself provides neither an inbox nor a backend. Future
+application backends would need their own hosting; Pages does not run them.
+Moving now adds setup and regression risk without a demonstrated benefit for this
+site. Keeping the current Vercel build, previews and configuration is the lower-risk
+option; this recommendation is an assessment of this repository, not a universal
+claim that Vercel is faster or always cheaper.
+
+After separate authorization and a domain choice: redeem the benefit, check renewal
+terms, attach the domain in Vercel, configure the displayed DNS records, verify TLS
+and all direct routes, set the intended primary-host redirect, rebuild with the
+approved production `SITE_URL`, and verify canonical/OG/sitemap plus real FormSubmit
+delivery from the new origin. Retain the existing host until those checks pass.
+
+### Earlier local implementation details
+
+Implemented the owner-requested fixed/collapsible sidebar, automatic looping project
+showcase, day/night scene control, education/logo refinement, portrait navigation
+identity and private email feedback. Local validation is recorded in `QA_REPORT.md`.
+The follow-up adds a two-column desktop introduction/project layout, smoother
+project transitions, aligned technology grids, evidence-only hold/click previews,
+an obscured resume cover and in-page FormSubmit messaging. No live-demo URLs are
+configured. Inbox activation and a real delivery check are owner actions still
+required; automated tests use intercepted responses and send no email. The PDF
+remains public; obscuring the page preview is not access control.
+The latest density follow-up simplifies the homepage project card, opens its spacing
+and removes Contact's duplicate form. The global feedback form mounts on first use.
+Fresh local `npm audit --json` reports zero known findings on November 21; older
+release audit exceptions below are historical, not the current local audit result.
+No commit, push or production deployment was performed for this extension. The
+production release below remains the last published version.
+
 ## Current production release — text-only header, November 18, 2026
 
 - Revision: `5651750`; deployment: `dpl_Ctpb27j3wemSq9M8PGPF1TgYq1Ar`, READY.

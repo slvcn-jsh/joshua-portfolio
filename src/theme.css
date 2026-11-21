@@ -58,9 +58,6 @@ body {
 .header-inner {
   gap: 22px;
 }
-.desktop-nav {
-  margin-left: auto;
-}
 .theme-control {
   display: none;
   align-items: center;
@@ -74,21 +71,6 @@ body {
 }
 html[data-enhanced] .theme-control {
   display: flex;
-}
-.theme-control select {
-  background: transparent;
-  color: var(--color-ink);
-  font: inherit;
-  font-size: 0.78rem;
-  border: 0;
-  min-height: 42px;
-  max-width: 85px;
-  padding: 0 5px 0 0;
-  cursor: pointer;
-}
-.theme-control option {
-  background: var(--color-elevated);
-  color: var(--color-ink);
 }
 .mobile-nav nav {
   background: var(--color-elevated);
@@ -226,10 +208,6 @@ img.project-logo {
   .theme-control {
     padding-left: 6px;
     gap: 3px;
-  }
-  .theme-control select {
-    max-width: 72px;
-    font-size: 0.72rem;
   }
   .mobile-nav summary {
     gap: 4px;

@@ -1,31 +1,14 @@
+import { projectIndex, type ProjectSummary } from './project-index'
 import { additionalProjects } from './additional-projects'
 
-export type Project = {
-  slug: string
-  name: string
-  category: string
-  platform: 'Android' | 'Cross-platform' | 'Web'
-  headline: string
-  previewLabel: string
-  status: string
-  summary: string
-  stack: string[]
-  repository?: string
+export type Project = ProjectSummary & {
   sourceRef: string
   focus: string
   ownership: string
   problem: string
   solution: string
   features: { title: string; text: string }[]
-  screenshots: {
-    src: string
-    alt: string
-    caption: string
-    width: number
-    height: number
-  }[]
   workflow: { title: string; text: string }[]
-  video?: { src: string; poster: string; caption: string; steps: string[] }
   architectureNote: string
   decisions: {
     title: string
@@ -51,17 +34,7 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: 'pcosina',
-    name: 'PCOSina',
-    category: 'Android · Wellness & meal planning',
-    platform: 'Android',
-    headline: 'Meal planning around real constraints.',
-    previewLabel: 'Application capture · Sample meal plan',
-    status: 'Tester-stage project',
-    summary:
-      'A Filipino-focused meal-planning application that brings food preferences, pantry ingredients and budget into a structured weekly plan.',
-    stack: ['Kotlin', 'Jetpack Compose', 'Python', 'FastAPI', 'OR-Tools'],
-    repository: 'https://github.com/slvcn-jsh/PCOSina',
+    ...projectIndex.pcosina,
     sourceRef: '1840999',
     focus:
       'Android development · Backend integration · Constraint optimization',
@@ -83,24 +56,6 @@ export const projects: Project[] = [
       {
         title: 'Shop',
         text: 'Use ingredient quantities and pantry context to organize groceries.',
-      },
-    ],
-    screenshots: [
-      {
-        src: '/images/pcosina-plan.webp',
-        alt: 'PCOSina weekly plan showing a selected day, meals and estimated intake.',
-        caption:
-          'Weekly plan — existing project presentation capture. Displayed amounts are sample application data.',
-        width: 784,
-        height: 1745,
-      },
-      {
-        src: '/images/pcosina-grocery.webp',
-        alt: 'PCOSina grocery screen showing remaining items and pantry-aware quantities.',
-        caption:
-          'Grocery guidance — quantities and items still to buy. Existing project capture.',
-        width: 784,
-        height: 1745,
       },
     ],
     workflow: [
@@ -169,17 +124,7 @@ export const projects: Project[] = [
       'Source links are pinned to public commit 1840999. The November local test snapshot differs; its file hashes and scope are recorded in the verification download.',
   },
   {
-    slug: 'barion',
-    name: 'Barion',
-    category: 'Cross-platform · Learning application',
-    platform: 'Cross-platform',
-    headline: 'From source material to the next review.',
-    previewLabel: 'Local web preview · Sample deck',
-    status: 'In development',
-    summary:
-      'A local-first learning application that connects source material, flashcards and spaced repetition, with an optional AI-assisted generation path.',
-    stack: ['TypeScript', 'React Native', 'Expo', 'SQLite', 'Python'],
-    repository: 'https://github.com/slvcn-jsh/barion',
+    ...projectIndex.barion,
     sourceRef: '7e83b70',
     focus: 'Cross-platform development · Local data · Learning workflows',
     ownership:
@@ -202,36 +147,6 @@ export const projects: Project[] = [
         text: 'Keep sources, cards and review events in local SQLite storage.',
       },
     ],
-    screenshots: [
-      {
-        src: '/images/barion-current-home.webp',
-        alt: 'Current Barion web dashboard showing a sample deck and a Study now action.',
-        caption:
-          'Local web preview, 16 November 2026 — built-in sample deck, not real learner activity.',
-        width: 1366,
-        height: 900,
-      },
-      {
-        src: '/images/barion-current-source.webp',
-        alt: 'Barion review answer with expanded sample-source provenance and Again, Hard, Good and Easy rating controls.',
-        caption:
-          'Current local web preview at mobile width. Built-in sample content is not medical advice.',
-        width: 390,
-        height: 844,
-      },
-    ],
-    video: {
-      src: '/videos/barion-review.webm',
-      poster: '/images/barion-current-review.webp',
-      caption:
-        'Actual local web preview · 16 November 2026 · Silent recording · Built-in sample deck. This is not a native-release or medical-content validation.',
-      steps: [
-        'Open Study now from the dashboard.',
-        'Attempt recall, then select Reveal.',
-        'Expand Source to inspect the sample excerpt behind the answer.',
-        'Select Good; the application advances to another review card.',
-      ],
-    },
     workflow: [
       { title: 'Add a source', text: 'Text or a selectable-text PDF.' },
       { title: 'Inspect candidates', text: 'Review content and source links.' },

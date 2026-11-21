@@ -15,13 +15,31 @@ export function Home() {
         </h1>
         <div className="intro-context">
           <p className="intro-description">
-            I build mobile and web applications, from interface to data
-            integrity.
+            I build Android applications and dependable web workflows.
           </p>
-          <p className="intro-education">
-            Fourth-year BS Computer Science student at FEU Institute of
-            Technology, majoring in Software Engineering.
+          <p className="intro-availability">
+            Seeking a software engineering internship.
           </p>
+          <a className="intro-education" href="/about#education">
+            <span className="education-mini-mark">
+              <img
+                src="/brands/feu-tech-64.webp"
+                srcSet="/brands/feu-tech-64.webp 64w, /brands/feu-tech-128.webp 128w"
+                sizes="26px"
+                alt=""
+                width="64"
+                height="78"
+              />
+            </span>
+            <span>
+              <strong>FEU Institute of Technology</strong>
+              <span>
+                BS Computer Science · Software Engineering
+                <br />
+                Fourth-year student
+              </span>
+            </span>
+          </a>
           <div className="intro-languages">
             <span>Primary languages</span>
             <TechnologyList

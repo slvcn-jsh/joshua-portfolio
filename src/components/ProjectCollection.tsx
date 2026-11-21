@@ -1,7 +1,12 @@
 import { useState } from 'react'
 import { ArrowUpRight, ArrowRight, LockKeyhole } from 'lucide-react'
-import { projects } from '../content/projects'
+import {
+  projectSummaries as projects,
+  featuredProjectSlugs,
+} from '../content/project-index'
 import { ProjectIdentity } from './ProjectIdentity'
+import { ProjectPreview } from './ProjectPreview'
+import { ResponsiveCapture } from './ResponsiveCapture'
 
 const filters = ['All', 'Android', 'Cross-platform', 'Web'] as const
 type Filter = (typeof filters)[number]
@@ -47,23 +52,34 @@ export function ProjectCollection() {
       </div>
       <div className="collection-grid" id="project-results">
         {visible.map((p) => (
-          <article key={p.slug} className={`collection-card ${p.slug}`}>
+          <article
+            key={p.slug}
+            className={`collection-card ${p.slug}`}
+            data-featured={featuredProjectSlugs.includes(p.slug)}
+          >
             <div
               className={`collection-media ${p.platform === 'Android' ? 'collection-phone' : 'collection-browser'}`}
             >
               <a href={`/projects/${p.slug}`} aria-label={`Explore ${p.name}`}>
-                <img
-                  src={p.screenshots[0].src}
-                  alt={p.screenshots[0].alt}
-                  width={p.screenshots[0].width}
-                  height={p.screenshots[0].height}
-                  loading="lazy"
+                <ResponsiveCapture
+                  image={p.screenshots[0]}
+                  sizes={
+                    p.platform === 'Android'
+                      ? '180px'
+                      : '(min-width: 1024px) 550px, (min-width: 768px) 420px, 350px'
+                  }
                 />
               </a>
               <span className="collection-media-label">{p.previewLabel}</span>
+              <ProjectPreview project={p} floating />
             </div>
             <div className="collection-copy">
-              <p className="eyebrow">{p.category}</p>
+              <p className="eyebrow">
+                {featuredProjectSlugs.includes(p.slug)
+                  ? 'Featured case study · '
+                  : ''}
+                {p.category}
+              </p>
               <h2>
                 <a href={`/projects/${p.slug}`}>
                   <ProjectIdentity project={p} />
@@ -84,6 +100,17 @@ export function ProjectCollection() {
                   Case study <ArrowRight size={16} aria-hidden="true" />
                 </a>
               </div>
+              {p.demoUrl && (
+                <a
+                  className="text-link"
+                  href={p.demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Live demo <ArrowUpRight size={14} aria-hidden="true" />
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </a>
+              )}
               {p.repository ? (
                 <a
                   className="collection-source"
@@ -101,45 +128,6 @@ export function ProjectCollection() {
               )}
             </div>
           </article>
-        ))}
-      </div>
-    </section>
-  )
-}
-
-export function MoreProjects() {
-  return (
-    <section className="more-projects" aria-labelledby="more-projects-title">
-      <header>
-        <div>
-          <p className="eyebrow">More of my work</p>
-          <h2 id="more-projects-title">
-            Different problems. Deliberate decisions.
-          </h2>
-        </div>
-        <a href="/projects" className="text-link">
-          Explore all six <ArrowRight size={16} aria-hidden="true" />
-        </a>
-      </header>
-      <div className="project-index">
-        {projects.slice(2).map((p) => (
-          <a
-            key={p.slug}
-            href={`/projects/${p.slug}`}
-            className={`project-index-link ${p.slug}`}
-          >
-            <ProjectIdentity project={p} />
-            <div>
-              <span className="eyebrow">{p.category}</span>
-              <h3>{p.name}</h3>
-              <p>{p.headline}</p>
-            </div>
-            <ArrowUpRight
-              className="index-arrow"
-              size={20}
-              aria-hidden="true"
-            />
-          </a>
         ))}
       </div>
     </section>

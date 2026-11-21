@@ -64,7 +64,7 @@ export const pageMeta: Record<string, { title: string; description: string }> =
         'Project-based experience in Kotlin, Python, TypeScript, mobile development, backend integration, local data and software testing.',
     },
     '/about': {
-      title: 'About | Joshua Salvacion',
+      title: 'About Me | Joshua Salvacion',
       description:
         'Meet Joshua Escalicas Salvacion, a fourth-year BS Computer Science student majoring in Software Engineering at FEU Institute of Technology.',
     },

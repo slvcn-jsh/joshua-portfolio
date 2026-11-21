@@ -1,19 +1,11 @@
+import { projectIndex } from './project-index'
 import type { Project } from './projects'
 
 // Sanitized descriptions only. Private source is not linked or bundled.
 // Reported application checks are historical evidence, not portfolio QA runs.
 export const additionalProjects: Project[] = [
   {
-    slug: 'focusloop',
-    name: 'FocusLoop',
-    platform: 'Android',
-    category: 'Android · Digital wellbeing',
-    headline: 'A focus session that stays yours.',
-    previewLabel: 'Native UI test · Synthetic data',
-    status: 'Native development build',
-    summary:
-      'An Android digital wellbeing app that separates device usage estimates, personal intentions and self-reported reflections.',
-    stack: ['Kotlin', 'Jetpack Compose', 'Room', 'Kotlin coroutines'],
+    ...projectIndex.focusloop,
     sourceRef: 'ac54d8d',
     focus: 'Session state · Platform permissions · Local persistence',
     ownership:
@@ -34,24 +26,6 @@ export const additionalProjects: Project[] = [
       {
         title: 'Reflect',
         text: 'Record an optional outcome or skip it; inspect local session history.',
-      },
-    ],
-    screenshots: [
-      {
-        src: '/images/projects/focusloop-home.webp',
-        width: 945,
-        height: 2176,
-        alt: 'FocusLoop native Home with a synthetic usage estimate, coverage warning and intention action.',
-        caption:
-          'Native Compose capture, 17 November 2026. Injected synthetic data; the test banner is retained. No personal usage records.',
-      },
-      {
-        src: '/images/projects/focusloop-session.webp',
-        width: 945,
-        height: 2176,
-        alt: 'FocusLoop synthetic reading session with active time, pause, extend and finish controls.',
-        caption:
-          'Session controls in the native UI test host. This capture shows a test state, not a measured productivity outcome.',
       },
     ],
     workflow: [
@@ -129,16 +103,7 @@ export const additionalProjects: Project[] = [
       'Private source snapshot ac54d8d, inspected 18 November 2026. Public content contains only reviewed summaries and synthetic application captures.',
   },
   {
-    slug: 'resolveops',
-    name: 'ResolveOps',
-    platform: 'Web',
-    category: 'Web · IT service desk',
-    headline: 'Service requests with an accountable history.',
-    previewLabel: 'Fictional UI preview · Not the live workspace',
-    status: 'Incident workflow implemented',
-    summary:
-      'An internal service desk with server-enforced access, versioned ticket workflows and transactional history. Automation is a later milestone.',
-    stack: ['TypeScript', 'React', 'NestJS', 'Prisma', 'PostgreSQL'],
+    ...projectIndex.resolveops,
     sourceRef: '5195969',
     focus: 'Authorization · Concurrency · Transactional audit',
     ownership:
@@ -159,16 +124,6 @@ export const additionalProjects: Project[] = [
       {
         title: 'Trace',
         text: 'Review persisted lifecycle and assignment history with version-conflict handling.',
-      },
-    ],
-    screenshots: [
-      {
-        src: '/images/projects/resolveops-queue.webp',
-        width: 1440,
-        height: 900,
-        alt: 'ResolveOps team queue explicitly labeled fictional demonstration data and UI preview.',
-        caption:
-          'React UI preview with fictional tickets and illustrative SLA values. The authenticated incident workflow is separate; measured SLA reporting and automated assignment are not implemented.',
       },
     ],
     workflow: [
@@ -249,16 +204,7 @@ export const additionalProjects: Project[] = [
       'Private source snapshot 5195969, inspected 18 November 2026. Preview captures are explicitly labeled; no real tickets or private accounts are published.',
   },
   {
-    slug: 'procura',
-    name: 'Procura',
-    platform: 'Web',
-    category: 'Web · Procurement controls',
-    headline: 'Approval is a policy, not just a button.',
-    previewLabel: 'Persisted browser-test workflow · Synthetic records',
-    status: 'Request & approval slice',
-    summary:
-      'A procurement workspace with owned drafts, manager decisions, stale-edit protection and transactionally recorded request history.',
-    stack: ['TypeScript', 'React', 'Express', 'Prisma', 'PostgreSQL', 'Zod'],
+    ...projectIndex.procura,
     sourceRef: 'cf40460',
     focus: 'Business rules · Versioned transitions · Audit consistency',
     ownership:
@@ -279,24 +225,6 @@ export const additionalProjects: Project[] = [
       {
         title: 'Inspect',
         text: 'Search authorized records and inspect attributed status and approval history.',
-      },
-    ],
-    screenshots: [
-      {
-        src: '/images/projects/procura-approval.webp',
-        width: 1440,
-        height: 1590,
-        alt: 'Procura approved test request with line items, manager approval and persisted status history.',
-        caption:
-          'Actual persisted approval flow from the 17 November browser test, using synthetic accounts and a dedicated test database. Order, receiving and inventory indicators represent future stages, not implemented modules.',
-      },
-      {
-        src: '/images/projects/procura-mobile.webp',
-        width: 390,
-        height: 2222,
-        alt: 'Mobile Procura test request with approval history and successive request versions.',
-        caption:
-          'The same isolated browser-test workflow at mobile width. Test records are not real procurement activity.',
       },
     ],
     workflow: [
@@ -375,16 +303,7 @@ export const additionalProjects: Project[] = [
       'Private local working tree based on cf40460, inspected 18 November 2026. Source remains private and unchanged by the portfolio work.',
   },
   {
-    slug: 'freshkeep',
-    name: 'FreshKeep',
-    platform: 'Android',
-    category: 'Android · Household inventory',
-    headline: 'One product. Separate batches. Honest quantities.',
-    previewLabel: 'Native application · Synthetic inventory',
-    status: 'Offline-first MVP',
-    summary:
-      'A device-local food inventory that keeps batches, quantities, storage locations and recorded date labels distinct—without an account or network.',
-    stack: ['Kotlin', 'Jetpack Compose', 'Room', 'Jetpack DataStore'],
+    ...projectIndex.freshkeep,
     sourceRef: '4677d1d',
     focus: 'Exact quantities · Atomic stock changes · Offline persistence',
     ownership:
@@ -405,24 +324,6 @@ export const additionalProjects: Project[] = [
       {
         title: 'Review',
         text: 'Inspect date labels and chronological history without network access.',
-      },
-    ],
-    screenshots: [
-      {
-        src: '/images/projects/freshkeep-inventory.webp',
-        width: 720,
-        height: 1600,
-        alt: 'FreshKeep native inventory with storage filters and synthetic food items.',
-        caption:
-          'Native Compose capture, 17 November 2026, using isolated synthetic inventory. No household records are included.',
-      },
-      {
-        src: '/images/projects/freshkeep-batches.webp',
-        width: 720,
-        height: 1600,
-        alt: 'FreshKeep product details showing six pieces and two packs as separate batch quantities, locations and dates.',
-        caption:
-          'Independent batches keep incompatible units and recorded dates separate. Displayed date labels do not certify food safety.',
       },
     ],
     workflow: [

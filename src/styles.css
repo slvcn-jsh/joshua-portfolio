@@ -221,25 +221,6 @@
     font-weight: 650;
     white-space: nowrap;
   }
-  .desktop-nav {
-    display: flex;
-    gap: 23px;
-    align-items: center;
-  }
-  .desktop-nav a {
-    color: var(--color-muted);
-    font-size: 0.8rem;
-    padding-block: 31px 27px;
-    border-bottom: 3px solid transparent;
-  }
-  .desktop-nav a[aria-current] {
-    color: var(--color-navy);
-    border-color: var(--color-accent);
-    font-weight: 650;
-  }
-  .desktop-nav a:hover {
-    color: var(--color-accent);
-  }
   .mobile-nav {
     display: none;
   }
@@ -290,44 +271,6 @@
     display: grid;
     gap: 24px;
   }
-  .project-card {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    border: 1px solid var(--color-line);
-    border-radius: 7px;
-    overflow: hidden;
-  }
-  .project-copy {
-    padding: 31px 36px;
-  }
-  .project-meta {
-    display: flex;
-    align-items: center;
-    gap: 13px;
-    color: var(--color-muted);
-    font-size: 0.66rem;
-    font-weight: 550;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-  .project-copy :is(h2, h3) {
-    margin-top: 14px;
-    font-size: 1.9rem;
-  }
-  .project-copy :is(h2, h3) a {
-    display: inline-flex;
-    align-items: center;
-    gap: 13px;
-  }
-  .project-copy :is(h2, h3) a:hover {
-    color: var(--color-accent);
-  }
-  .project-description {
-    font-size: 0.87rem;
-    color: var(--color-muted);
-    margin-top: 12px;
-    max-width: 430px;
-  }
   .tag-list {
     display: flex;
     flex-wrap: wrap;
@@ -360,42 +303,8 @@
     background: #607993;
     border-radius: 50%;
   }
-  .project-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
-    margin-top: 12px;
-  }
-  .project-links .text-link {
-    font-size: 0.77rem;
-  }
-  .project-preview {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 345px;
-    border-left: 1px solid var(--color-line);
-    overflow: hidden;
-  }
   .pcosina-preview {
     background: #faf3f3;
-  }
-  .phone-pair {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-    height: 280px;
-    width: 100%;
-    padding: 6px 24px 20px;
-  }
-  .phone-pair img {
-    width: auto;
-    height: 100%;
-    border: 1px solid #e3d3d5;
-    border-radius: 9px;
-    box-shadow: 0 5px 15px #3d20370c;
   }
   .preview-caption {
     position: absolute;
@@ -407,13 +316,6 @@
   }
   .barion-preview {
     background: #f0f5f6;
-  }
-  .barion-captures {
-    position: relative;
-    width: 88%;
-    height: 260px;
-    display: flex;
-    align-items: center;
   }
   .desktop-capture {
     width: 88%;
@@ -1088,9 +990,6 @@
 }
 
 @media (max-width: 1023px) {
-  .desktop-nav {
-    display: none;
-  }
   .header-inner {
     min-height: 72px;
     position: relative;
@@ -1137,20 +1036,6 @@
   }
   .hero-actions {
     gap: 10px;
-  }
-  .project-copy {
-    padding: 26px;
-  }
-  .project-preview {
-    min-height: 340px;
-  }
-  .phone-pair {
-    gap: 10px;
-    padding-inline: 16px;
-    height: 245px;
-  }
-  .barion-captures {
-    height: 225px;
   }
   .about-layout {
     gap: 40px;
@@ -1221,44 +1106,6 @@
     font-size: 0.76rem;
     padding-inline: 13px;
     gap: 9px;
-  }
-  .project-card {
-    grid-template-columns: 1fr;
-  }
-  .project-copy {
-    padding: 24px;
-  }
-  .project-meta {
-    font-size: 0.58rem;
-    gap: 9px;
-  }
-  .project-copy :is(h2, h3) {
-    font-size: 1.7rem;
-    margin-top: 14px;
-  }
-  .project-description {
-    font-size: 0.86rem;
-  }
-  .project-preview {
-    border-left: 0;
-    border-top: 1px solid var(--color-line);
-    min-height: 300px;
-  }
-  .phone-pair {
-    height: 255px;
-    padding-bottom: 18px;
-    gap: 18px;
-  }
-  .barion-captures {
-    max-width: 380px;
-    height: 245px;
-  }
-  .barion-captures .mobile-capture {
-    max-height: 220px;
-    width: auto;
-  }
-  .project-links {
-    gap: 20px;
   }
   .contact-band {
     flex-direction: column;

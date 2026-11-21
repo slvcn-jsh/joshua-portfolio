@@ -16,7 +16,7 @@ async (page) => {
       if (await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)) throw new Error('Overflow: ' + path)
       if (path === '/') {
         for (const theme of ['light', 'dark']) {
-          await page.getByLabel('Color theme').selectOption(theme)
+          await page.evaluate((detail) => window.dispatchEvent(new CustomEvent('portfolio-theme-change', { detail })), theme)
           await page.locator('html[data-theme="' + theme + '"]').waitFor()
           for (const [name, slug] of [['PCOSina','pcosina'], ['Barion','barion'], ['FocusLoop','focusloop'], ['ResolveOps','resolveops'], ['Procura','procura'], ['FreshKeep','freshkeep']]) {
             await page.getByRole('button', { name, exact: true }).click()

@@ -1,7 +1,11 @@
 import { CircleDashed, Leaf } from 'lucide-react'
-import type { Project } from '../content/projects'
+import type { ProjectSummary } from '../content/project-index'
 
-export function ProjectIdentity({ project }: { project: Project }) {
+export function ProjectIdentity({
+  project,
+}: {
+  project: Pick<ProjectSummary, 'slug'>
+}) {
   if (project.slug === 'focusloop' || project.slug === 'freshkeep') {
     const Icon = project.slug === 'focusloop' ? CircleDashed : Leaf
     // Descriptive portfolio symbols, not invented official application logos.

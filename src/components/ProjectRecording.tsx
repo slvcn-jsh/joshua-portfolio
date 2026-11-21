@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react'
 import type { Project } from '../content/projects'
 
 export function ProjectRecording({
@@ -5,27 +6,39 @@ export function ProjectRecording({
 }: {
   video: NonNullable<Project['video']>
 }) {
+  const [started, setStarted] = useState(false)
+  const player = useRef<HTMLVideoElement>(null)
+  const media = (
+    <video
+      ref={player}
+      controls
+      playsInline
+      preload="none"
+      width="390"
+      height="844"
+      poster={video.poster}
+      aria-label="Barion sample review workflow"
+      aria-describedby="recording-context"
+    >
+      <source src={video.src} type="video/webm" />
+      Your browser cannot play this recording. Use the download link or read the
+      walkthrough.
+    </video>
+  )
   return (
-    <details className="recording-disclosure">
+    <details
+      className="recording-disclosure"
+      onToggle={(event) => {
+        if (event.currentTarget.open) setStarted(true)
+        else player.current?.pause()
+      }}
+    >
       <summary>
         Watch the actual review workflow{' '}
         <span className="small muted">Silent video</span>
       </summary>
       <div className="recording-layout">
-        <video
-          controls
-          playsInline
-          preload="none"
-          width="390"
-          height="844"
-          poster={video.poster}
-          aria-label="Barion sample review workflow"
-          aria-describedby="recording-context"
-        >
-          <source src={video.src} type="video/webm" />
-          Your browser cannot play this recording. Use the download link or read
-          the walkthrough.
-        </video>
+        {started ? media : <noscript>{media}</noscript>}
         <div>
           <h3>What happens in the recording</h3>
           <ol>

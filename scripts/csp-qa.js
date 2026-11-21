@@ -2,7 +2,7 @@
 // Reproduce the current vercel.json policy on local preview responses.
 async (page) => {
   const policy =
-    "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'"
+    "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://formsubmit.co; object-src 'none'; base-uri 'self'; form-action https://formsubmit.co; frame-ancestors 'none'"
   const context = await page
     .context()
     .browser()
@@ -47,16 +47,29 @@ async (page) => {
       if (violations.length) throw new Error(JSON.stringify({ path, violations }))
     }
     await secure.goto('http://127.0.0.1:4173/')
-    await secure.getByLabel('Color theme').selectOption('dark')
+    await secure.locator('.mobile-nav summary').click()
+    await secure.getByRole('button', { name: 'Switch to night theme' }).click()
     await secure.locator('html[data-theme="dark"]').waitFor()
+    await secure.keyboard.press('Escape')
     await secure.getByRole('button', { name: 'Procura', exact: true }).click()
     await secure.locator('#showcase-procura .showcase-capture').click()
     await secure.getByRole('button', { name: 'Close image' }).click()
+    await secure.getByRole('button', { name: 'Leave a thought' }).click()
+    await secure.getByLabel('Your message').fill('A private suggestion under the current policy.')
+    await secure.route('https://formsubmit.co/ajax/**', route => route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({ success: 'true', message: 'The form was submitted successfully.' }),
+    }))
+    await secure.getByRole('button', { name: 'Send message', exact: true }).click()
+    await secure.getByRole('heading', { name: 'Thanks for the thought.' }).waitFor()
+    await secure.keyboard.press('Escape')
     if ((await secure.evaluate(() => window.policyViolations)).length) throw new Error('Theme/showcase CSP violation')
     return {
       policy: 'vercel.json policy applied to local responses',
       pages: 5,
       violations: 0,
+      feedback: 'mock provider acknowledgment under production CSP; no email sent',
     }
   } finally {
     await context.close()

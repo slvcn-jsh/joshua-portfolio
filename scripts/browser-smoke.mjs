@@ -3,7 +3,15 @@ import { spawn } from 'node:child_process'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { runInThisContext } from 'node:vm'
 import { stripVTControlCharacters } from 'node:util'
-import { chromium } from 'playwright'
+import { chromium, firefox, webkit } from 'playwright'
+
+const engine =
+  process.argv.find((arg) => arg.startsWith('--engine='))?.slice(9) ??
+  'chromium'
+assert(
+  ['chromium', 'firefox', 'webkit'].includes(engine),
+  'Invalid browser engine',
+)
 
 // Reuse the same checked-in workflows as the interactive Playwright CLI.
 // Only trusted repository scripts are evaluated; no page or remote code.
@@ -28,6 +36,9 @@ const suites = requestedSuite
         'expansion',
         'design',
         'portrait',
+        'experience',
+        'layout-preview',
+        'optimization',
       ]
 const ownServer =
   !process.argv.includes('--reuse-preview') && !process.argv.includes('--live')
@@ -71,7 +82,7 @@ try {
     assert(ready, `Preview did not become ready: ${serverLog}`)
   }
   await mkdir('output/playwright', { recursive: true })
-  browser = await chromium.launch()
+  browser = await { chromium, firefox, webkit }[engine].launch()
   const results = {}
   for (const suite of suites) {
     const context = await browser.newContext()
@@ -90,8 +101,12 @@ try {
     }
   }
   await writeFile(
-    `output/playwright/${process.argv.includes('--live') ? 'live' : 'browser'}-report.json`,
-    JSON.stringify({ executedAt: new Date().toISOString(), results }, null, 2),
+    `output/playwright/${process.argv.includes('--live') ? 'live' : engine === 'chromium' ? 'browser' : `browser-${engine}`}-report.json`,
+    JSON.stringify(
+      { executedAt: new Date().toISOString(), engine, results },
+      null,
+      2,
+    ),
   )
 } finally {
   await browser?.close()

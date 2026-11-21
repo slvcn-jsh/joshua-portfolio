@@ -1,6 +1,6 @@
 # Joshua Salvacion — portfolio
 
-A light, responsive software engineering portfolio built with React, TypeScript, Vite, Tailwind CSS and Lucide icons. Fourteen pages are prerendered to static HTML, plus a 404 page. Six application case studies; no runtime backend, account system, analytics or external font requests.
+A responsive software engineering portfolio built with React, TypeScript, Vite, Tailwind CSS and Lucide icons. Fourteen pages are prerendered to static HTML, plus a 404 page. Six application case studies, a fixed collapsible sidebar, adaptive themes and optional private email feedback; no runtime backend, account system, analytics or external font requests.
 
 [Live portfolio](https://joshua-portfolio-phi-lemon.vercel.app) · [Source repository](https://github.com/slvcn-jsh/joshua-portfolio)
 
@@ -87,7 +87,7 @@ are only used when a publishable record exists. Update route metadata, route-cou
 checks and browser coverage together when adding a project.
 
 `ProjectCollection` renders all six projects without JavaScript and progressively
-enhances platform filters. `MoreProjects` keeps the homepage selective. Existing
+enhances platform filters. `ProjectShowcase` owns the homepage selection. Existing
 scenario walkthroughs apply only to PCOSina/Barion; new pages use `ProjectGallery`
 with the shared keyboard-accessible image dialog. Reduced motion is respected.
 
@@ -112,9 +112,9 @@ AI assistance explicit. First-person implementation text is not a personal debug
 
 ### Replace the resume
 
-Use only a newly approved PDF. Copy it unchanged to `public/Joshua-Salvacion-Resume.pdf`, update the page count/file size in the Resume page and regenerate the preview if necessary. The original file is never edited by the portfolio.
+Use only a newly approved PDF. Copy it unchanged to `public/Joshua-Salvacion-Resume.pdf` and update the page count/file size in the Resume page. The original file is never edited by the portfolio. The current obscured preview is an abstract CSS document silhouette, not readable resume content beneath a removable blur. The former readable image was moved to ignored `output/resume-preview-original.webp` for local recovery and is no longer shipped. The PDF remains publicly downloadable: this presentation is not authentication or access control, and old deployments/cached copies are not removed by this local change.
 
-The optional `scripts/preview-resume.py` requires PyMuPDF and renders one page into `output/pdf/`. `sharp` can convert that PNG into the web preview. Python is not needed for normal development, builds or deployment; all production assets are committed.
+The optional `scripts/preview-resume.py` requires PyMuPDF and renders one page into ignored `output/pdf/` for local review. Do not republish a readable resume image without owner approval. Python is not needed for normal development, builds or deployment.
 
 ### Replace screenshots
 
@@ -153,17 +153,102 @@ The current theme/showcase extension is specified in [design evolution](docs/DES
 `src/theme.css` owns paired semantic light/dark colors; `public/theme-init.js` applies
 the saved or system preference before paint under the existing self-only CSP.
 `ThemeControl` subscribes to that browser state without changing server-rendered HTML.
+Its day/night landscape button uses a progressive View Transition reveal; the small
+device button restores system mode. Reduced motion changes themes immediately.
 Keep the bootstrap script in the document head and do not add inline script exceptions.
 
 `ProjectShowcase` and `src/showcase.css` own the single homepage presentation. They
-read the same project data as the collection and case studies. Selectors, previous/next
-buttons and swipe change the same active index; inactive slides are inert. Without
-JavaScript all projects remain readable; reduced motion switches without sliding.
-Do not add autoplay, duplicate homepage project sections or image inversion in dark mode.
+read the same project data as the collection and case studies. Selectors,
+keyboard controls and swipe change the same active index; inactive slides are inert.
+An eight-second rotation loops in either direction and stops after project selection,
+focus or a touch. Hover, document visibility and viewport intersection suspend it.
+A pause/resume button replaces the previous/next buttons. Reduced motion disables
+rotation and displacement. Without JavaScript all projects remain readable.
+At desktop widths of 1280px and above, the introduction and its personal details
+occupy the left column while Selected Work occupies the right. Smaller screens
+retain a vertical reading order. The desktop right-hand card uses a visual above
+a short summary and three key technologies, not nested columns or a full case-study
+outline. Engineering details and the full stack remain on the project pages.
+A 580ms short-distance slide/crossfade keeps
+transitions directional without moving a full panel across the screen.
+Do not duplicate homepage project sections or invert images in dark mode.
+
+`ProjectPreview` adds hold-to-preview evidence on Home and the project collection.
+A quick click or Enter opens an accessible dialog; release ends the temporary
+preview. Existing Barion video plays muted only while held, except under reduced
+motion. Other projects use approved original captures and retain evidence labels.
+Optional `Project.demoUrl` links render only when a verified public URL is provided;
+none are configured. Android projects are not presented as browser-hosted demos.
+`src/project-preview.css` owns evidence previews; `src/identity.css` owns the
+existing skills/technology grids and resume cover. The deferred Skills redesign
+is not part of this iteration.
+
+`Sidebar` and `src/experience.css` own the current navigation layout: a fixed desktop
+sidebar with persisted collapse state and a native mobile drawer. Existing page URLs
+and case-study section navigation are preserved. The portrait is reused from the
+approved browser-icon source. Sidebar preferences are optional when storage is blocked.
+
+`Feedback` is the single `MessageForm` entry point: private in-page submissions via
+[FormSubmit AJAX](https://formsubmit.co/ajax-documentation) to the owner-approved
+`salvacion.jsh@gmail.com` inbox. A reply email is optional. The form mounts on first
+open and keeps its draft in memory across closes, not in persistent browser storage
+or a portfolio database; the chosen external service processes submissions under its privacy
+policy. No provider key, runtime backend, account or public feed is added.
+
+Inbox setup is still required: send a genuine message through the form, then open
+the FormSubmit activation email in the destination inbox (check spam) and confirm.
+After activation, send another genuine message and verify receipt before calling
+delivery operational. Automated checks intercept the provider endpoint; they do
+not send emails or activate the inbox. Failed/pending responses retain the draft;
+only an affirmative provider acknowledgment shows a submitted status, not a
+delivery guarantee. There is no Copy message action or clipboard requirement.
+The single desktop launcher is docked in the sidebar; mobile retains its compact
+floating launcher. Contact deliberately has no duplicate
+form; its ordinary email/social links work without JavaScript.
+CSP permits only FormSubmit for external connections and
+form submission; script/style policies remain self-only.
 
 The full browser runner includes `scripts/design-qa.js`: both-theme showcase states,
 dark routes, storage/system synchronization, pre-hydration and no-JS behavior.
 For a focused local run: `node scripts/browser-smoke.mjs --suite=design`.
+The `experience` suite exercises actual timed rotation/wrapping, selection stop,
+sidebar persistence, real theme controls, responsive feedback and reduced motion.
+The `layout-preview` suite checks seven responsive layouts, hold/click/keyboard
+previews, recording cleanup, skills grids, obscured resume and mocked feedback
+success/offline/rate-limit/activation/invalid-response failures.
+
+## Page and asset ownership
+
+`src/routes.tsx` resolves page-specific dynamic imports before hydration. Both the
+browser and prerender script use the same page tree; ordinary anchors, static HTML,
+direct URLs and no-JavaScript content remain available. `src/pages/` contains one
+module per page. `project-index.ts` supplies card metadata, while full project
+narratives load only on case-study routes. Keep source summaries canonical there.
+
+Home identifies internship intent and leads with PCOSina and Barion; all six
+projects remain available. Case studies show authentic captures before ownership
+and evidence details. Barion's enhanced recording player mounts on first opening,
+pauses when closed, and retains a native no-JavaScript player/download alternative.
+
+`src/showcase.css`, `src/collection.css`, `src/case-study.css`,
+`src/project-preview.css` and `src/feedback.css` own their respective surfaces.
+`src/experience.css` owns sidebar/theme-scene and education layout. Avoid adding
+another feature's overrides to an unrelated stylesheet. Legacy ProjectCard,
+MoreProjects, theme-dropdown and obsolete showcase-headline rules were removed.
+
+Regenerate reviewed screenshot thumbnails and FEU badge variants with
+`npx tsx scripts/prepare-preview-assets.ts`. Originals are preserved;
+`docs/preview-asset-manifest.json` records source and derivative hashes, dimensions
+and byte sizes. Static validation checks those hashes and rendered srcset targets.
+Image dialogs and full case galleries still use the approved originals.
+
+`npm run test:browser` runs the Chromium regression suites, including initial-load
+chunk/asset budgets and a failed page-chunk fallback check. Install extra engines
+with `npx playwright install firefox webkit`, then run
+`npm run test:cross-browser` for route, overflow, modal, carousel, mocked feedback
+and feedback accessibility checks in both themes at mobile/desktop widths.
+CI installs all three engines. These do not replace physical Safari/iOS or
+screen-reader testing, and no test sends real email.
 
 The current work-led editorial layout is specified in [editorial refinement](docs/EDITORIAL_REFINEMENT.md)
 and [design system](docs/DESIGN_SYSTEM.md). `src/editorial.css` owns presentation refinements;

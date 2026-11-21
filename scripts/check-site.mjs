@@ -47,6 +47,15 @@ for (const file of htmlFiles) {
     assert.match(image[0], /\balt="[^"]*"/, `${page}: missing image alt`)
     assert.match(image[0], /\bwidth="\d+"/, `${page}: missing image width`)
     assert.match(image[0], /\bheight="\d+"/, `${page}: missing image height`)
+    const srcset = image[0].match(/\bsrcSet="([^"]+)"/i)?.[1]
+    for (const candidate of srcset?.split(',') ?? []) {
+      const source = candidate.trim().split(/\s+/)[0]
+      assert(
+        source.startsWith('/') &&
+          files.includes(resolve(root, source.slice(1))),
+        `${page}: broken responsive source ${source}`,
+      )
+    }
   }
   for (const match of html.matchAll(/(?:href|src)="([^"]*)"/g)) {
     const href = match[1]
@@ -79,6 +88,27 @@ for (const file of htmlFiles) {
   }
 }
 assert.equal(htmlFiles.length, 15, 'Expected fourteen pages and a 404 page')
+const previews = JSON.parse(
+  await readFile('docs/preview-asset-manifest.json', 'utf8'),
+)
+for (const asset of previews.assets) {
+  for (const entry of [
+    { path: asset.source, sha256: asset.sourceSha256 },
+    ...asset.variants,
+  ]) {
+    const bytes = await readFile(resolve(root, entry.path.slice(1)))
+    assert.equal(
+      createHash('sha256').update(bytes).digest('hex'),
+      entry.sha256,
+      `Preview provenance: ${entry.path}`,
+    )
+    if (entry.bytes) assert.equal(bytes.length, entry.bytes)
+  }
+}
+assert(
+  !files.includes(resolve(root, 'images/resume-preview.webp')),
+  'The former readable resume image must not be shipped',
+)
 const expansionMedia = JSON.parse(
   await readFile('docs/project-expansion-media.json', 'utf8'),
 )

@@ -1,5 +1,358 @@
 # Final QA report
 
+## Selected-plan implementation and verification — November 21, 2026
+
+This local follow-up implements the owner's selected subset of the critique below.
+It does not publish the site, modify application repositories, invent live demos,
+rewrite the resume, or implement the deferred Skills/About redesigns. The older
+critique is retained as historical evidence, not as a claim that every finding
+still applies after this work.
+
+### Implemented
+
+- Home now states Android/web focus and software-engineering internship intent.
+  PCOSina and Barion are identified as the two starting case studies; all six
+  selectors, collection cards, filters and direct case URLs remain available.
+- Every case study starts with approved application evidence before its ownership
+  brief. At 390px, the first two cases' ownership heading follows the capture at
+  y=820; at 1440px it is at y=530. Role, AI-assistance disclosure, verification
+  records and limitations are retained. ResolveOps remains a fictional preview.
+- Responsive capture derivatives and 64/128px FEU variants replace oversized compact
+  images. Original captures, verification hashes and the public PDF are unchanged.
+  Home's standard-density FEU image is 2970 bytes, versus the 205812-byte source.
+  The source and derivative manifest and rendered srcset paths are statically checked.
+- Preview captions/controls, selectors, feedback notes and selected supporting text
+  are larger. Preview and rotation controls have 44px minimum height. There is one
+  feedback launcher: sidebar-docked on desktop, compact/floating on mobile. Mobile
+  home pagination retains reserved space. This does not claim that a floating mobile
+  launcher can never overlap content at every possible scroll position.
+- Copy message is removed from all form states. Sending remains in-page; validation,
+  optional reply address, duplicate-request guard, timeout, private-provider notice,
+  failure recovery and in-memory draft retention remain. Contact's Copy email is a
+  separate contact action and remains. Provider acknowledgment is not inbox-delivery
+  proof. No real messages were sent during testing.
+- Async route resolution splits page modules and full narratives from summary data,
+  preserving prerendered HTML and native URLs. A blocked Contact page chunk leaves
+  the static heading and native email path usable. Contact does not fetch Home,
+  ProjectPreview, project-index or full case chunks; Home omits full case narratives.
+- CSS rules were moved to their owning feature files and 96 verified obsolete
+  selector rules removed. Unused ProjectCard/MoreProjects were removed. Sidebar
+  icons are keyed by destination rather than parallel-array position. No framework,
+  router, animation library or runtime dependency was added.
+- Firefox/WebKit compatibility tests and CI setup are now checked in. A Windows
+  WebKit load stall was isolated to the video in a closed disclosure (also reproduced
+  without JavaScript; removing the initial video removed the stall). The enhanced
+  player now mounts on first opening and pauses on closing. The native no-JavaScript
+  video, recording download and textual alternative are preserved. This does not
+  prove WebM playback on physical Safari/iOS.
+
+### Preservation and measured results
+
+- Before intentional presentation changes, all 15 prerendered HTML bodies and all
+  six full project records were compared exactly across the route/data extraction.
+  Sixteen page/viewport snapshots also matched across the mechanical CSS ownership
+  move. These intermediate checks bracket the refactor; final feature screenshots
+  are intentionally different. The lean-build and safe-refactor workflows kept the
+  changes on existing components, assets and static hosting.
+- `npm run check`: lint/typecheck/build/static checks pass; 15 HTML pages and 754
+  local references. Shared entry: 258.14 KB decoded / 81.69 KB gzip, down from
+  343.21 KB / 104.23 KB. CSS: 94.97 KB / 18.73 KB gzip, down from 99.11 / 19.52 KB.
+  Dynamic route chunks are additional, not included in the entry measurement.
+- Actual fresh initial-load resources in Chromium: Contact 262574 decoded JavaScript
+  bytes across three resources; Home 283602 across ten. These are local transfer/
+  decoded measurements, not field performance, interaction latency or a Lighthouse
+  score. Full output is 5153 KB because derivatives are added while originals remain;
+  output directory size is not per-visit payload. No result claims an SEO speed win.
+- `npm run check:seo`: isolated production, preview and unconfigured fixtures pass.
+  `npm run format:check` passes. Fresh `npm audit --audit-level=moderate`: zero
+  reported vulnerabilities. CI edits are local; no GitHub Actions execution is claimed.
+- `npm run test:cross-browser -- --reuse-preview`: Firefox and WebKit both pass,
+  56 route/theme/width states each and four interaction states each. Covers all
+  fourteen content routes at 390/1440px in both themes, enhanced rendering, headings,
+  overflow, carousel wrapping/reduced motion, preview Escape, single launcher,
+  sidebar docking, draft retention, mocked submission, focus return, early case
+  evidence, and axe checks on the open feedback dialog. No browser console errors.
+
+- `npm run test:browser -- --reuse-preview`: all fourteen suites pass in the final
+  run completed `2026-11-21T06:53:47.515Z`. The light/dark route sweeps cover 150
+  page/width states without axe violations, document overflow or runtime errors.
+  Additional suites cover disclosures, credentials/downloads, native no-JavaScript
+  video, CSP simulation, filters, image dialogs, real timed carousel wrapping,
+  pause/resume, swipe/touch/keyboard, theme/storage behavior, sidebar persistence,
+  seven layout widths, hold previews, one lazy composer, mocked send success/five
+  failure modes, initial chunk/asset budgets, blocked-chunk static fallback, and
+  recording mount-on-open/pause-on-close. Reports/screenshots remain ignored local
+  artifacts under `output/playwright/`; no test counts are field UX measurements.
+
+### Remaining limits and deliberate deferrals
+
+FormSubmit inbox activation and an actual receipt check from the eventual public
+origin still require the owner. No browser test proves delivery. The approved PDF
+remains public; its obscured cover is not access control. No application has acquired
+a live demo through this portfolio work. Actual project functionality, Skills
+evidence hierarchy and owner-authored supporting-page stories remain future work.
+Automated WebKit is not physical Safari/iOS; screen-reader reading order, human
+comprehension and field performance remain unverified. Domain research recommends
+student `.dev` registration with existing Vercel hosting, not a hosting migration;
+terms, risks and an authorized future cutover checklist are in `RELEASE_STATUS.md`.
+
+Only verified dead code/selectors were removed in this turn; those tracked sources
+are recoverable from Git history. Original media are preserved. No commit, push,
+deployment, domain redemption or DNS/account change was performed.
+
+## Density correction and full portfolio review — November 21, 2026
+
+The owner requested implementation first, then a read-only critique. Implementation
+is local and unreleased; recommendations below are not automatically implemented.
+
+### Requested changes and proof
+
+- Kept the desktop identity-left/project-right arrangement, but removed the nested
+  two-column card inside the right column. The project visual sits above short copy.
+  Home shows a summary and three key technologies rather than a repeated headline,
+  full stack and engineering-focus paragraph. Full details remain on project pages.
+- Increased personal-info grouping space, separated the selector from the card,
+  removed primary-language tile borders and reserved room beside home pagination
+  for the fixed feedback launcher. No new dependency or service was introduced.
+- Removed the duplicate Contact composer and its unused panel styles. The single
+  global form now mounts on first opening and retains in-memory drafts across closes.
+  Email/social links remain accessible without JavaScript. Sending, error recovery,
+  copy fallback and the existing FormSubmit configuration remain intact.
+- Build/lint/typecheck/static validation, formatting and isolated SEO fixtures pass.
+  Output: 15 HTML files, 741 local references, about 104.23 KB gzip JavaScript and
+  19.52 KB gzip CSS; 4388 KB total static output. This is not per-page transfer size.
+- All 13 browser suites pass in one final run, completed
+  `2026-11-21T02:56:34.102Z`. Existing route sweeps cover 150 light/dark page/width
+  combinations. Focused checks additionally assert selector/card separation, absence
+  of nested desktop columns, three-technology maximum, one lazy composer and draft
+  retention. Provider requests are intercepted; no real messages were sent.
+- Additional read-only audit: all 14 content routes at 1366x768, plus 56 narrow/short
+  viewport states (320x568, 640x360, 844x390, 1024x600). No horizontal document overflow
+  was found. These extra states are layout checks, not additional axe conformance tests.
+- Fresh `npm audit --json`: zero reported vulnerabilities. Historical development
+  package exceptions elsewhere in this document are not current audit findings.
+- Fourteen GitHub/source/credential destination HEAD requests returned HTTP 200.
+  This verifies reachability, not independent certification validity or app behavior.
+- Public resume rendered with the existing local PDF utility (Poppler unavailable),
+  inspected visually and extracted with pypdf. It remains an unchanged one-page,
+  text-extractable document. No PDF edit or public asset replacement was performed.
+
+Screenshots and raw diagnostics are ignored local artifacts under
+`output/playwright/`; the supplemental diagnostic report is `deep-audit.json`.
+The audit did not change application repositories, submit email, commit or deploy.
+
+### Prioritized critique and proposed next work
+
+1. **Release readiness: local and public are different products right now.** The
+   public origin still returns the old non-sidebar markup and self-only connection
+   policy. Its robots file allows indexing with a sitemap. Local noindex behavior
+   without SITE_URL is deliberate, not a new SEO defect. Publish only after owner
+   approval, then verify the deployed routes, security policy and actual email flow.
+
+2. **Messaging delivery is not proven by UI tests.** Simulated success/error paths
+   pass; activation and inbox delivery have not been verified. Confirm activation
+   and perform a genuine submission from the eventual published origin. Preserve
+   draft retention and the distinction between submitted and delivered. Keep this
+   a private form, not a purported live chat or unsupported response-time promise.
+
+3. **The resume cover is not privacy protection.** The download still contains a
+   mobile number. If that is unwanted exposure, the useful fix is a separately
+   owner-approved public resume, not stronger CSS blur. The PDF links to GitHub and
+   the two public project repositories but not the portfolio. Propose adding the
+   portfolio URL and reconciling its project/skill emphasis with the site. Do not
+   silently rewrite the approved resume or imply old published copies are removed.
+
+4. **The first screen needs a hiring proposition, not just an identity label.**
+   Home says software engineering student and names languages; internship intent
+   and the most useful engineering strengths are clearer deeper in About. Consider
+   one specific, factual positioning sentence and a small availability note. Do not
+   invent dates, job experience, user counts or seniority. The remaining tradeoff
+   is a taller right-hand card: at 1366x768 its project name starts near y=666, so
+   the summary and CTA require scrolling. Whitespace is preferable to shrinking
+   type to force everything above the fold; decide the first-screen priority.
+
+5. **Application proof appears too late on case studies.** At 1366x768 the first
+   application section starts around y=919 to y=987 across the six cases. The hero
+   emphasizes ownership, test records and scope/limitations before the actual UI.
+   Move one authentic visual or short workflow near the top, followed by role,
+   engineering decision, demonstrated result and honest scope. Preserve AI-assistance
+   disclosure and limitations; improve hierarchy rather than hiding qualifications.
+
+6. **Breadth is winning over editorial selection.** The six projects currently have
+   equal selector weight, while evidence strength differs. Lead with the best two
+   or three stories and keep all six discoverable. Android applications do not need
+   fabricated browser demos: short genuine device recordings are more useful than
+   another preview animation. A screenshot preview is not an interactive live app;
+   keep the ResolveOps fictional-preview label and other evidence boundaries clear.
+   Never substitute unmeasured impact claims for missing user research or benchmarks.
+
+7. **The FEU logo is disproportionate network cost.** The 1313x1600 lossless WebP is
+   205812 bytes and appears at 26px in Home's education badge. In the captured
+   throttled visit it transferred 206112 bytes including overhead, about 36% of
+   576947 total resource-transfer bytes. Serve small high-DPI variants for badges,
+   retaining the approved original as source material. The native app captures can
+   likewise use smaller thumbnails while image dialogs retain the full originals.
+
+8. **The JavaScript is shared more broadly than necessary.** App imports every page,
+   case-study component and project content into the same approximately 343 KB
+   decoded script. On initial Contact load, roughly 66% of source characters fell
+   in unexecuted V8 ranges. This is not dead-code proof: later interactions need some
+   of it. Investigate route/data splitting while preserving static HTML and ordinary
+   links. The new feedback mounting change saves initial DOM, not the whole form's
+   code download. A framework rewrite is not justified by these measurements alone.
+
+9. **Some labels are too small despite passing contrast checks.** Home's preview
+   label/control text is around 10.4px at the desktop audit size; several status
+   labels are 10-11px. Enlarge useful controls/metadata instead of making everything
+   miniature. Treat a comfortable touch target as a design goal; do not claim an
+   automatic WCAG failure solely from font size. The floating launcher can still
+   cover text at some scroll positions (including the Skills grid); the homepage
+   pagination safeguard is not a sitewide collision solution. Consider a desktop
+   sidebar launcher or another reserved location without adding duplicate composers.
+
+10. **The Skills page is organized, but still reads as a badge inventory.** Its 41
+    entries mix languages, tools, frameworks, practices and concepts. Prioritize
+    capabilities such as Android persistence, typed web workflows and backend/data
+    correctness, with direct links to the corresponding engineering evidence.
+    Keep secondary tools subordinate. Do not add arbitrary proficiency percentages.
+
+11. **Code maintenance now needs consolidation.** Ten CSS files total roughly 5800
+    lines, with layout rules layered through base, editorial, showcase, experience
+    and preview styles. This is not itself a browser-performance failure, but it
+    makes visual changes fragile. ProjectCard and MoreProjects have no consumers;
+    theme-select rules and obsolete showcase-headline styles remain. Consolidate
+    component ownership and remove verified dead presentation code in a separate,
+    behavior-preserving refactor. Sidebar icon selection also depends on parallel
+    array order; co-locate icon/label/href when navigation next changes.
+
+12. **Automated Chromium success is not complete UX or accessibility validation.**
+    Firefox and WebKit executables are not installed here. Physical-device keyboard,
+    Safari/iOS, screen-reader reading order, real mobile text scaling and interruption
+    behavior remain unverified. Add those to release checks. Keep the existing pause,
+    focus/hover stop, reduced-motion and keyboard alternatives; do not remove them
+    for a visually cleaner carousel. Browser test counts do not measure recruiter
+    comprehension or hiring effectiveness.
+
+13. **Supporting pages should contribute a story, not repeat a list.** About largely
+    repeats project domains; add one genuine decision or lesson in the owner's own
+    words. For the championship, add the problem, personal role and learned outcome
+    only when confirmed. Keep participation distinct from winning and the enterprise
+    positioning certificate distinct from developer certification, as currently done.
+    These pages should support the work, not outrank it.
+
+### Measurement boundaries and recommendation order
+
+Local performance probes used Chromium, 390x844, approximately 200000 B/s download,
+100ms latency and 4x CPU throttling, with coverage instrumentation. One run per route
+showed LCP around 0.80-1.19s and small/no observed layout shifts. These are local lab
+samples, not Lighthouse scores, production field Core Web Vitals or INP measurements;
+they do not establish a sitewide performance pass. Green paint timings can coexist
+with a later-loading project image or weak first-screen hierarchy.
+
+Recommended order: (1) verify delivery and approve a public-resume policy, (2) clarify
+positioning and move authentic project proof earlier, (3) optimize logo/thumbnails,
+(4) consolidate CSS and evaluate measured route splitting, (5) add cross-engine and
+human usability checks before adding more interaction. Keep the editorial identity,
+static routes, real evidence, accessible dialogs and honest project boundaries.
+
+Reference guidance: [WAI carousel animation controls](https://www.w3.org/WAI/tutorials/carousels/animations/),
+[Google Core Web Vitals guidance](https://developers.google.com/search/docs/appearance/core-web-vitals),
+[FormSubmit activation help](https://formsubmit.co/help), and
+[Playwright coverage format](https://github.com/microsoft/playwright/blob/main/docs/src/api/class-coverage.md).
+
+## Earlier iteration: layout, evidence previews and direct messages — November 21, 2026
+
+Local follow-up to the sidebar iteration below; no commit, push, deployment or live
+inbox activation is claimed. The owner chose FormSubmit with inbox activation and
+confirmed that public application demo URLs are not available yet.
+
+- `npm run check`, formatting and isolated SEO fixtures pass. Current output: 15
+  generated HTML files, 741 local references, approximately 104.27 KB gzip JavaScript
+  and 19.52 KB gzip CSS. Original resume/certificate/capture hashes are unchanged.
+  Static validation now rejects the former readable resume image in build output.
+- Final combined `npm run test:browser -- --reuse-preview` passes all 13 suites:
+  browser, enhanced, identity, interaction, editorial, nojs, csp, refinement,
+  expansion, design, portrait, experience and layout-preview. Report completed
+  `2026-11-21T02:28:34.773Z` in ignored `output/playwright/browser-report.json`.
+  Coverage includes 150 light/dark route/width states, 60 selected-project states,
+  24 showcase image dialogs and the new interaction checks described below.
+- Focused layout/preview checks pass at 360, 390, 768, 1024, 1280, 1440 and 1920px.
+  Personal details follow the name; Selected Work is alongside from 1280px upward,
+  and below on smaller screens. Skills categories and technology cells use grids.
+- Hold/release, quick-click and keyboard previews pass on Home and the collection.
+  Native Chromium touch input verifies hold/release and tap-to-open on mobile.
+  The preview dialog passes axe checks and restores focus. Barion's actual recording
+  advances while held and unmounts on release; reduced motion leaves it paused.
+  No unverified Live demo link is rendered. Existing evidence labels are retained.
+- Seven intercepted message submissions cover affirmative acknowledgment, service
+  failure, malformed response, offline connection, rate limiting and activation
+  responses, plus the floating dialog with no reply email. Errors retain drafts;
+  success stays on the current page. **No real test messages were sent.** The CSP
+  suite verifies mocked submission under the updated production policy with zero
+  violations. Native Contact POST remains available without JavaScript.
+- The 580ms transitions use short directional movement and crossfade; manual choice,
+  keyboard/swipe wrapping, actual timed rotation, reading pause and reduced motion
+  pass focused regression. The readable resume image is backed up locally at ignored
+  `output/resume-preview-original.webp`, not shipped. Its replacement is an abstract
+  CSS silhouette with a real download link; removing blur cannot reveal resume text.
+- Desktop/mobile Home, Skills, Resume, direct feedback, dark Contact and collection
+  hold previews were visually reviewed. A clipped collection preview found during
+  review was corrected with a body-level portal, verified inside the viewport.
+
+Delivery remains an external dependency: the owner must submit a genuine message,
+confirm FormSubmit's activation email in `salvacion.jsh@gmail.com` (including spam),
+then verify a subsequent message arrives. A provider acknowledgment is not proof of
+inbox delivery. The approved PDF is still publicly downloadable; the cover is not
+access control and does not remove previously published/cached copies. Tests use
+Chromium, not physical devices or a full assistive-technology audit. No dependency,
+backend, public discussion feed or application deployment was added. Existing
+dependency-audit exception is unchanged.
+
+## Earlier local iteration: sidebar and email composer — November 21, 2026
+
+Local implementation; no publication or new CI run is claimed. The owner selected
+private email feedback rather than a public discussion. The lean-build approach
+kept existing project data, native page URLs and static hosting, with no dependency
+or service added.
+
+- ESLint, TypeScript, production build and static checks pass: 15 generated HTML
+  files, 733 local references, approximately 102.07 KB gzip JavaScript and 17.85 KB
+  gzip CSS. SEO production/preview/unconfigured fixtures and formatting pass.
+- Existing browser, enhanced, identity, interaction, editorial, nojs, csp, refinement,
+  expansion, design and portrait suites passed. The light/dark route sweeps cover
+  150 page/width combinations; design coverage includes 60 showcase states and 24
+  image dialogs. Existing filters, scenarios, recordings, certificates, resume,
+  keyboard focus, native no-JS menus and static six-project content remain usable.
+- The focused experience suite checks actual eight-second advancement, manual
+  selection staying paused across a full interval, keyboard and automatic six-to-one
+  wrap, hover reading pause, persisted/fixed sidebar, real theme buttons, ten width/theme
+  states, feedback accessibility/copy/focus/scroll restoration and reduced motion.
+  Dedicated final-build deep-link checks verify that education is visible below
+  the header on fresh visits at 390, 768 and 1024px, including hydration.
+- Automatic project rotation respects reduced motion, document visibility and
+  viewport intersection. Project selection/focus/touch stops rotation; explicit
+  resume is available. Direct selection and keyboard/swipe remain without the old
+  arrow controls. Image dialogs preserve focus return and remain separate from swipes.
+- The strict existing CSP passes on five local pages, including actual theme-button
+  interaction and feedback composition. No inline script exception or third-party
+  request is introduced. Theme pre-paint, storage blocking, cross-tab changes and
+  system updates pass the existing design suite.
+- Legacy menu checks now wait for drawer visibility; feedback accessibility scans
+  wait for entrance/control animations to settle and report detailed failures.
+  Settled feedback states pass both themes at all five widths.
+- Desktop light/dark, mobile drawer/feedback and the About education layout were
+  visually reviewed. Sidebar collapse and mobile navigation reuse the approved square
+  portrait. The official FEU image retains all original pixels in a lossless WebP;
+  source and output hashes are in `ASSET_PROVENANCE.md`.
+
+Latest focused results and screenshots are ignored local artifacts under
+`output/playwright/`. The broader suites and focused reruns are separate executions;
+this is not a claim that a newly published CI pipeline is green. Verification is in
+Chromium; physical devices, Safari/Firefox and a full assistive-technology audit were
+not performed. Feedback prepares an email or copies text; actual mail-client delivery
+is outside these checks. Existing application evidence and dependency-audit exception
+are unchanged.
+
 ## Text-only header correction — November 18, 2026
 
 Owner clarified that the portrait belongs only in the browser icon, not beside

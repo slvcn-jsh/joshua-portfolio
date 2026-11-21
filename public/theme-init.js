@@ -3,6 +3,7 @@
   const key = 'portfolio-theme'
   const root = document.documentElement
   root.dataset.js = 'true'
+  try { root.dataset.sidebar = localStorage.getItem('portfolio-sidebar') === 'collapsed' ? 'collapsed' : 'expanded' } catch { root.dataset.sidebar = 'expanded' }
   const system = matchMedia('(prefers-color-scheme: dark)')
   const valid = (value) => value === 'light' || value === 'dark' ? value : 'system'
   let preference = 'system'

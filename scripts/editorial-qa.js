@@ -11,11 +11,16 @@
     const state = await page.evaluate(() => ({
       intro: document.querySelector('.home-introduction').getBoundingClientRect().toJSON(),
       showcase: document.querySelector('.showcase').getBoundingClientRect().toJSON(),
+      name: document.querySelector('#intro-title').getBoundingClientRect().toJSON(),
+      context: document.querySelector('.intro-context').getBoundingClientRect().toJSON(),
       obsolete: document.querySelectorAll('.project-featured, .project-supporting, .more-projects, main .contact-band').length,
       eager: document.querySelector('.showcase-slide .showcase-capture img').loading === 'eager',
       educationCount: (document.querySelector('main').textContent.match(/FEU Institute of Technology/g) || []).length,
     }))
-    if (state.showcase.top < state.intro.bottom || state.obsolete || !state.eager || state.educationCount !== 1) throw new Error('Homepage hierarchy regression: ' + JSON.stringify({ width, state }))
+    const layoutFits = width >= 1280
+      ? state.showcase.left >= state.intro.right && Math.abs(state.showcase.top - state.intro.top) < 2
+      : state.showcase.top >= state.intro.bottom
+    if (!layoutFits || state.context.top < state.name.bottom || state.obsolete || !state.eager || state.educationCount !== 1) throw new Error('Homepage hierarchy regression: ' + JSON.stringify({ width, state }))
     for (const [name, slug] of [['PCOSina', 'pcosina'], ['Barion', 'barion']]) {
       await page.getByRole('button', { name, exact: true }).click()
       const slide = page.locator('#showcase-' + slug)

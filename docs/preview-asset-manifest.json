@@ -1,0 +1,231 @@
+{
+  "treatment": "Resized derivatives of reviewed originals; no generated or reconstructed UI.",
+  "assets": [
+    {
+      "source": "/brands/feu-tech.webp",
+      "sourceSha256": "0c626dd723cc84b272221596bbd8c2bcf12f48f3662c8b8a010679c5b83bbea4",
+      "variants": [
+        {
+          "path": "/brands/feu-tech-64.webp",
+          "width": 64,
+          "height": 78,
+          "bytes": 2970,
+          "sha256": "565c7586ce929e59a0e9f6f893aeb51e866841222d80f39b5c1555b70f27b361"
+        },
+        {
+          "path": "/brands/feu-tech-128.webp",
+          "width": 128,
+          "height": 156,
+          "bytes": 7566,
+          "sha256": "19c39ae445252fe0317ca1d41392b6c81eaa7dbd6357b8b4a2e409ee27d0c10e"
+        }
+      ]
+    },
+    {
+      "source": "/images/pcosina-plan.webp",
+      "sourceSha256": "f8dfbf9e46981930b3b332b1b5c36b9288ff5c9a12fccd57400fe14434d33ae4",
+      "variants": [
+        {
+          "path": "/images/previews/pcosina-plan-480.webp",
+          "width": 480,
+          "height": 1068,
+          "bytes": 48648,
+          "sha256": "9028d61f5845f84bc4e321fb2b488b80b9f327d6f6a1225bc0224634d95cee8e"
+        },
+        {
+          "path": "/images/previews/pcosina-plan-784.webp",
+          "width": 784,
+          "height": 1745,
+          "bytes": 90558,
+          "sha256": "2e098914d503d2609575a8d14a720bdcf0c4434c9963fc8eecf15b6f095b3189"
+        }
+      ]
+    },
+    {
+      "source": "/images/pcosina-grocery.webp",
+      "sourceSha256": "0f0f2ec8c5c5abe7c3f9db77d717dd1d649e239f1694a3ac7ff3eedd1c1575fd",
+      "variants": [
+        {
+          "path": "/images/previews/pcosina-grocery-480.webp",
+          "width": 480,
+          "height": 1068,
+          "bytes": 46958,
+          "sha256": "8270e8ec360ad9713f6697f6ef85184f5ba38d66a0ee89d51872dd47c15f150e"
+        },
+        {
+          "path": "/images/previews/pcosina-grocery-784.webp",
+          "width": 784,
+          "height": 1745,
+          "bytes": 91720,
+          "sha256": "10e722bfa00cb9148e10a2fef120bf5c1d08171acdea6076758df7f3ae837994"
+        }
+      ]
+    },
+    {
+      "source": "/images/barion-current-home.webp",
+      "sourceSha256": "864f650092070f2f9e5fd73dd29ceff994dc89858f99405146ce7db125e35c86",
+      "variants": [
+        {
+          "path": "/images/previews/barion-current-home-480.webp",
+          "width": 480,
+          "height": 316,
+          "bytes": 8360,
+          "sha256": "c22324247864b4897754468250ebb94271a8fb13e88c4a1607cb79bdc7d58c18"
+        },
+        {
+          "path": "/images/previews/barion-current-home-960.webp",
+          "width": 960,
+          "height": 633,
+          "bytes": 23514,
+          "sha256": "4ab95d33fff48de78d49e726a1c2637c0aaa2fae54e036544b348114d5606cb9"
+        }
+      ]
+    },
+    {
+      "source": "/images/barion-current-source.webp",
+      "sourceSha256": "7fe1ddb28afda31e427511d441e822c5cc4099b99d9e92c10e725f60c1a19e11",
+      "variants": [
+        {
+          "path": "/images/previews/barion-current-source-390.webp",
+          "width": 390,
+          "height": 844,
+          "bytes": 20832,
+          "sha256": "1a73ff7642d79642b0eebcdc7e78fa331cb131ccc3b4dfb2701de4d53b3550fb"
+        }
+      ]
+    },
+    {
+      "source": "/images/projects/focusloop-home.webp",
+      "sourceSha256": "4c376dc596e7b1791fc30ba6fa7bd5868e722e87f1bc9eeabf3cfbb3927296c5",
+      "variants": [
+        {
+          "path": "/images/previews/focusloop-home-480.webp",
+          "width": 480,
+          "height": 1105,
+          "bytes": 29314,
+          "sha256": "d640df12876e6c15dfcedc0a5390e35fca1cf5fd3ee290dd321ccfca57d99269"
+        },
+        {
+          "path": "/images/previews/focusloop-home-945.webp",
+          "width": 945,
+          "height": 2176,
+          "bytes": 65280,
+          "sha256": "d365c775624c5512e4df71bebaa88817e1f67c0acb909bce3f4421caab251507"
+        }
+      ]
+    },
+    {
+      "source": "/images/projects/focusloop-session.webp",
+      "sourceSha256": "8dc95f26ca29e970644f4b02a9b7885fe25c1d4fb9be4b9727a4d045cfa31de4",
+      "variants": [
+        {
+          "path": "/images/previews/focusloop-session-480.webp",
+          "width": 480,
+          "height": 1105,
+          "bytes": 20934,
+          "sha256": "f29373d839b50b7a214ac4b397b2c997153980a5b7653c5b45f9c029064ee5a6"
+        },
+        {
+          "path": "/images/previews/focusloop-session-945.webp",
+          "width": 945,
+          "height": 2176,
+          "bytes": 47396,
+          "sha256": "b907bbcc51711ad094365547215be6f9f751d3271312653b87550f6d82a88ce1"
+        }
+      ]
+    },
+    {
+      "source": "/images/projects/resolveops-queue.webp",
+      "sourceSha256": "30e6313087c39631898f56a22e2a26e6537334e2aa1ecfb4dafd4f930c4ee4e6",
+      "variants": [
+        {
+          "path": "/images/previews/resolveops-queue-480.webp",
+          "width": 480,
+          "height": 300,
+          "bytes": 12236,
+          "sha256": "7459268c890cb4976309881d7fe843017948639a69fd42c008f3e3c53b5a73fb"
+        },
+        {
+          "path": "/images/previews/resolveops-queue-960.webp",
+          "width": 960,
+          "height": 600,
+          "bytes": 34570,
+          "sha256": "b5b89bb72f8f645b9eed33a9de3a3585691f6e2641bdd3b7bf1f2b54f0dcbde0"
+        }
+      ]
+    },
+    {
+      "source": "/images/projects/procura-approval.webp",
+      "sourceSha256": "3532c60f6e8a4e648f297c2ecff1110b9cd858224c2520642565c98b93f0d1dd",
+      "variants": [
+        {
+          "path": "/images/previews/procura-approval-480.webp",
+          "width": 480,
+          "height": 530,
+          "bytes": 12302,
+          "sha256": "9dde3e46172205f7a4bffbff0ee05aa3c449ee53f5f4701c7bea7a50e06c85b0"
+        },
+        {
+          "path": "/images/previews/procura-approval-960.webp",
+          "width": 960,
+          "height": 1060,
+          "bytes": 36242,
+          "sha256": "e23e587a5e30b6d4a1b80317179ee480471e56dead69e350d6b5c4bc20b3c378"
+        }
+      ]
+    },
+    {
+      "source": "/images/projects/procura-mobile.webp",
+      "sourceSha256": "bcf296e61925570a0aaa64454ab75fad77b1cc70f922a9e3552ace83e7656cb8",
+      "variants": [
+        {
+          "path": "/images/previews/procura-mobile-390.webp",
+          "width": 390,
+          "height": 2222,
+          "bytes": 46792,
+          "sha256": "b52447480a271b4a5cdaa5e6ec31988343403e2a157790cb9bf6350591dfc55c"
+        }
+      ]
+    },
+    {
+      "source": "/images/projects/freshkeep-inventory.webp",
+      "sourceSha256": "95e7985054dc15c8a60ee3d45501324b1bfd08366ff5d0042b054c1be06159bd",
+      "variants": [
+        {
+          "path": "/images/previews/freshkeep-inventory-480.webp",
+          "width": 480,
+          "height": 1067,
+          "bytes": 18840,
+          "sha256": "430b7d0cf7f0d698486c6cca0cc6f3f88d9de858ca75caadefb89c88d7ab81c6"
+        },
+        {
+          "path": "/images/previews/freshkeep-inventory-720.webp",
+          "width": 720,
+          "height": 1600,
+          "bytes": 31002,
+          "sha256": "0d547319cb2120598c900a869d43b0e0b01d42a50cd1c5fccc1f2a741ea04fbd"
+        }
+      ]
+    },
+    {
+      "source": "/images/projects/freshkeep-batches.webp",
+      "sourceSha256": "74dd28342506a1b3b58a8adb9f75c0f1d94cbe40dc740def8b5998d90fedf4c5",
+      "variants": [
+        {
+          "path": "/images/previews/freshkeep-batches-480.webp",
+          "width": 480,
+          "height": 1067,
+          "bytes": 24328,
+          "sha256": "5483c66560919c70e85c5c346ca948bacf675b48ba19a987567a79627c2cda67"
+        },
+        {
+          "path": "/images/previews/freshkeep-batches-720.webp",
+          "width": 720,
+          "height": 1600,
+          "bytes": 40942,
+          "sha256": "fef201926b6e666bb319bfd32d45cb18d658f18f770828113124206f29f50b84"
+        }
+      ]
+    }
+  ]
+}

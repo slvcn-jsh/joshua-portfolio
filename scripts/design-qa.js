@@ -89,7 +89,13 @@
     for (const width of widths) {
       await page.setViewportSize({ width, height: 900 })
       await page.goto(origin)
-      await page.getByLabel('Color theme').selectOption(theme)
+      await page.evaluate(
+        (detail) =>
+          window.dispatchEvent(
+            new CustomEvent('portfolio-theme-change', { detail }),
+          ),
+        theme,
+      )
       for (let i = 0; i < names.length; i++) {
         const control = page.getByRole('button', {
           name: names[i],
@@ -145,25 +151,20 @@
       )
         throw new Error('Arrow key')
       await page.keyboard.press('End')
-      await page
-        .getByRole('button', { name: 'Next project', exact: true })
-        .focus()
-      await page.keyboard.press('Enter')
+      await page.keyboard.press('ArrowRight')
+      if (
+        (await page
+          .locator('.showcase-slide[data-position="active"]')
+          .getAttribute('id')) !== 'showcase-pcosina'
+      )
+        throw new Error('Forward loop boundary')
+      await page.keyboard.press('ArrowLeft')
       if (
         (await page
           .locator('.showcase-slide[data-position="active"]')
           .getAttribute('id')) !== 'showcase-freshkeep'
       )
-        throw new Error('End boundary')
-      await page
-        .getByRole('button', { name: 'Previous project', exact: true })
-        .click()
-      if (
-        (await page
-          .locator('.showcase-slide[data-position="active"]')
-          .getAttribute('id')) !== 'showcase-procura'
-      )
-        throw new Error('Previous button')
+        throw new Error('Reverse loop boundary')
       if (width === 390 || width === 1440) {
         await page.getByRole('button', { name: 'PCOSina', exact: true }).click()
         await settled()
@@ -232,16 +233,28 @@
       .evaluate((el) => getComputedStyle(el).transitionDuration)) !== '0s'
   )
     throw new Error('Reduced motion ignored')
-  await page.getByLabel('Color theme').selectOption('light')
+  await page.evaluate(() =>
+    window.dispatchEvent(
+      new CustomEvent('portfolio-theme-change', { detail: 'light' }),
+    ),
+  )
   await page.goto(origin + '/skills')
   if ((await page.locator('html').getAttribute('data-theme')) !== 'light')
     throw new Error('Theme not persisted across pages')
   const second = await page.context().newPage()
   await second.goto(origin + '/about')
-  await page.getByLabel('Color theme').selectOption('dark')
+  await page.evaluate(() =>
+    window.dispatchEvent(
+      new CustomEvent('portfolio-theme-change', { detail: 'dark' }),
+    ),
+  )
   await second.locator('html[data-theme="dark"]').waitFor()
   await second.close()
-  await page.getByLabel('Color theme').selectOption('system')
+  await page.evaluate(() =>
+    window.dispatchEvent(
+      new CustomEvent('portfolio-theme-change', { detail: 'system' }),
+    ),
+  )
   await page.emulateMedia({ colorScheme: 'light' })
   await page.locator('html[data-theme="light"]').waitFor()
   await page.emulateMedia({ colorScheme: 'dark' })
@@ -329,7 +342,11 @@
     const p = await blocked.newPage()
     await p.goto(origin)
     await p.locator('html[data-theme="dark"]').waitFor()
-    await p.getByLabel('Color theme').selectOption('light')
+    await p.evaluate(() =>
+      window.dispatchEvent(
+        new CustomEvent('portfolio-theme-change', { detail: 'light' }),
+      ),
+    )
     await p.locator('html[data-theme="light"]').waitFor()
   } finally {
     await blocked.close()
@@ -369,7 +386,7 @@
       if (!(await p.getByRole('heading', { name, exact: true }).isVisible()))
         throw new Error('No-JS project missing')
     if (
-      (await p.getByLabel('Color theme').isVisible()) ||
+      (await p.locator('.theme-control').first().isVisible()) ||
       (await p.locator('.showcase-selector').isVisible())
     )
       throw new Error('Inactive controls visible without JS')
