@@ -1,6 +1,77 @@
 # Release status
 
-## Local extension — November 21, 2026 (not published)
+## Current production release — November 21, 2026
+
+- Owner explicitly authorized backup, GitHub publication, production deployment and
+  the `joshuasalvacion.dev` setup on November 21. The domain is not yet registered
+  or connected by the agent; owner redemption is pending.
+- Runtime revision: `d5142c7f9c058797dcd25d5a706052851dd80542`, pushed to `main`.
+- Recoverable source snapshot: annotated tag `portfolio-checkpoint-2026-11-21`,
+  also pushed. [Browse the checkpoint](https://github.com/slvcn-jsh/joshua-portfolio/tree/portfolio-checkpoint-2026-11-21)
+  or [download its source ZIP](https://github.com/slvcn-jsh/joshua-portfolio/archive/refs/tags/portfolio-checkpoint-2026-11-21.zip).
+  A complete-history bundle was created and verified at ignored local path
+  `output/backups/joshua-portfolio-2026-11-21.bundle` (4629898 bytes). No environment
+  or credential files were added to Git. Restore by cloning the bundle/tag into
+  a new folder; do not reset a dirty working tree to recover it.
+- Vercel deployment: `dpl_GhjkVGLiyf9r2hBmrUh9izQUsxH4`, READY.
+- Public address: https://joshua-portfolio-phi-lemon.vercel.app.
+- Unique deployment: https://joshua-portfolio-46nw6p2rk-joshua-salvacions-projects.vercel.app.
+  Use the public alias for anonymous access; unique deployment protection may apply.
+- Anonymous HTTP verification passes: fourteen content routes, canonical/OG/sitemap/
+  robots, configured security headers (including FormSubmit connectivity), real
+  missing-page/asset 404s, unchanged approved resume/certificates/media, test records,
+  immutable assets and exact theme bootstrap. Anonymous Chromium live checks pass
+  28 route/viewport states plus homepage themes/project selection, evidence dialogs,
+  filtering, scenario controls, recording playback, mobile navigation and downloads.
+  No browser or policy errors were recorded. No real email was submitted.
+  Separate 390/1440px live checks also pass the actual theme button, one launcher,
+  desktop sidebar docking, absence of Copy message, close/reopen draft retention,
+  focus return and one intercepted submission each. Provider requests were mocked;
+  these results do not verify activation or inbox delivery.
+- The fresh [GitHub quality run](https://github.com/slvcn-jsh/joshua-portfolio/actions/runs/44879578661)
+  passes clean install, build/static/SEO checks, all fourteen Chromium suites,
+  Firefox/WebKit compatibility, artifact upload and the dependency audit on Linux.
+  Direct Vercel deployment was used because this project still has no connected
+  Git integration. The release-record follow-up changes only documentation and
+  skips repeating CI; it does not change the tested/deployed runtime checkpoint.
+- Existing production `SITE_URL` was retained. No canonical URL, primary-host
+  redirect, DNS or nameserver was prematurely changed to an unregistered address.
+  The registry RDAP lookup returned HTTP 404 / `joshuasalvacion.dev not found` on
+  November 21; that is not a checkout availability, price or benefit-eligibility
+  guarantee. The owner is completing the Name.com/GitHub Education redemption.
+  Add the domain and verify TLS/DNS only after registration is confirmed.
+- FormSubmit inbox activation and real delivery are still unverified. The resume
+  is still publicly downloadable. No application repository, backend or live-demo
+  URL was changed in this release.
+
+### Student benefits worth considering next
+
+Research checked November 21 against the [GitHub Student Developer Pack](https://education.github.com/pack).
+Offers, individual eligibility and redemption/expiry must be checked in the owner's
+account before activation. These are recommendations, not installed integrations:
+
+| Benefit currently listed                                        | Useful next step for these projects                                                         |
+| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| Polypane: individual plan for one year                          | Manual responsive and accessibility review alongside existing automated checks.             |
+| LambdaTest: Live plan for one year                              | Broader browser/OS checks; confirm the included device access before relying on it.         |
+| Azure: $100 credit and selected services, eligible students 18+ | Evaluate hosting an actual project backend once it works locally; set cost limits first.    |
+| Sentry: student error/performance monitoring allowance          | Consider after app release; review data filtering and privacy before instrumentation.       |
+| JetBrains: student subscription, renewable annually             | Professional Python/backend IDE tools; Android Studio itself does not require this benefit. |
+
+Priority is this repository's assessment: use testing benefits first, then choose
+backend hosting to fit the finished application, not to consume a credit. Do not
+replace SQLite or add a managed database simply because another offer exists.
+No new cloud resources, subscriptions, monitoring SDKs, cookies or session replay
+were activated. Check trial/renewal obligations before redeeming any benefit.
+
+For domain redemption, use [Name.com's official student instructions](https://www.name.com/support/articles/360036364834-signing-up-for-github-student-developer-pack):
+start logged out of Name.com, enter via the GitHub Education offer, authenticate
+with GitHub, select the domain, then sign in to Name.com at checkout. Leave the
+automatically applied student promotion intact. Verify a zero first-year total,
+renewal terms, valid registrant details and any privacy options. Do not buy hosting
+or a separate SSL product for the current Vercel site.
+
+## Earlier local implementation — November 21, 2026 (before publication above)
 
 Latest selected-plan implementation: earlier authentic case captures, explicit
 internship positioning, two featured starting projects with all six retained,
@@ -72,7 +143,7 @@ release audit exceptions below are historical, not the current local audit resul
 No commit, push or production deployment was performed for this extension. The
 production release below remains the last published version.
 
-## Current production release — text-only header, November 18, 2026
+## Previous production release — text-only header, November 18, 2026
 
 - Revision: `5651750`; deployment: `dpl_Ctpb27j3wemSq9M8PGPF1TgYq1Ar`, READY.
 - Public address: https://joshua-portfolio-phi-lemon.vercel.app.

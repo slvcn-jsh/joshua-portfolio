@@ -1,5 +1,33 @@
 # Final QA report
 
+## Authorized backup and production release — November 21, 2026
+
+Runtime checkpoint `d5142c7` is pushed to GitHub with annotated tag
+`portfolio-checkpoint-2026-11-21`; the complete-history local Git bundle verifies.
+Fresh build/lint/typecheck/static checks, SEO fixtures and formatting pass before
+deployment. The production build is READY as `dpl_GhjkVGLiyf9r2hBmrUh9izQUsxH4` at
+https://joshua-portfolio-phi-lemon.vercel.app. This supersedes the local-only status
+of the earlier implementation notes below; no application code changed after that
+checkpoint during this release.
+
+Anonymous `check-deployment.mjs` passes fourteen routes, security headers, canonical
+URLs, sitemap/robots, genuine 404s, approved PDF/media hashes, evidence records,
+theme initializer and immutable caching. The live Chromium suite passes 28
+route/viewport states plus themes, image dialogs/focus, filters, scenarios, actual
+Barion recording playback, mobile navigation and downloads, with no console or
+policy errors. Requests do not use Vercel authentication. No real feedback/email was
+submitted, and inbox receipt remains unverified. The domain has not been registered
+or connected yet; `SITE_URL` continues to use the verified public Vercel origin.
+Additional public interaction checks at 390/1440px pass actual theme controls,
+single/docked feedback launchers, removal of Copy message, draft retention, focus
+return and mocked send acknowledgments. The production self-only script policy
+correctly blocks inline axe injection; it was not weakened or bypassed. Feedback
+axe results remain the local three-engine evidence below, not a new live axe claim.
+Fresh GitHub Actions run `44879578661` succeeds on Linux: clean install,
+lint/typecheck/build/static validation, SEO fixtures, all fourteen Chromium suites,
+Firefox/WebKit compatibility checks, artifact upload and audit. The documentation-
+only release record does not alter the deployed runtime checkpoint.
+
 ## Selected-plan implementation and verification — November 21, 2026
 
 This local follow-up implements the owner's selected subset of the critique below.
